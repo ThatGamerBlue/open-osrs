@@ -17,7 +17,6 @@ import org.pf4j.CompoundPluginRepository;
 import org.pf4j.DefaultPluginManager;
 import org.pf4j.DependencyResolver;
 import org.pf4j.DevelopmentPluginRepository;
-import org.pf4j.JarPluginLoader;
 import org.pf4j.JarPluginRepository;
 import org.pf4j.ManifestPluginDescriptorFinder;
 import org.pf4j.PluginAlreadyLoadedException;
@@ -71,18 +70,6 @@ class ExternalPf4jPluginManager extends DefaultPluginManager
 	{
 		CompoundPluginRepository compoundPluginRepository = new CompoundPluginRepository();
 
-		if (isNotDevelopment())
-		{
-			JarPluginRepository jarPluginRepository = new JarPluginRepository(getPluginsRoot());
-
-			// Default pf4j comparator crashes on some systems (https://github.com/open-osrs/runelite/pull/2621)
-			// We also don't care about plugin order at this point, pf4j will sort by Plugin-Dependencies
-			// and we re-sort later based on `@PluginDependency`
-			jarPluginRepository.setComparator(null);
-
-			compoundPluginRepository.add(jarPluginRepository);
-		}
-
 		if (isDevelopment())
 		{
 			for (String developmentPluginPath : RuneLiteProperties.getPluginDevelopmentPath())
@@ -101,6 +88,17 @@ class ExternalPf4jPluginManager extends DefaultPluginManager
 				compoundPluginRepository.add(developmentPluginRepository);
 			}
 		}
+		else
+		{
+			JarPluginRepository jarPluginRepository = new JarPluginRepository(getPluginsRoot());
+
+			// Default pf4j comparator crashes on some systems (https://github.com/open-osrs/runelite/pull/2621)
+			// We also don't care about plugin order at this point, pf4j will sort by Plugin-Dependencies
+			// and we re-sort later based on `@PluginDependency`
+			jarPluginRepository.setComparator(null);
+
+			compoundPluginRepository.add(jarPluginRepository);
+		}
 
 		return compoundPluginRepository;
 	}
@@ -110,7 +108,7 @@ class ExternalPf4jPluginManager extends DefaultPluginManager
 	{
 		return new CompoundPluginLoader()
 			.add(new BasePluginLoader(this, new ExternalPluginClasspath()), this::isDevelopment)
-			.add(new JarPluginLoader(this), this::isNotDevelopment);
+			.add(new SecureJarPluginLoader(this), this::isNotDevelopment);
 	}
 
 	@Override
@@ -141,6 +139,13 @@ class ExternalPf4jPluginManager extends DefaultPluginManager
 			catch (PluginRuntimeException e)
 			{
 				if (!(e instanceof PluginAlreadyLoadedException))
+				{
+					log.error("Could not load plugin {}", pluginPath, e);
+				}
+			}
+			catch (RuntimeException e)
+			{
+				if (e.getMessage().startsWith("No PluginLoader for plugin")) // damn you generic exceptions
 				{
 					log.error("Could not load plugin {}", pluginPath, e);
 				}

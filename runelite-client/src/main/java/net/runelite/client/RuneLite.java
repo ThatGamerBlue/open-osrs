@@ -44,6 +44,11 @@ import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.security.AllPermission;
+import java.security.CodeSource;
+import java.security.PermissionCollection;
+import java.security.Permissions;
+import java.security.Policy;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
@@ -232,6 +237,18 @@ public class RuneLite
 
 	public static void main(String[] args) throws Exception
 	{
+		Policy.setPolicy(new Policy()
+		{
+			@Override
+			public PermissionCollection getPermissions(CodeSource codesource)
+			{
+				Permissions perm = new Permissions();
+				perm.add(new AllPermission());
+				return perm;
+			}
+		});
+		System.setSecurityManager(new SecurityManager());
+
 		Locale.setDefault(Locale.ENGLISH);
 
 		final OptionParser parser = new OptionParser();
@@ -387,7 +404,8 @@ public class RuneLite
 				return;
 			}
 
-			RuneLiteSplashScreen.setError("Error while loading!", "Please check your internet connection and your DNS settings.");
+			RuneLiteSplashScreen
+				.setError("Error while loading!", "Please check your internet connection and your DNS settings.");
 		});
 
 		PROFILES_DIR.mkdirs();
