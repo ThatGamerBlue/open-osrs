@@ -45,7 +45,7 @@ public class StaticMethodSignatureMapper
 		{
 			if (cf.getName().startsWith("net/runelite"))
 			{
-				// XXX net/runelite/rs/Reflection uses invokedynamic
+				// TODO: net/runelite/rs/Reflection uses invokedynamic
 				continue;
 			}
 

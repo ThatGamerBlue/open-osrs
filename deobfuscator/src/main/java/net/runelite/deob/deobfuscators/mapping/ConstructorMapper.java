@@ -66,7 +66,7 @@ public class ConstructorMapper
 			return null;
 		}
 
-		return new Type("L" + other.getName() + ";");
+		return new Type("[".repeat(type.getDimensions()) + "L" + other.getName() + ";");
 	}
 
 	private Signature toOtherSignature(Signature s)
@@ -106,6 +106,12 @@ public class ConstructorMapper
 					continue;
 				}
 
+				if (m.getCode().getInstructions().size() == 5)
+				{
+					logger.info("Skipping constructor {} as it is empty", m);
+					continue;
+				}
+
 				Signature otherSig = toOtherSignature(m.getDescriptor());
 				if (otherSig == null)
 				{
@@ -117,7 +123,7 @@ public class ConstructorMapper
 				Method m2 = other.findMethod(m.getName(), otherSig);
 				if (m2 == null)
 				{
-					logger.warn("Unable to find other constructor for {}, looking for signature {} on class {}", m, otherSig, other);
+					logger.warn("Unable to find other constructor for {}, looking for signature {} on class {} size {}", m, otherSig, other, m.getCode().getInstructions().size());
 					continue;
 				}
 

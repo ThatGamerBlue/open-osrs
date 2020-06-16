@@ -46,6 +46,20 @@ public class ClassGroupMapper
 		for (ClassFile cf1 : one.getClasses())
 			for (ClassFile cf2 : two.getClasses())
 			{
+				if (cf1.getName().contains("runelite"))
+				{
+					if (cf2.getName().equals(cf1.getName()))
+					{
+						map.put(cf1, cf2);
+					}
+					continue;
+				}
+
+				if (cf2.getName().contains("runelite"))
+				{
+					continue;
+				}
+
 				if (!MappingExecutorUtil.isMaybeEqual(cf1, cf2))
 					continue;
 				

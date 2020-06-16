@@ -22,18 +22,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package net.runelite.deob.deobfuscators.mapping;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import net.runelite.asm.Method;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExecutionMapper
 {
 	// method1 maps to one of methods2, find out based on mappings
-	
+
 	private Method method1;
 	private Collection<Method> methods2;
+	private static final Logger logger = LoggerFactory.getLogger(ExecutionMapper.class);
 
 	public ExecutionMapper(Method method1, Collection<Method> methods2)
 	{
@@ -44,6 +47,7 @@ public class ExecutionMapper
 	public ParallelExecutorMapping run()
 	{
 		ParallelExecutorMapping highest = null;
+		ArrayList<ParallelExecutorMapping> mappings = new ArrayList<>();
 		boolean multiple = false;
 
 		for (Method m : methods2)
@@ -52,17 +56,29 @@ public class ExecutionMapper
 
 			if (highest == null || mapping.same > highest.same)
 			{
+				mappings.clear();
+				mappings.add(mapping);
 				highest = mapping;
 				multiple = false;
 			}
 			else if (mapping.same == highest.same)
 			{
+				mappings.add(mapping);
 				multiple = true;
 			}
 		}
 
 		if (multiple)
+		{
+			if (highest.same > 20)
+			{
+				logger.info("{}", mappings);
+			}
+
+			// fuck you
+			// return mappings.get(mappings.size()-1);
 			return null;
+		}
 
 		return highest;
 	}

@@ -87,16 +87,28 @@ public class UpdateMappings
 
 	public static void main(String[] args) throws IOException
 	{
-		if (args.length < 3)
+		/*if (args.length < 3)
+		{
+			System.exit(-1);
+		}*/
+		if (System.getenv("INPUT_RSCLIENT") == null)
 		{
 			System.exit(-1);
 		}
+		if (System.getenv("INPUT_DEOB") == null)
+		{
+			System.exit(-2);
+		}
+		if (System.getenv("OUTPUT_RSCLIENT") == null)
+		{
+			System.exit(-3);
+		}
 
 		UpdateMappings u = new UpdateMappings(
-			JarUtil.loadJar(new File(args[0])),
-			JarUtil.loadJar(new File(args[1]))
+			JarUtil.loadJar(new File(System.getenv("INPUT_RSCLIENT"))),
+			JarUtil.loadJar(new File(System.getenv("INPUT_DEOB")))
 		);
 		u.update();
-		u.save(new File(args[2]));
+		u.save(new File(System.getenv("OUTPUT_RSCLIENT")));
 	}
 }

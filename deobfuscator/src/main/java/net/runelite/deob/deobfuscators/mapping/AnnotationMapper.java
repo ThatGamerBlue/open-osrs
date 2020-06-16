@@ -52,20 +52,25 @@ public class AnnotationMapper
 	public void run()
 	{
 		int count = 0;
+		int fails = 0;
 
 		for (ClassFile c : source.getClasses())
 		{
 			ClassFile other = (ClassFile) mapping.get(c);
 
-			count += run(c, other);
+			int[] ary = run(c, other);
+			count += ary[0];
+			fails += ary[1];
 		}
 
 		logger.info("Copied {} annotations", count);
+		logger.info("Failed {} methods", fails);
 	}
 
-	private int run(ClassFile from, ClassFile to)
+	private int[] run(ClassFile from, ClassFile to)
 	{
 		int count = 0;
+		int fails = 0;
 
 		if (hasCopyableAnnotation(from))
 		{
@@ -103,13 +108,14 @@ public class AnnotationMapper
 			if (other == null)
 			{
 				logger.warn("Unable to map annotated method {} named {}", m, DeobAnnotations.getExportedName(m));
+				fails++;
 				continue;
 			}
 
 			count += copyAnnotations(m, other);
 		}
 
-		return count;
+		return new int[]{count, fails};
 	}
 
 	private int copyAnnotations(Annotated from, Annotated to)

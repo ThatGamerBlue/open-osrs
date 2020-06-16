@@ -80,7 +80,7 @@ public class MappingExecutorUtil
 		
 		parallel.mappings = mappings;
 
-		int same = 0;
+		int sameInsnCount = 0;
 		while (parallel.step())
 		{
 			// get what each frame is paused/exited on
@@ -95,7 +95,7 @@ public class MappingExecutorUtil
 			boolean isSame = mi1.isSame(p1, p2);
 			assert isSame == mi2.isSame(p2, p1)
 				: "isSame fail " + p1.getInstruction() + " <> " + p2.getInstruction();
-			
+
 			if (!isSame)
 			{
 				mappings.crashed = true;
@@ -104,11 +104,11 @@ public class MappingExecutorUtil
 				continue;
 			}
 
-			++same;
+			++sameInsnCount;
 			mi1.map(mappings, p1, p2);
 		}
 
-		mappings.same = same;
+		mappings.same = sameInsnCount;
 		
 		return mappings;
 	}

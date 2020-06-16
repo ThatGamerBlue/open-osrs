@@ -50,6 +50,9 @@ import net.runelite.deob.deobfuscators.cfg.ControlFlowDeobfuscator;
 import net.runelite.deob.deobfuscators.constparam.ConstantParameter;
 import net.runelite.deob.deobfuscators.exprargorder.ExprArgOrder;
 import net.runelite.deob.deobfuscators.menuaction.MenuActionDeobfuscator;
+import net.runelite.deob.deobfuscators.rsmaths.MultiplierAnnotations;
+import net.runelite.deob.deobfuscators.rsmaths.MultiplierFinderKt;
+import net.runelite.deob.deobfuscators.rsmaths.MultiplierFixerKt;
 import net.runelite.deob.deobfuscators.transformers.ClientErrorTransformer;
 import net.runelite.deob.deobfuscators.transformers.GetPathTransformer;
 import net.runelite.deob.deobfuscators.transformers.OpcodesTransformer;
@@ -67,9 +70,12 @@ public class Deob
 
 	public static void main(String[] args) throws IOException
 	{
-		if (args == null || args.length < 2)
+		args = new String[2];
+		args[0] = System.getenv("GAMEPACK_INPUT");
+		args[1] = System.getenv("GAMEPACK_OUTPUT");
+		if (args[0] == null || args[1] == null)
 		{
-			System.err.println("Syntax: input_jar output_jar");
+			logger.error("Missing required arguments");
 			System.exit(-1);
 		}
 
@@ -115,7 +121,8 @@ public class Deob
 
 		run(group, new UnusedClass());
 
-		runMath(group);
+		group = runMath(group, args[1]);
+
 
 		run(group, new ExprArgOrder());
 
@@ -156,9 +163,15 @@ public class Deob
 				|| name.startsWith("__");
 	}
 
-	private static void runMath(ClassGroup group)
+	private static ClassGroup runMath(ClassGroup group, String s) throws IOException
 	{
-		ModArith mod = new ModArith();
+		File f = new File(new File(s).getParentFile(), "tmp-fuckyou.jar");
+		f.deleteOnExit();
+		JarUtil.saveJar(group, f);
+		MultiplierFinderKt.INSTANCE.transform(f.toPath(), f.toPath());
+		MultiplierFixerKt.INSTANCE.transform(f.toPath(), f.toPath());
+		MultiplierAnnotations.INSTANCE.transform(f.toPath(), f.toPath());
+		/*ModArith mod = new ModArith();
 		mod.run(group);
 
 		int last = -1, cur;
@@ -183,7 +196,9 @@ public class Deob
 		// now that modarith is done, remove field * 1
 		new MultiplyOneDeobfuscator(false).run(group);
 
-		mod.annotateEncryption();
+		mod.annotateEncryption();*/
+
+		return JarUtil.loadJar(f);
 	}
 
 	private static void run(ClassGroup group, Deobfuscator deob)

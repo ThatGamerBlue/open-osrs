@@ -44,6 +44,16 @@ public class Instructions implements Iterable<Instruction>
 		this.code = code;
 	}
 
+	public int indexOf(Instruction insn)
+	{
+		return instructions.indexOf(insn);
+	}
+
+	public Instruction get(int index)
+	{
+		return instructions.get(index);
+	}
+
 	public Label createLabelFor(Instruction target)
 	{
 		return createLabelFor(target, false);
@@ -59,7 +69,7 @@ public class Instructions implements Iterable<Instruction>
 			return (Label) target;
 		}
 
-		int i = instructions.indexOf(target);
+		int i = indexOf(target);
 		if (i > 0)
 		{
 			Instruction before = instructions.get(i - 1);
@@ -182,7 +192,7 @@ public class Instructions implements Iterable<Instruction>
 		assert instructions.contains(oldi);
 		assert !instructions.contains(newi);
 
-		int i = instructions.indexOf(oldi);
+		int i = indexOf(oldi);
 		instructions.remove(oldi);
 		oldi.setInstructions(null);
 		instructions.add(i, newi);

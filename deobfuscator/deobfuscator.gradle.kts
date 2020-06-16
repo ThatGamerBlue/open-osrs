@@ -27,6 +27,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id("com.github.hauner.jarTest") version "1.0.1"
+    kotlin("jvm") version "1.3.70"
 }
 
 val deobjars = configurations.create("deobjars")
@@ -46,6 +47,7 @@ dependencies {
     implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.30")
     implementation(project(":runelite-api"))
     implementation(project(":runescape-api"))
+    implementation(kotlin("stdlib"))
 
     runtimeOnly(group = "org.slf4j", name = "slf4j-simple", version = "1.7.30")
 
