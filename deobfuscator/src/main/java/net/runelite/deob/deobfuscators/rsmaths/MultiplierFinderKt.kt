@@ -1,6 +1,21 @@
+/*
+ * Copyright (C) 2020 Kyle Escobar
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package net.runelite.deob.deobfuscators.rsmaths
 
-import com.google.common.collect.HashMultiset
 import com.google.common.collect.MultimapBuilder
 import net.runelite.deob.deobfuscators.rsmaths.MultiplierCompanion.invert
 import net.runelite.deob.deobfuscators.rsmaths.MultiplierCompanion.isInvertible
@@ -37,7 +52,25 @@ object MultiplierFinderKt {
         println ("Multipliers found: ${MultiplierCompanion.decoders.size}")
     }
 
-    private class Interpret(private val multipliers: Multipliers) : Interpreter<Valu>(ASM7) {
+    /*fun getMultipliers(group: ClassGroup): Map<String, Long> {
+        Logger.info("Calculating multipliers.")
+
+        val multipliers = Multipliers()
+        val analyzer = Analyzer(Interpret(multipliers))
+        group.forEach { c ->
+            c.methods.forEach { m ->
+                analyzer.analyze(c.name, m)
+            }
+        }
+
+        multipliers.solve()
+
+        return multipliers.decoders.mapValues { it.value.toLong() }
+    }*/
+
+    private class Interpret(private val multipliers: Multipliers) : Interpreter<Valu>(ASM8) {
+
+        private fun isMultiplier(n: Number) = isInvertible(n) && invert(n) != n
 
         private val ldcs = HashSet<Valu>()
 
@@ -161,8 +194,6 @@ object MultiplierFinderKt {
         private data class FieldMul(val f: Valu, val ldc: Valu)
     }
 
-    private fun isMultiplier(n: Number) = isInvertible(n) && invert(n) != n
-
     private open class Valu(val v: SourceValue) : Value {
 
         override fun equals(other: Any?) = other is Valu && v == other.v
@@ -195,6 +226,8 @@ object MultiplierFinderKt {
         val mulX = MultimapBuilder.hashKeys().arrayListValues().build<String, Mul>()
 
         val decEncX = HashSet<FieldMulAssign>()
+
+        private fun isMultiplier(n: Number) = isInvertible(n) && invert(n) != n
 
         fun solve() {
             while (true) {
@@ -236,12 +269,17 @@ object MultiplierFinderKt {
             if (pairs.isNotEmpty()) return pairs.single().decoder
             val fs = distinct.filter { f -> distinct.all { isFactor(it, f) } }
             if (fs.size == 1) return fs.single().decoder
-            check(fs.size == 2 && fs.size == distinct.size)
-            val counts = HashMultiset.create(ms)
+            check(fs.size == 2 && fs[0].dec != fs[1].dec)
+
+            /**
+             * Removed in rev 190
+             */
+            /*val counts = HashMultiset.create(ms)
             val maxCount = counts.entrySet().maxBy { it.count }!!.count
             val maxs = counts.entrySet().filter { it.count == maxCount }
-            if (maxs.size == 1) return maxs.single().element.decoder
-            return distinct.first { it.dec }.n
+            if (maxs.size == 1) return maxs.single().element.decoder*/
+
+            return fs.first { it.dec }.decoder
         }
 
         private fun isFactor(product: Mul, factor: Mul) = div(product, factor).toLong().absoluteValue <= 0xff

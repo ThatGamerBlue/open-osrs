@@ -34,7 +34,7 @@ object MultiplierAnnotations {
             }
         }
 
-        Logger.getAnonymousLogger().info("Added " + numValueInjections + " ObfuscatedGetter Annotations, missed " + numValueInjectionsMissed)
+        Logger.getAnonymousLogger().info("Added $numValueInjections ObfuscatedGetter Annotations, missed $numValueInjectionsMissed")
 
         writeJar(classNodes, destination)
     }

@@ -1,11 +1,11 @@
 package net.runelite.deob.deobfuscators.rsmaths
 
 import net.runelite.deob.deobfuscators.rsmaths.MultiplierCompanion.invert
-import org.objectweb.asm.Opcodes
+import org.objectweb.asm.Opcodes.*
 import org.objectweb.asm.Type
+import org.objectweb.asm.Type.*
 import org.objectweb.asm.tree.*
 import org.objectweb.asm.tree.analysis.*
-import java.nio.file.Files
 import java.nio.file.Path
 
 object MultiplierFixerKt {
@@ -30,67 +30,67 @@ object MultiplierFixerKt {
         val insnList = m.instructions
         for (insn in insnList.iterator()) {
             if (insn !is FieldInsnNode) continue
-            if (insn.desc != Type.INT_TYPE.descriptor && insn.desc != Type.LONG_TYPE.descriptor) continue
+            if (insn.desc != INT_TYPE.descriptor && insn.desc != LONG_TYPE.descriptor) continue
             val fieldName = "${insn.owner}.${insn.name}"
             val decoder = decoders[fieldName] ?: continue
             when (insn.opcode) {
-                Opcodes.GETFIELD, Opcodes.GETSTATIC -> {
+                GETFIELD, GETSTATIC -> {
                     when (insn.desc) {
-                        Type.INT_TYPE.descriptor -> {
+                        INT_TYPE.descriptor -> {
                             when (insn.next.opcode) {
-                                Opcodes.I2L -> insnList.insertSafe(insn.next, LdcInsnNode(invert(decoder)), InsnNode(Opcodes.LMUL))
-                                else -> insnList.insertSafe(insn, LdcInsnNode(invert(decoder.toInt())), InsnNode(Opcodes.IMUL))
+                                I2L -> insnList.insertSafe(insn.next, LdcInsnNode(invert(decoder)), InsnNode(LMUL))
+                                else -> insnList.insertSafe(insn, LdcInsnNode(invert(decoder.toInt())), InsnNode(IMUL))
                             }
                         }
-                        Type.LONG_TYPE.descriptor -> insnList.insertSafe(insn, LdcInsnNode(invert(decoder)), InsnNode(Opcodes.LMUL))
+                        LONG_TYPE.descriptor -> insnList.insertSafe(insn, LdcInsnNode(invert(decoder)), InsnNode(LMUL))
                         else -> error(insn)
                     }
                 }
-                Opcodes.PUTFIELD -> {
+                PUTFIELD -> {
                     when (insn.desc) {
-                        Type.INT_TYPE.descriptor -> {
+                        INT_TYPE.descriptor -> {
                             when (insn.previous.opcode) {
-                                Opcodes.DUP_X1 -> {
-                                    insnList.insertBeforeSafe(insn.previous, LdcInsnNode(decoder.toInt()), InsnNode(Opcodes.IMUL))
-                                    insnList.insertSafe(insn, LdcInsnNode(invert(decoder.toInt())), InsnNode(Opcodes.IMUL))
+                                DUP_X1 -> {
+                                    insnList.insertBeforeSafe(insn.previous, LdcInsnNode(decoder.toInt()), InsnNode(IMUL))
+                                    insnList.insertSafe(insn, LdcInsnNode(invert(decoder.toInt())), InsnNode(IMUL))
                                 }
-                                Opcodes.DUP, Opcodes.DUP_X2, Opcodes.DUP2, Opcodes.DUP2_X1, Opcodes.DUP2_X2 -> error(insn)
-                                else -> insnList.insertBeforeSafe(insn, LdcInsnNode(decoder.toInt()), InsnNode(Opcodes.IMUL))
+                                DUP, DUP_X2, DUP2, DUP2_X1, DUP2_X2 -> error(insn)
+                                else -> insnList.insertBeforeSafe(insn, LdcInsnNode(decoder.toInt()), InsnNode(IMUL))
                             }
                         }
-                        Type.LONG_TYPE.descriptor -> {
+                        LONG_TYPE.descriptor -> {
                             when (insn.previous.opcode) {
-                                Opcodes.DUP2_X1 -> {
-                                    insnList.insertBeforeSafe(insn.previous, LdcInsnNode(decoder), InsnNode(Opcodes.LMUL))
-                                    insnList.insertSafe(insn, LdcInsnNode(invert(decoder)), InsnNode(Opcodes.LMUL))
+                                DUP2_X1 -> {
+                                    insnList.insertBeforeSafe(insn.previous, LdcInsnNode(decoder), InsnNode(LMUL))
+                                    insnList.insertSafe(insn, LdcInsnNode(invert(decoder)), InsnNode(LMUL))
                                 }
-                                Opcodes.DUP, Opcodes.DUP_X1, Opcodes.DUP_X2, Opcodes.DUP2, Opcodes.DUP2_X2 -> error(insn)
-                                else -> insnList.insertBeforeSafe(insn, LdcInsnNode(decoder), InsnNode(Opcodes.LMUL))
+                                DUP, DUP_X1, DUP_X2, DUP2, DUP2_X2 -> error(insn)
+                                else -> insnList.insertBeforeSafe(insn, LdcInsnNode(decoder), InsnNode(LMUL))
                             }
                         }
                         else -> error(insn)
                     }
                 }
-                Opcodes.PUTSTATIC -> {
+                PUTSTATIC -> {
                     when (insn.desc) {
-                        Type.INT_TYPE.descriptor -> {
+                        INT_TYPE.descriptor -> {
                             when (insn.previous.opcode) {
-                                Opcodes.DUP -> {
-                                    insnList.insertBeforeSafe(insn.previous, LdcInsnNode(decoder.toInt()), InsnNode(Opcodes.IMUL))
-                                    insnList.insertSafe(insn, LdcInsnNode(invert(decoder.toInt())), InsnNode(Opcodes.IMUL))
+                                DUP -> {
+                                    insnList.insertBeforeSafe(insn.previous, LdcInsnNode(decoder.toInt()), InsnNode(IMUL))
+                                    insnList.insertSafe(insn, LdcInsnNode(invert(decoder.toInt())), InsnNode(IMUL))
                                 }
-                                Opcodes.DUP_X1, Opcodes.DUP_X2, Opcodes.DUP2, Opcodes.DUP2_X1, Opcodes.DUP2_X2 -> error(insn)
-                                else -> insnList.insertBeforeSafe(insn, LdcInsnNode(decoder.toInt()), InsnNode(Opcodes.IMUL))
+                                DUP_X1, DUP_X2, DUP2, DUP2_X1, DUP2_X2 -> error(insn)
+                                else -> insnList.insertBeforeSafe(insn, LdcInsnNode(decoder.toInt()), InsnNode(IMUL))
                             }
                         }
-                        Type.LONG_TYPE.descriptor -> {
+                        LONG_TYPE.descriptor -> {
                             when (insn.previous.opcode) {
-                                Opcodes.DUP2 -> {
-                                    insnList.insertBeforeSafe(insn.previous, LdcInsnNode(decoder), InsnNode(Opcodes.LMUL))
-                                    insnList.insertSafe(insn, LdcInsnNode(invert(decoder)), InsnNode(Opcodes.LMUL))
+                                DUP2 -> {
+                                    insnList.insertBeforeSafe(insn.previous, LdcInsnNode(decoder), InsnNode(LMUL))
+                                    insnList.insertSafe(insn, LdcInsnNode(invert(decoder)), InsnNode(LMUL))
                                 }
-                                Opcodes.DUP, Opcodes.DUP_X1, Opcodes.DUP_X2, Opcodes.DUP2_X1, Opcodes.DUP2_X2 -> error(insn)
-                                else -> insnList.insertBeforeSafe(insn, LdcInsnNode(decoder), InsnNode(Opcodes.LMUL))
+                                DUP, DUP_X1, DUP_X2, DUP2_X1, DUP2_X2 -> error(insn)
+                                else -> insnList.insertBeforeSafe(insn, LdcInsnNode(decoder), InsnNode(LMUL))
                             }
                         }
                         else -> error(insn)
@@ -107,8 +107,8 @@ object MultiplierFixerKt {
         analyzer.analyze(c.name, m)
         for (mul in interpreter.constantMultiplications) {
             when (mul.insn.opcode) {
-                Opcodes.IMUL -> associateMultiplication(insnList, mul, 1)
-                Opcodes.LMUL -> associateMultiplication(insnList, mul, 1L)
+                IMUL -> associateMultiplication(insnList, mul, 1)
+                LMUL -> associateMultiplication(insnList, mul, 1L)
                 else -> error(mul)
             }
         }
@@ -124,7 +124,7 @@ object MultiplierFixerKt {
             }
             other is Expr.Const -> {
                 insnList.removeSafe(mul.insn, mul.const.insn)
-                insnList.setSafe(other.insn, pushConstIntInsn(n * other.n.toInt()))
+                insnList.setSafe(other.insn, loadInt(n * other.n.toInt()))
             }
             other is Expr.Add -> {
                 insnList.removeSafe(mul.insn, mul.const.insn)
@@ -132,7 +132,7 @@ object MultiplierFixerKt {
                 distributeAddition(insnList, other.b, n)
             }
             n == 1 -> insnList.removeSafe(mul.insn, mul.const.insn)
-            else -> insnList.setSafe(mul.const.insn, pushConstIntInsn(n))
+            else -> insnList.setSafe(mul.const.insn, loadInt(n))
         }
     }
 
@@ -146,7 +146,7 @@ object MultiplierFixerKt {
             }
             other is Expr.Const -> {
                 insnList.removeSafe(mul.insn, mul.const.insn)
-                insnList.setSafe(other.insn, pushConstLongInsn(n * other.n.toLong()))
+                insnList.setSafe(other.insn, loadLong(n * other.n.toLong()))
             }
             other is Expr.Add -> {
                 insnList.removeSafe(mul.insn, mul.const.insn)
@@ -154,13 +154,13 @@ object MultiplierFixerKt {
                 distributeAddition(insnList, other.b, n)
             }
             n == 1L -> insnList.removeSafe(mul.insn, mul.const.insn)
-            else -> insnList.setSafe(mul.const.insn, pushConstLongInsn(n))
+            else -> insnList.setSafe(mul.const.insn, loadLong(n))
         }
     }
 
     private fun distributeAddition(insnList: InsnList, expr: Expr, n: Int) {
         when (expr) {
-            is Expr.Const -> insnList.setSafe(expr.insn, pushConstIntInsn(n * expr.n.toInt()))
+            is Expr.Const -> insnList.setSafe(expr.insn, loadInt(n * expr.n.toInt()))
             is Expr.Mul -> associateMultiplication(insnList, expr, n)
             else -> error(expr)
         }
@@ -168,13 +168,13 @@ object MultiplierFixerKt {
 
     private fun distributeAddition(insnList: InsnList, expr: Expr, n: Long) {
         when (expr) {
-            is Expr.Const -> insnList.setSafe(expr.insn, pushConstLongInsn(n * expr.n.toLong()))
+            is Expr.Const -> insnList.setSafe(expr.insn, loadLong(n * expr.n.toLong()))
             is Expr.Mul -> associateMultiplication(insnList, expr, n)
             else -> error(expr)
         }
     }
 
-    private class Inter : Interpreter<Expr>(Opcodes.ASM6) {
+    private class Inter : Interpreter<Expr>(ASM8) {
 
         private val sourceInterpreter = SourceInterpreter()
 
@@ -184,7 +184,7 @@ object MultiplierFixerKt {
             val bv = sourceInterpreter.binaryOperation(insn, value1.sv, value2.sv) ?: return null
             if (value1 == value2) return Expr.Var(bv)
             return when (insn.opcode) {
-                Opcodes.IMUL, Opcodes.LMUL -> {
+                IMUL, LMUL -> {
                     if (value1 !is Expr.Const && value2 !is Expr.Const) {
                         Expr.Var(bv)
                     } else {
@@ -193,7 +193,7 @@ object MultiplierFixerKt {
                         }
                     }
                 }
-                Opcodes.IADD, Opcodes.ISUB, Opcodes.LADD, Opcodes.LSUB -> {
+                IADD, ISUB, LADD, LSUB -> {
                     if ((value1 is Expr.Const || value1 is Expr.Mul) && (value2 is Expr.Const || value2 is Expr.Mul)) {
                         Expr.Add(bv, value1, value2)
                     } else {
@@ -240,15 +240,15 @@ object MultiplierFixerKt {
         override fun newOperation(insn: AbstractInsnNode): Expr {
             val bv = sourceInterpreter.newOperation(insn)
             return when (insn.opcode) {
-                Opcodes.LDC ->  {
+                LDC ->  {
                     val cst = (insn as LdcInsnNode).cst
                     when (cst) {
                         is Int, is Long -> Expr.Const(bv, cst as Number)
                         else -> Expr.Var(bv)
                     }
                 }
-                Opcodes.ICONST_1, Opcodes.LCONST_1 -> Expr.Const(bv, 1)
-                Opcodes.ICONST_0, Opcodes.LCONST_0 -> Expr.Const(bv, 0)
+                ICONST_1, LCONST_1 -> Expr.Const(bv, 1)
+                ICONST_0, LCONST_0 -> Expr.Const(bv, 0)
                 else -> Expr.Var(bv)
             }
         }
@@ -305,7 +305,7 @@ object MultiplierFixerKt {
         data class Add(override val sv: SourceValue, val a: Expr, val b: Expr) : Expr() {
 
             override fun toString(): String {
-                val c = if (insn.opcode == Opcodes.IADD || insn.opcode == Opcodes.LADD) '+' else '-'
+                val c = if (insn.opcode == IADD || insn.opcode == LADD) '+' else '-'
                 return "($a$c$b)"
             }
         }
@@ -318,5 +318,54 @@ object MultiplierFixerKt {
 
             override fun toString(): String = "($a*$b)"
         }
+    }
+
+    fun InsnList.insertSafe(previousInsn: AbstractInsnNode, vararg insns: AbstractInsnNode) {
+        check(contains(previousInsn))
+        insns.reversed().forEach { insert(previousInsn, it) }
+    }
+
+    fun InsnList.insertBeforeSafe(nextInsn: AbstractInsnNode, vararg insns: AbstractInsnNode) {
+        check(contains(nextInsn))
+        insns.forEach { insertBefore(nextInsn, it) }
+    }
+
+    fun InsnList.removeSafe(vararg insns: AbstractInsnNode) {
+        insns.forEach {
+            check(contains(it))
+            remove(it)
+        }
+    }
+
+    fun InsnList.setSafe(oldInsn: AbstractInsnNode, newInsn: AbstractInsnNode) {
+        check(contains(oldInsn))
+        set(oldInsn, newInsn)
+    }
+
+    fun loadInt(n: Int): AbstractInsnNode = when (n) {
+        in -1..5 -> InsnNode(n + 3)
+        in Byte.MIN_VALUE..Byte.MAX_VALUE -> IntInsnNode(BIPUSH, n)
+        in Short.MIN_VALUE..Short.MAX_VALUE -> IntInsnNode(SIPUSH, n)
+        else -> LdcInsnNode(n)
+    }
+
+    fun loadLong(n: Long): AbstractInsnNode = when (n) {
+        0L, 1L -> InsnNode((n + 9).toInt())
+        else -> LdcInsnNode(n)
+    }
+
+    val AbstractInsnNode.isIntValue: Boolean get() {
+        return when (opcode) {
+            LDC -> (this as LdcInsnNode).cst is Int
+            SIPUSH, BIPUSH, ICONST_0, ICONST_1, ICONST_2, ICONST_3, ICONST_4, ICONST_5, ICONST_M1 -> true
+            else -> false
+        }
+    }
+
+    val AbstractInsnNode.intValue: Int get() {
+        if (opcode in 2..8) return opcode - 3
+        if (opcode == BIPUSH || opcode == SIPUSH) return (this as IntInsnNode).operand
+        if (this is LdcInsnNode && cst is Int) return cst as Int
+        error(this)
     }
 }
