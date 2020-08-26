@@ -164,7 +164,7 @@ public class Deob
 
 	private static ClassGroup runMath(ClassGroup group, String s) throws IOException
 	{
-		File f = new File(new File(s).getParentFile(), "tmp-fuckyou.jar");
+		File f = new File(new File(s).getParentFile(), "tmp-" + System.currentTimeMillis() + ".jar");
 		f.deleteOnExit();
 		JarUtil.saveJar(group, f);
 		MultiplierFinderKt.INSTANCE.transform(f.toPath(), f.toPath());
