@@ -43,7 +43,6 @@ public class PlayerContainer
 	private LinkedHashMap<Integer, Integer> riskedGear;
 	private MeleeStyle meleeStyle;
 	private Player player;
-	private String location;
 	private String name;
 	private String targetString;
 	private CombatStats combatStats;
@@ -63,12 +62,17 @@ public class PlayerContainer
 	private int weapon;
 	private int wildyLevel;
 
+	public String getLocation()
+	{
+		// TODO: this is kinda slow
+		return player.getWorldLocation() == null ? "N/A" : WorldLocation.location(player.getWorldLocation());
+	}
+
 	PlayerContainer(Player player)
 	{
 		this.attackStyle = AttackStyle.UNKNOWN;
 		this.gear = new LinkedHashMap<>();
 		this.hpLevel = 0;
-		this.location = "N/A";
 		this.meleeStyle = MeleeStyle.STAB;
 		this.name = player.getName();
 		this.player = player;

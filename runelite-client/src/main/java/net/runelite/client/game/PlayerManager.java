@@ -257,7 +257,6 @@ public class PlayerManager
 		updatePlayerGear(player);
 		updateAttackStyle(player);
 		updateWeakness(player);
-		player.setLocation(WorldLocation.location(player.getPlayer().getWorldLocation()));
 		player.setWildyLevel(PvPUtil.getWildernessLevelFrom(player.getPlayer().getWorldLocation()));
 		player.setTargetString(targetStringBuilder(player));
 	}

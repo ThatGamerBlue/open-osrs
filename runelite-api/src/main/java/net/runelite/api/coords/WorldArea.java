@@ -44,31 +44,33 @@ public class WorldArea
 	 * The western most point of the area.
 	 */
 	@Getter
-	private int x;
+	private final int x;
 
 	/**
 	 * The southern most point of the area.
 	 */
 	@Getter
-	private int y;
+	private final int y;
 
 	/**
 	 * The width of the area.
 	 */
 	@Getter
-	private int width;
+	private final int width;
 
 	/**
 	 * The height of the area.
 	 */
 	@Getter
-	private int height;
+	private final int height;
 
 	/**
 	 * The plane the area is on.
 	 */
 	@Getter
-	private int plane;
+	private final int plane;
+
+	private List<WorldPoint> worldPointList = null;
 
 	public WorldArea(int x, int y, int width, int height, int plane)
 	{
@@ -707,21 +709,28 @@ public class WorldArea
 	}
 
 	/**
-	 * Accumulates all the WorldPoints that this WorldArea contains and returns them as a list
+	 * Accumulates all the WorldPoints that this WorldArea contains and returns them as an immutable list
 	 *
-	 * @return Returns the WorldPoints in this WorldArea
+	 * @return Returns the WorldPoints in this WorldArea. This list is immutable.
 	 */
 	public List<WorldPoint> toWorldPointList()
 	{
-		List<WorldPoint> list = new ArrayList<>(width * height);
-		for (int x = 0; x < width; x++)
+		if (worldPointList == null)
 		{
-			for (int y = 0; y < height; y++)
+			// collect all the points
+			List<WorldPoint> tmpList = new ArrayList<>(width * height);
+			for (int x = 0; x < width; x++)
 			{
-				list.add(new WorldPoint(getX() + x, getY() + y, getPlane()));
+				for (int y = 0; y < height; y++)
+				{
+					tmpList.add(new WorldPoint(getX() + x, getY() + y, getPlane()));
+				}
 			}
+
+			// convert to an immutable list so plugins can't mess with it
+			worldPointList = List.copyOf(tmpList);
 		}
 
-		return list;
+		return worldPointList;
 	}
 }
