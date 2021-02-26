@@ -181,4 +181,17 @@ public class LDC extends Instruction implements PushConstantInstruction
 	{
 		return (Number) value;
 	}
+
+	@Override
+	public void renameClass(String oldName, String newName)
+	{
+		Object object = getConstant();
+		if (object instanceof net.runelite.asm.pool.Class)
+		{
+			if (((net.runelite.asm.pool.Class) object).getName().equals(oldName))
+			{
+				value = new net.runelite.asm.pool.Class(newName);
+			}
+		}
+	}
 }
