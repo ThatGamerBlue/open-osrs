@@ -166,7 +166,7 @@ public class Deob
 	{
 		File f = new File(new File(s).getParentFile(), "tmp-" + System.currentTimeMillis() + ".jar");
 		f.deleteOnExit();
-		JarUtil.saveJar(group, f);
+		JarUtil.save(group, f);
 		MultiplierFinderKt.INSTANCE.transform(f.toPath(), f.toPath());
 		MultiplierFixerKt.INSTANCE.transform(f.toPath(), f.toPath());
 		MultiplierAnnotations.INSTANCE.transform(f.toPath(), f.toPath());
@@ -197,7 +197,7 @@ public class Deob
 
 		mod.annotateEncryption();*/
 
-		return JarUtil.loadJar(f);
+		return JarUtil.load(f);
 	}
 
 	private static void run(ClassGroup group, Deobfuscator deob)
