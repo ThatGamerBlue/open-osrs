@@ -4,35 +4,48 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bq")
+@ObfuscatedName("bm")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		longValue = 3333293732747841481L
-	)
-	static long field565;
-	@ObfuscatedName("b")
+	@ObfuscatedName("pq")
 	@ObfuscatedSignature(
-		descriptor = "Lid;"
+		descriptor = "Lld;"
+	)
+	@Export("privateChatMode")
+	static PrivateChatMode privateChatMode;
+	@ObfuscatedName("en")
+	@ObfuscatedSignature(
+		descriptor = "Liy;"
+	)
+	@Export("archive19")
+	static Archive archive19;
+	@ObfuscatedName("hn")
+	@ObfuscatedGetter(
+		intValue = -1907995143
+	)
+	@Export("cameraY")
+	static int cameraY;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Liy;"
 	)
 	@Export("archive")
 	final Archive archive;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -30883449
+		intValue = 265251349
 	)
 	@Export("groupCount")
 	final int groupCount;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1222733201
+		intValue = 134465937
 	)
 	@Export("loadedCount")
 	int loadedCount;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lid;Ljava/lang/String;)V"
+		descriptor = "(Liy;Ljava/lang/String;)V"
 	)
 	ArchiveLoader(Archive var1, String var2) {
 		this.loadedCount = 0; // L: 9
@@ -40,17 +53,17 @@ public class ArchiveLoader {
 		this.groupCount = var1.getGroupCount(); // L: 13
 	} // L: 14
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1049083276"
+		garbageValue = "979008130"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		this.loadedCount = 0; // L: 17
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) { // L: 18
-			if (!this.archive.method4416(var1) || this.archive.method4411(var1)) {
+			if (!this.archive.method4471(var1) || this.archive.method4470(var1)) {
 				++this.loadedCount; // L: 19
 			}
 		}
@@ -58,76 +71,35 @@ public class ArchiveLoader {
 		return this.loadedCount >= this.groupCount; // L: 21
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lco;",
-		garbageValue = "-2052034218"
+		descriptor = "(III)Lhz;",
+		garbageValue = "-326621995"
 	)
-	static Script method1240(int var0, int var1) {
-		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 59
-		if (var2 != null) { // L: 60
-			return var2; // L: 61
+	@Export("getWidgetChild")
+	public static Widget getWidgetChild(int var0, int var1) {
+		Widget var2 = class237.getWidget(var0); // L: 205
+		if (var1 == -1) { // L: 206
+			return var2;
 		} else {
-			String var3 = String.valueOf(var0); // L: 63
-			int var4 = ViewportMouse.archive12.getGroupId(var3); // L: 64
-			if (var4 == -1) { // L: 65
-				return null; // L: 66
-			} else {
-				byte[] var5 = ViewportMouse.archive12.takeFileFlat(var4); // L: 68
-				if (var5 != null) { // L: 69
-					if (var5.length <= 1) { // L: 70
-						return null; // L: 71
-					}
-
-					var2 = ClientPacket.newScript(var5); // L: 73
-					if (var2 != null) { // L: 74
-						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 75
-						return var2; // L: 76
-					}
-				}
-
-				return null; // L: 79
-			}
+			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null; // L: 207 208
 		}
 	}
 
-	@ObfuscatedName("gq")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lbi;ZI)V",
-		garbageValue = "-788560949"
+		descriptor = "(III)I",
+		garbageValue = "2065603382"
 	)
-	@Export("addPlayerToScene")
-	static void addPlayerToScene(Player var0, boolean var1) {
-		if (var0 != null && var0.isVisible() && !var0.isHidden) { // L: 4830
-			var0.isUnanimated = false; // L: 4831
-			if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.idleSequence == var0.movementSequence) { // L: 4832 4833
-				var0.isUnanimated = true;
-			}
-
-			int var2 = var0.x >> 7; // L: 4835
-			int var3 = var0.y >> 7; // L: 4836
-			if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) { // L: 4837
-				long var4 = GrandExchangeOfferOwnWorldComparator.calculateTag(0, 0, 0, false, var0.index); // L: 4838
-				if (var0.model0 != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) { // L: 4839
-					var0.isUnanimated = false; // L: 4840
-					var0.tileHeight = GrandExchangeOfferWorldComparator.getTileHeight(var0.x, var0.y, GrandExchangeOfferUnitPriceComparator.Client_plane); // L: 4841
-					var0.playerCycle = Client.cycle; // L: 4842
-					ModeWhere.scene.addNullableObject(GrandExchangeOfferUnitPriceComparator.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.field646, var0.field669, var0.field660, var0.field661); // L: 4843
-				} else {
-					if ((var0.x & 127) == 64 && (var0.y & 127) == 64) { // L: 4846
-						if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) { // L: 4847
-							return;
-						}
-
-						Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount; // L: 4848
-					}
-
-					var0.tileHeight = GrandExchangeOfferWorldComparator.getTileHeight(var0.x, var0.y, GrandExchangeOfferUnitPriceComparator.Client_plane); // L: 4850
-					var0.playerCycle = Client.cycle; // L: 4851
-					ModeWhere.scene.drawEntity(GrandExchangeOfferUnitPriceComparator.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking); // L: 4852
-				}
-			}
+	static final int method1237(int var0, int var1) {
+		int var2 = class60.method972(var0 + 45365, 91923 + var1, 4) - 128 + (class60.method972(10294 + var0, var1 + 37821, 2) - 128 >> 1) + (class60.method972(var0, var1, 1) - 128 >> 2); // L: 514
+		var2 = (int)(0.3D * (double)var2) + 35; // L: 515
+		if (var2 < 10) { // L: 516
+			var2 = 10;
+		} else if (var2 > 60) { // L: 517
+			var2 = 60;
 		}
 
-	} // L: 4856
+		return var2; // L: 518
+	}
 }

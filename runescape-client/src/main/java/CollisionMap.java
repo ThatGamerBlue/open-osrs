@@ -4,50 +4,62 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fh")
+@ObfuscatedName("fe")
 @Implements("CollisionMap")
 public class CollisionMap {
-	@ObfuscatedName("ah")
-	@ObfuscatedGetter(
-		intValue = 1469076521
+	@ObfuscatedName("df")
+	@ObfuscatedSignature(
+		descriptor = "Liy;"
 	)
-	@Export("xInset")
-	int xInset;
-	@ObfuscatedName("az")
+	@Export("archive13")
+	static Archive archive13;
+	@ObfuscatedName("lt")
 	@ObfuscatedGetter(
-		intValue = -1784403855
+		intValue = 1808684023
 	)
-	@Export("yInset")
-	int yInset;
+	@Export("menuWidth")
+	static int menuWidth;
 	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = 803284803
+		intValue = 406113531
+	)
+	@Export("xInset")
+	public int xInset;
+	@ObfuscatedName("ax")
+	@ObfuscatedGetter(
+		intValue = 954576471
+	)
+	@Export("yInset")
+	public int yInset;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = 359679375
 	)
 	@Export("xSize")
 	int xSize;
-	@ObfuscatedName("au")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 726006289
+		intValue = -1511754603
 	)
 	@Export("ySize")
 	int ySize;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("aa")
 	@Export("flags")
 	public int[][] flags;
 
 	public CollisionMap(int var1, int var2) {
 		this.xInset = 0; // L: 44
-		this.yInset = 0;
-		this.xSize = var1;
-		this.ySize = var2;
+		this.yInset = 0; // L: 45
+		this.xSize = var1; // L: 46
+		this.ySize = var2; // L: 47
 		this.flags = new int[this.xSize][this.ySize]; // L: 48
-		this.clear();
+		this.clear(); // L: 49
 	} // L: 50
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "1102469876"
+		garbageValue = "202465508"
 	)
 	@Export("clear")
 	public void clear() {
@@ -63,12 +75,12 @@ public class CollisionMap {
 
 	} // L: 59
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIZI)V",
-		garbageValue = "1208614237"
+		garbageValue = "-1197529454"
 	)
-	public void method3683(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3749(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset; // L: 62
 		var2 -= this.yInset; // L: 63
 		if (var3 == 0) { // L: 64
@@ -215,10 +227,10 @@ public class CollisionMap {
 
 	} // L: 182
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZB)V",
-		garbageValue = "1"
+		descriptor = "(IIIIZI)V",
+		garbageValue = "-524306614"
 	)
 	@Export("addGameObject")
 	public void addGameObject(int var1, int var2, int var3, int var4, boolean var5) {
@@ -242,10 +254,10 @@ public class CollisionMap {
 
 	} // L: 196
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-497900388"
+		garbageValue = "-190427949"
 	)
 	@Export("setBlockedByFloor")
 	public void setBlockedByFloor(int var1, int var2) {
@@ -255,10 +267,10 @@ public class CollisionMap {
 		var10000[var2] |= 2097152;
 	} // L: 202
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-2077478185"
+		garbageValue = "1930968557"
 	)
 	@Export("setBlockedByFloorDec")
 	public void setBlockedByFloorDec(int var1, int var2) {
@@ -268,10 +280,10 @@ public class CollisionMap {
 		var10000[var2] |= 262144;
 	} // L: 208
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)V",
-		garbageValue = "-1102921575"
+		garbageValue = "1183739500"
 	)
 	@Export("setFlag")
 	void setFlag(int var1, int var2, int var3) {
@@ -279,12 +291,12 @@ public class CollisionMap {
 		var10000[var2] |= var3;
 	} // L: 212
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIZI)V",
-		garbageValue = "1625102421"
+		garbageValue = "-118204308"
 	)
-	public void method3688(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3755(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset; // L: 215
 		var2 -= this.yInset; // L: 216
 		if (var3 == 0) { // L: 217
@@ -431,10 +443,10 @@ public class CollisionMap {
 
 	} // L: 335
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIIZI)V",
-		garbageValue = "825527844"
+		garbageValue = "-60481417"
 	)
 	@Export("setFlagOffNonSquare")
 	public void setFlagOffNonSquare(int var1, int var2, int var3, int var4, int var5, boolean var6) {
@@ -464,10 +476,10 @@ public class CollisionMap {
 
 	} // L: 354
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)V",
-		garbageValue = "-1464049351"
+		garbageValue = "-1684469996"
 	)
 	@Export("setFlagOff")
 	void setFlagOff(int var1, int var2, int var3) {
@@ -475,41 +487,24 @@ public class CollisionMap {
 		var10000[var2] &= ~var3;
 	} // L: 358
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(IIS)V",
-		garbageValue = "-5902"
+		descriptor = "(IIB)V",
+		garbageValue = "50"
 	)
-	public void method3691(int var1, int var2) {
+	public void method3758(int var1, int var2) {
 		var1 -= this.xInset; // L: 361
 		var2 -= this.yInset; // L: 362
 		int[] var10000 = this.flags[var1]; // L: 363
 		var10000[var2] &= -262145;
 	} // L: 364
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;ZI)[B",
-		garbageValue = "299117016"
+		descriptor = "(II)Z",
+		garbageValue = "-425631608"
 	)
-	public static byte[] method3712(Object var0, boolean var1) {
-		if (var0 == null) { // L: 30
-			return null;
-		} else if (var0 instanceof byte[]) { // L: 31
-			byte[] var6 = (byte[])((byte[])var0); // L: 32
-			if (var1) { // L: 33
-				int var4 = var6.length; // L: 36
-				byte[] var5 = new byte[var4]; // L: 37
-				System.arraycopy(var6, 0, var5, 0, var4); // L: 38
-				return var5; // L: 41
-			} else {
-				return var6; // L: 43
-			}
-		} else if (var0 instanceof AbstractByteArrayCopier) { // L: 45
-			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0; // L: 46
-			return var2.get(); // L: 47
-		} else {
-			throw new IllegalArgumentException(); // L: 49
-		}
+	public static boolean method3781(int var0) {
+		return (var0 >> 20 & 1) != 0; // L: 17
 	}
 }

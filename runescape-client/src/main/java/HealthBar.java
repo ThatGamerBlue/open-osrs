@@ -1,33 +1,23 @@
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cx")
+@ObfuscatedName("cr")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = -1819103189
-	)
-	@Export("ItemDefinition_fileCount")
-	public static int ItemDefinition_fileCount;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = 1100752365
-	)
-	@Export("canvasHeight")
-	public static int canvasHeight;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
+	public static short[] field1143;
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		descriptor = "Lix;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Ljs;"
+		descriptor = "Ljv;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
@@ -40,10 +30,10 @@ public class HealthBar extends Node {
 		this.definition = var1; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "184587772"
+		garbageValue = "954576471"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -57,8 +47,8 @@ public class HealthBar extends Node {
 				return; // L: 25
 			}
 
-			if (var7.cycle <= var1) { // L: 27
-				var5 = var7;
+			if (var7.cycle <= var1) {
+				var5 = var7; // L: 27
 			}
 		}
 
@@ -76,10 +66,10 @@ public class HealthBar extends Node {
 		}
 	} // L: 31 35
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lce;",
-		garbageValue = "1695918285"
+		descriptor = "(II)Lcd;",
+		garbageValue = "-1228863072"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -101,107 +91,216 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "112420094"
+		descriptor = "(B)Z",
+		garbageValue = "-64"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method4990(); // L: 55
+		return this.updates.method5064(); // L: 55
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Liw;Liw;ZII)V",
-		garbageValue = "265238448"
+		descriptor = "(CI)Z",
+		garbageValue = "-391564902"
 	)
-	static void method2141(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
-		if (Login.clearLoginScreen) { // L: 128
-			if (var3 == 4) { // L: 129
-				Login.loginIndex = 4; // L: 130
-			}
-
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') { // L: 188
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) {
+			return true; // L: 189
 		} else {
-			Login.loginIndex = var3; // L: 134
-			Rasterizer2D.Rasterizer2D_clear(); // L: 135
-			byte[] var4 = var0.takeFileByNames("title.jpg", ""); // L: 136
-			Login.leftTitleSprite = class39.convertJpgToSprite(var4); // L: 137
-			Login.rightTitleSprite = Login.leftTitleSprite.mirrorHorizontally(); // L: 138
-			AbstractArchive.method4386(var1, Client.worldProperties); // L: 139
-			Tiles.titleboxSprite = Canvas.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", ""); // L: 140
-			Login.titlebuttonSprite = Canvas.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", ""); // L: 141
-			int var6 = var1.getGroupId("runes"); // L: 144
-			int var7 = var1.getFileId(var6, ""); // L: 145
-			IndexedSprite[] var5 = UserComparator5.method3540(var1, var6, var7); // L: 146
-			class278.runesSprite = var5; // L: 148
-			var7 = var1.getGroupId("title_mute"); // L: 151
-			int var8 = var1.getFileId(var7, ""); // L: 152
-			IndexedSprite[] var10 = UserComparator5.method3540(var1, var7, var8); // L: 153
-			DefaultsGroup.title_muteSprite = var10; // L: 155
-			Login.options_buttons_0Sprite = Canvas.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", ""); // L: 156
-			class69.field583 = Canvas.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", ""); // L: 157
-			Login.options_buttons_2Sprite = Canvas.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", ""); // L: 158
-			DevicePcmPlayerProvider.field439 = Canvas.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", ""); // L: 159
-			class225.field2576 = Login.options_buttons_0Sprite.subWidth; // L: 160
-			class232.field2780 = Login.options_buttons_0Sprite.subHeight; // L: 161
-			Login.loginScreenRunesAnimation = new LoginScreenAnimation(class278.runesSprite); // L: 162
-			if (var2) { // L: 163
-				Login.Login_username = ""; // L: 164
-				Login.Login_password = ""; // L: 165
-			}
-
-			class169.field2035 = 0; // L: 167
-			EnumDefinition.otp = ""; // L: 168
-			Login.field1227 = true; // L: 169
-			Login.worldSelectOpen = false; // L: 170
-			if (!GrandExchangeOfferAgeComparator.clientPreferences.titleMusicDisabled) { // L: 171
-				Archive var11 = ApproximateRouteStrategy.archive6; // L: 172
-				var8 = var11.getGroupId("scape main"); // L: 174
-				int var9 = var11.getFileId(var8, ""); // L: 175
-				class206.musicPlayerStatus = 1; // L: 177
-				class23.musicTrackArchive = var11; // L: 178
-				TileItem.musicTrackGroupId = var8; // L: 179
-				class206.musicTrackFileId = var9; // L: 180
-				class206.musicTrackVolume = 255; // L: 181
-				class195.musicTrackBoolean = false; // L: 182
-				MusicPatch.pcmSampleLength = 2; // L: 183
-			} else {
-				VertexNormal.method3133(2); // L: 187
-			}
-
-			WorldMapSection0.method323(false); // L: 188
-			Login.clearLoginScreen = true; // L: 189
-			Login.xPadding = (ItemContainer.canvasWidth - 765) / 2; // L: 190
-			Login.loginBoxX = Login.xPadding + 202; // L: 191
-			AttackOption.loginBoxCenter = Login.loginBoxX + 180; // L: 192
-			Login.leftTitleSprite.drawAt(Login.xPadding, 0); // L: 193
-			Login.rightTitleSprite.drawAt(Login.xPadding + 382, 0); // L: 194
-			SecureRandomFuture.logoSprite.drawAt(Login.xPadding + 382 - SecureRandomFuture.logoSprite.subWidth / 2, 18); // L: 195
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376; // L: 190
 		}
-	} // L: 132 196
+	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("ha")
 	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "-614067797"
+		descriptor = "(ZS)V",
+		garbageValue = "2000"
 	)
-	@Export("Login_promptCredentials")
-	static void Login_promptCredentials(boolean var0) {
-		Login.Login_response1 = ""; // L: 818
-		Login.Login_response2 = "Enter your username/email & password."; // L: 819
-		Login.Login_response3 = ""; // L: 820
-		Login.loginIndex = 2; // L: 821
-		if (var0) { // L: 822
-			Login.Login_password = "";
-		}
+	static final void method2166(boolean var0) {
+		UserComparator5.playPcmPlayers(); // L: 5154
+		++Client.packetWriter.pendingWrites; // L: 5155
+		if (Client.packetWriter.pendingWrites >= 50 || var0) { // L: 5156
+			Client.packetWriter.pendingWrites = 0; // L: 5157
+			if (!Client.field712 && Client.packetWriter.getSocket() != null) { // L: 5158
+				PacketBufferNode var1 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2305, Client.packetWriter.isaacCipher); // L: 5160
+				Client.packetWriter.addNode(var1); // L: 5161
 
-		MusicPatch.method4038(); // L: 823
-		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) { // L: 825
-			Login.currentLoginField = 1; // L: 826
+				try {
+					Client.packetWriter.flush(); // L: 5163
+				} catch (IOException var3) { // L: 5165
+					Client.field712 = true; // L: 5166
+				}
+			}
+
+		}
+	} // L: 5169
+
+	@ObfuscatedName("jp")
+	@ObfuscatedSignature(
+		descriptor = "(Lhz;II)I",
+		garbageValue = "110664163"
+	)
+	static final int method2168(Widget var0, int var1) {
+		if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) { // L: 10080
+			try {
+				int[] var2 = var0.cs1Instructions[var1]; // L: 10082
+				int var3 = 0; // L: 10083
+				int var4 = 0; // L: 10084
+				byte var5 = 0; // L: 10085
+
+				while (true) {
+					int var6 = var2[var4++]; // L: 10087
+					int var7 = 0; // L: 10088
+					byte var8 = 0; // L: 10089
+					if (var6 == 0) { // L: 10090
+						return var3;
+					}
+
+					if (var6 == 1) { // L: 10091
+						var7 = Client.currentLevels[var2[var4++]];
+					}
+
+					if (var6 == 2) { // L: 10092
+						var7 = Client.levels[var2[var4++]];
+					}
+
+					if (var6 == 3) { // L: 10093
+						var7 = Client.experience[var2[var4++]];
+					}
+
+					int var9;
+					Widget var10;
+					int var11;
+					int var12;
+					if (var6 == 4) { // L: 10094
+						var9 = var2[var4++] << 16; // L: 10095
+						var9 += var2[var4++]; // L: 10096
+						var10 = class237.getWidget(var9); // L: 10097
+						var11 = var2[var4++]; // L: 10098
+						if (var11 != -1 && (!class281.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) { // L: 10099
+							for (var12 = 0; var12 < var10.itemIds.length; ++var12) { // L: 10100
+								if (var11 + 1 == var10.itemIds[var12]) { // L: 10101
+									var7 += var10.itemQuantities[var12];
+								}
+							}
+						}
+					}
+
+					if (var6 == 5) { // L: 10105
+						var7 = Varps.Varps_main[var2[var4++]];
+					}
+
+					if (var6 == 6) { // L: 10106
+						var7 = Skills.Skills_experienceTable[Client.levels[var2[var4++]] - 1];
+					}
+
+					if (var6 == 7) { // L: 10107
+						var7 = Varps.Varps_main[var2[var4++]] * 100 / 46875;
+					}
+
+					if (var6 == 8) { // L: 10108
+						var7 = UserComparator9.localPlayer.combatLevel;
+					}
+
+					if (var6 == 9) { // L: 10109
+						for (var9 = 0; var9 < 25; ++var9) { // L: 10110
+							if (Skills.Skills_enabled[var9]) { // L: 10111
+								var7 += Client.levels[var9];
+							}
+						}
+					}
+
+					if (var6 == 10) { // L: 10114
+						var9 = var2[var4++] << 16; // L: 10115
+						var9 += var2[var4++]; // L: 10116
+						var10 = class237.getWidget(var9); // L: 10117
+						var11 = var2[var4++]; // L: 10118
+						if (var11 != -1 && (!class281.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) { // L: 10119
+							for (var12 = 0; var12 < var10.itemIds.length; ++var12) { // L: 10120
+								if (var11 + 1 == var10.itemIds[var12]) { // L: 10121
+									var7 = 999999999; // L: 10122
+									break; // L: 10123
+								}
+							}
+						}
+					}
+
+					if (var6 == 11) { // L: 10128
+						var7 = Client.runEnergy;
+					}
+
+					if (var6 == 12) { // L: 10129
+						var7 = Client.weight;
+					}
+
+					if (var6 == 13) { // L: 10130
+						var9 = Varps.Varps_main[var2[var4++]]; // L: 10131
+						int var13 = var2[var4++]; // L: 10132
+						var7 = (var9 & 1 << var13) != 0 ? 1 : 0; // L: 10133
+					}
+
+					if (var6 == 14) { // L: 10135
+						var9 = var2[var4++]; // L: 10136
+						var7 = FontName.getVarbit(var9); // L: 10137
+					}
+
+					if (var6 == 15) { // L: 10139
+						var8 = 1;
+					}
+
+					if (var6 == 16) { // L: 10140
+						var8 = 2;
+					}
+
+					if (var6 == 17) { // L: 10141
+						var8 = 3;
+					}
+
+					if (var6 == 18) { // L: 10142
+						var7 = (UserComparator9.localPlayer.x >> 7) + GrandExchangeOfferNameComparator.baseX;
+					}
+
+					if (var6 == 19) { // L: 10143
+						var7 = (UserComparator9.localPlayer.y >> 7) + NetCache.baseY;
+					}
+
+					if (var6 == 20) { // L: 10144
+						var7 = var2[var4++];
+					}
+
+					if (var8 == 0) { // L: 10145
+						if (var5 == 0) { // L: 10146
+							var3 += var7;
+						}
+
+						if (var5 == 1) { // L: 10147
+							var3 -= var7;
+						}
+
+						if (var5 == 2 && var7 != 0) { // L: 10148
+							var3 /= var7;
+						}
+
+						if (var5 == 3) { // L: 10149
+							var3 *= var7;
+						}
+
+						var5 = 0; // L: 10150
+					} else {
+						var5 = var8; // L: 10152
+					}
+				}
+			} catch (Exception var14) { // L: 10155
+				return -1; // L: 10156
+			}
 		} else {
-			Login.currentLoginField = 0; // L: 829
+			return -2;
 		}
-
-	} // L: 832
+	}
 }

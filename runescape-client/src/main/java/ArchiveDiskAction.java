@@ -4,27 +4,27 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iv")
+@ObfuscatedName("ik")
 @Implements("ArchiveDiskAction")
 public class ArchiveDiskAction extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1593246089
+		intValue = 543287365
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@Export("data")
 	public byte[] data;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Llt;"
+		descriptor = "Llu;"
 	)
 	@Export("archiveDisk")
 	public ArchiveDisk archiveDisk;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lid;"
+		descriptor = "Liy;"
 	)
 	@Export("archive")
 	public Archive archive;
@@ -32,12 +32,12 @@ public class ArchiveDiskAction extends Node {
 	ArchiveDiskAction() {
 	} // L: 12
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("gx")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "23"
+		descriptor = "(B)Z",
+		garbageValue = "126"
 	)
-	static final int method4291() {
-		return ViewportMouse.ViewportMouse_x; // L: 91
+	static boolean method4359() {
+		return (Client.drawPlayerNames & 8) != 0; // L: 4422
 	}
 }

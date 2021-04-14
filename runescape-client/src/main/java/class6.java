@@ -4,41 +4,41 @@ import java.security.NoSuchAlgorithmException;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("k")
+@ObfuscatedName("z")
 public class class6 implements class11 {
-	@ObfuscatedName("f")
-	final MessageDigest field21;
+	@ObfuscatedName("n")
+	final MessageDigest field34;
 
 	@ObfuscatedSignature(
-		descriptor = "(Le;)V"
+		descriptor = "(Ls;)V"
 	)
 	class6(class10 var1) {
-		this.field21 = this.method105(); // L: 14
+		this.field34 = this.method70(); // L: 14
 	} // L: 15
 
-	@ObfuscatedName("f")
-	boolean method89(int var1, String var2, long var3) {
-		byte[] var5 = this.method91(var2, var3); // L: 18
-		return method87(var5) >= var1; // L: 19
+	@ObfuscatedName("n")
+	boolean method64(int var1, String var2, long var3) {
+		byte[] var5 = this.method68(var2, var3); // L: 18
+		return method65(var5) >= var1; // L: 19
 	}
 
-	@ObfuscatedName("m")
-	byte[] method91(String var1, long var2) {
+	@ObfuscatedName("c")
+	byte[] method68(String var1, long var2) {
 		StringBuilder var4 = new StringBuilder(); // L: 56
 		var4.append(var1).append(Long.toHexString(var2)); // L: 57
-		this.field21.reset(); // L: 58
+		this.field34.reset(); // L: 58
 
 		try {
-			this.field21.update(var4.toString().getBytes("UTF-8")); // L: 60
+			this.field34.update(var4.toString().getBytes("UTF-8")); // L: 60
 		} catch (UnsupportedEncodingException var6) { // L: 62
 			var6.printStackTrace(); // L: 63
 		}
 
-		return this.field21.digest(); // L: 65
+		return this.field34.digest(); // L: 65
 	}
 
-	@ObfuscatedName("z")
-	MessageDigest method105() {
+	@ObfuscatedName("y")
+	MessageDigest method70() {
 		try {
 			return MessageDigest.getInstance("SHA-256"); // L: 70
 		} catch (NoSuchAlgorithmException var2) { // L: 72
@@ -47,14 +47,14 @@ public class class6 implements class11 {
 		}
 	}
 
-	@ObfuscatedName("b")
-	static int method87(byte[] var0) {
+	@ObfuscatedName("v")
+	static int method65(byte[] var0) {
 		int var1 = 0; // L: 23
 		byte[] var2 = var0; // L: 25
 
 		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 26
 			byte var4 = var2[var3]; // L: 27
-			int var5 = method90(var4); // L: 29
+			int var5 = method66(var4); // L: 29
 			var1 += var5; // L: 30
 			if (var5 != 8) { // L: 31
 				break;
@@ -64,8 +64,8 @@ public class class6 implements class11 {
 		return var1; // L: 37
 	}
 
-	@ObfuscatedName("l")
-	static int method90(byte var0) {
+	@ObfuscatedName("d")
+	static int method66(byte var0) {
 		int var1 = 0; // L: 41
 		if (var0 == 0) { // L: 42
 			var1 = 8; // L: 43

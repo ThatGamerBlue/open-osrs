@@ -4,61 +4,61 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kd")
+@ObfuscatedName("km")
 @Implements("FriendsList")
 public class FriendsList extends UserList {
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lmc;"
+		descriptor = "Lml;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("t")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1451394125
+		intValue = -2002671207
 	)
-	int field3649;
-	@ObfuscatedName("e")
+	int field3655;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Ljj;"
+		descriptor = "Ljw;"
 	)
 	@Export("friendLoginUpdates")
 	public LinkDeque friendLoginUpdates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lmc;)V"
+		descriptor = "(Lml;)V"
 	)
 	public FriendsList(LoginType var1) {
 		super(400); // L: 17
-		this.field3649 = 1; // L: 13
+		this.field3655 = 1; // L: 13
 		this.friendLoginUpdates = new LinkDeque(); // L: 14
 		this.loginType = var1; // L: 18
 	} // L: 19
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljh;",
-		garbageValue = "-1664145399"
+		descriptor = "(I)Ljn;",
+		garbageValue = "-315842787"
 	)
 	@Export("newInstance")
 	User newInstance() {
 		return new Friend(); // L: 22
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[Ljh;",
-		garbageValue = "-35"
+		descriptor = "(II)[Ljn;",
+		garbageValue = "1723641195"
 	)
 	@Export("newTypedArray")
 	User[] newTypedArray(int var1) {
 		return new Friend[var1]; // L: 26
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(Lkm;ZB)Z",
-		garbageValue = "36"
+		descriptor = "(Lkk;ZI)Z",
+		garbageValue = "-117027707"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
@@ -70,10 +70,10 @@ public class FriendsList extends UserList {
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("bk")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;II)V",
-		garbageValue = "1702528493"
+		descriptor = "(Lkx;II)V",
+		garbageValue = "277533413"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -98,7 +98,7 @@ public class FriendsList extends UserList {
 					Friend var11 = (Friend)this.getByCurrentUsername(var4); // L: 53
 					if (var3) { // L: 54
 						Friend var12 = (Friend)this.getByCurrentUsername(var5); // L: 55
-						if (var12 != null && var11 != var12) { // L: 56
+						if (var12 != null && var12 != var11) { // L: 56
 							if (var11 != null) { // L: 57
 								this.remove(var12); // L: 58
 							} else {
@@ -137,17 +137,17 @@ public class FriendsList extends UserList {
 					}
 
 					if (var6 != var11.world) { // L: 88
-						var11.int2 = ++this.field3649 - 1; // L: 89
+						var11.int2 = ++this.field3655 - 1; // L: 89
 						if (var11.world == -1 && var6 == 0) { // L: 90
-							var11.int2 = -(var11.int2 * 325522823) * -152395721;
+							var11.int2 = -(var11.int2 * 1612943523) * 975938315;
 						}
 
 						var11.world = var6; // L: 91
 					}
 
 					var11.rank = var7; // L: 93
-					var11.field3659 = var9; // L: 94
-					var11.field3660 = var10; // L: 95
+					var11.field3663 = var9; // L: 94
+					var11.field3661 = var10; // L: 95
 					continue; // L: 96
 				}
 
@@ -158,4 +158,23 @@ public class FriendsList extends UserList {
 			return; // L: 98
 		}
 	}
+
+	@ObfuscatedName("ls")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-22"
+	)
+	static void method5386() {
+		if (HealthBarUpdate.field1016 != null) { // L: 11661
+			Client.field674 = Client.cycle; // L: 11662
+			HealthBarUpdate.field1016.method4510(); // L: 11663
+
+			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 11664
+				if (Client.players[var0] != null) { // L: 11665
+					HealthBarUpdate.field1016.method4509((Client.players[var0].x >> 7) + GrandExchangeOfferNameComparator.baseX, (Client.players[var0].y >> 7) + NetCache.baseY); // L: 11666
+				}
+			}
+		}
+
+	} // L: 11670
 }

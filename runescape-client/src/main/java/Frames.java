@@ -3,18 +3,29 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ex")
+@ObfuscatedName("el")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "[Ler;"
+		descriptor = "Lig;"
+	)
+	static AbstractArchive field1904;
+	@ObfuscatedName("he")
+	@ObfuscatedSignature(
+		descriptor = "[Llm;"
+	)
+	@Export("crossSprites")
+	static SpritePixels[] crossSprites;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "[Leg;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		descriptor = "(Liw;Liw;IZ)V"
+		descriptor = "(Lig;Lig;IZ)V"
 	)
 	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
 		NodeDeque var5 = new NodeDeque(); // L: 35
@@ -51,83 +62,24 @@ public class Frames extends DualNode {
 
 	} // L: 60
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "-35"
+		descriptor = "(II)Z",
+		garbageValue = "-196452763"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform; // L: 63
 	}
 
-	@ObfuscatedName("ja")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "([Lht;II)V",
-		garbageValue = "-1768141764"
+		descriptor = "(Lig;Lig;ZI)V",
+		garbageValue = "-1252177889"
 	)
-	@Export("drawModelComponents")
-	static final void drawModelComponents(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) { // L: 11067
-			Widget var3 = var0[var2]; // L: 11068
-			if (var3 != null && var3.parentId == var1 && (!var3.isIf3 || !VertexNormal.isComponentHidden(var3))) { // L: 11069 11070 11071
-				int var5;
-				if (var3.type == 0) { // L: 11072
-					if (!var3.isIf3 && VertexNormal.isComponentHidden(var3) && var3 != GrandExchangeEvent.mousedOverWidgetIf1) { // L: 11073
-						continue;
-					}
-
-					drawModelComponents(var0, var3.id); // L: 11074
-					if (var3.children != null) { // L: 11075
-						drawModelComponents(var3.children, var3.id);
-					}
-
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id); // L: 11076
-					if (var4 != null) { // L: 11077
-						var5 = var4.group; // L: 11078
-						if (ScriptFrame.loadInterface(var5)) { // L: 11080
-							drawModelComponents(Widget.Widget_interfaceComponents[var5], -1); // L: 11081
-						}
-					}
-				}
-
-				if (var3.type == 6) { // L: 11085
-					if (var3.sequenceId != -1 || var3.sequenceId2 != -1) { // L: 11086
-						boolean var7 = BufferedNetSocket.runCs1(var3); // L: 11087
-						if (var7) { // L: 11089
-							var5 = var3.sequenceId2;
-						} else {
-							var5 = var3.sequenceId; // L: 11090
-						}
-
-						if (var5 != -1) { // L: 11091
-							SequenceDefinition var6 = class105.SequenceDefinition_get(var5); // L: 11092
-
-							for (var3.modelFrameCycle += Client.field743; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; GrandExchangeOfferOwnWorldComparator.invalidateWidget(var3)) { // L: 11093 11094 11101
-								var3.modelFrameCycle -= var6.frameLengths[var3.modelFrame]; // L: 11095
-								++var3.modelFrame; // L: 11096
-								if (var3.modelFrame >= var6.frameIds.length) { // L: 11097
-									var3.modelFrame -= var6.frameCount; // L: 11098
-									if (var3.modelFrame < 0 || var3.modelFrame >= var6.frameIds.length) { // L: 11099
-										var3.modelFrame = 0;
-									}
-								}
-							}
-						}
-					}
-
-					if (var3.field2734 != 0 && !var3.isIf3) { // L: 11105
-						int var8 = var3.field2734 >> 16; // L: 11106
-						var5 = var3.field2734 << 16 >> 16; // L: 11107
-						var8 *= Client.field743; // L: 11108
-						var5 *= Client.field743; // L: 11109
-						var3.modelAngleX = var8 + var3.modelAngleX & 2047; // L: 11110
-						var3.modelAngleY = var5 + var3.modelAngleY & 2047; // L: 11111
-						GrandExchangeOfferOwnWorldComparator.invalidateWidget(var3); // L: 11112
-					}
-				}
-			}
-		}
-
-	} // L: 11116
+	public static void method3429(AbstractArchive var0, AbstractArchive var1, boolean var2) {
+		ObjectComposition.ObjectDefinition_archive = var0; // L: 73
+		ObjectComposition.ObjectDefinition_modelsArchive = var1; // L: 74
+		ObjectComposition.ObjectDefinition_isLowDetail = var2; // L: 75
+	} // L: 76
 }

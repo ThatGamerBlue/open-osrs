@@ -3,13 +3,13 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fq")
+@ObfuscatedName("fo")
 @Implements("MouseWheel")
 public interface MouseWheel {
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		descriptor = "(S)I",
-		garbageValue = "128"
+		garbageValue = "-7695"
 	)
 	@Export("useRotation")
 	int useRotation();

@@ -65,6 +65,7 @@ public class HiscoreResult
 	private Skill clueScrollElite;
 	private Skill clueScrollMaster;
 	private Skill lastManStanding;
+	private Skill soulWarsZeal;
 	private Skill abyssalSire;
 	private Skill alchemicalHydra;
 	private Skill barrowsChests;
@@ -97,6 +98,7 @@ public class HiscoreResult
 	private Skill sarachnis;
 	private Skill scorpia;
 	private Skill skotizo;
+	private Skill tempoross;
 	private Skill gauntlet;
 	private Skill corruptedGauntlet;
 	private Skill theatreOfBlood;
@@ -184,6 +186,8 @@ public class HiscoreResult
 				return getClueScrollMaster();
 			case LAST_MAN_STANDING:
 				return getLastManStanding();
+			case SOUL_WARS_ZEAL:
+				return getSoulWarsZeal();
 			case ABYSSAL_SIRE:
 				return abyssalSire;
 			case ALCHEMICAL_HYDRA:
@@ -248,6 +252,8 @@ public class HiscoreResult
 				return scorpia;
 			case SKOTIZO:
 				return skotizo;
+			case TEMPOROSS:
+				return tempoross;
 			case THE_GAUNTLET:
 				return gauntlet;
 			case THE_CORRUPTED_GAUNTLET:

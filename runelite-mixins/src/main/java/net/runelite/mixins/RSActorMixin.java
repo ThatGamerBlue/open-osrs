@@ -27,18 +27,19 @@ package net.runelite.mixins;
 import net.runelite.api.Actor;
 import net.runelite.api.Hitsplat;
 import net.runelite.api.NPC;
-import net.runelite.api.NPCDefinition;
+import net.runelite.api.NPCComposition;
 import net.runelite.api.Perspective;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ActorDeath;
 import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.HitsplatApplied;
-import net.runelite.api.events.SpotAnimationChanged;
+import net.runelite.api.events.HealthBarUpdated;
+import net.runelite.api.events.GraphicChanged;
 import net.runelite.api.events.InteractingChanged;
 import net.runelite.api.events.OverheadTextChanged;
 import java.awt.Graphics2D;
@@ -172,9 +173,9 @@ public abstract class RSActorMixin implements RSActor
 
 	@Inject
 	@Override
-	public Point getCanvasSpriteLocation(Sprite sprite, int zOffset)
+	public Point getCanvasSpriteLocation(SpritePixels spritePixels, int zOffset)
 	{
-		return Perspective.getCanvasSpriteLocation(client, getLocalLocation(), sprite, zOffset);
+		return Perspective.getCanvasSpriteLocation(client, getLocalLocation(), spritePixels, zOffset);
 	}
 
 	@Inject
@@ -190,16 +191,16 @@ public abstract class RSActorMixin implements RSActor
 	{
 		AnimationChanged animationChange = new AnimationChanged();
 		animationChange.setActor(this);
-		client.getCallbacks().post(AnimationChanged.class, animationChange);
+		client.getCallbacks().post(animationChange);
 	}
 
 	@FieldHook("spotAnimation")
 	@Inject
 	public void spotAnimationChanged(int idx)
 	{
-		SpotAnimationChanged spotAnimationChanged = new SpotAnimationChanged();
-		spotAnimationChanged.setActor(this);
-		client.getCallbacks().post(SpotAnimationChanged.class, spotAnimationChanged);
+		GraphicChanged graphicChanged = new GraphicChanged();
+		graphicChanged.setActor(this);
+		client.getCallbacks().post(graphicChanged);
 	}
 
 	@FieldHook("targetIndex")
@@ -207,7 +208,7 @@ public abstract class RSActorMixin implements RSActor
 	public void interactingChanged(int idx)
 	{
 		InteractingChanged interactingChanged = new InteractingChanged(this, getInteracting());
-		client.getCallbacks().post(InteractingChanged.class, interactingChanged);
+		client.getCallbacks().post(interactingChanged);
 	}
 
 	@FieldHook("overheadText")
@@ -218,7 +219,7 @@ public abstract class RSActorMixin implements RSActor
 		if (overheadText != null)
 		{
 			OverheadTextChanged overheadTextChanged = new OverheadTextChanged(this, overheadText);
-			client.getCallbacks().post(OverheadTextChanged.class, overheadTextChanged);
+			client.getCallbacks().post(overheadTextChanged);
 		}
 	}
 
@@ -229,7 +230,7 @@ public abstract class RSActorMixin implements RSActor
 		int size = 1;
 		if (this instanceof NPC)
 		{
-			NPCDefinition composition = ((NPC)this).getDefinition();
+			NPCComposition composition = ((NPC)this).getComposition();
 			if (composition != null && composition.getConfigs() != null)
 			{
 				composition = composition.transform();
@@ -264,10 +265,13 @@ public abstract class RSActorMixin implements RSActor
 		if (healthRatio == 0)
 		{
 			final ActorDeath event = new ActorDeath(this);
-			client.getCallbacks().post(ActorDeath.class, event);
+			client.getCallbacks().post(event);
 
 			this.setDead(true);
 		}
+
+		final HealthBarUpdated event = new HealthBarUpdated(this, healthRatio);
+		client.getCallbacks().post(event);
 	}
 
 	/**
@@ -290,6 +294,13 @@ public abstract class RSActorMixin implements RSActor
 		final HitsplatApplied event = new HitsplatApplied();
 		event.setActor(this);
 		event.setHitsplat(hitsplat);
-		client.getCallbacks().post(HitsplatApplied.class, event);
+		client.getCallbacks().post(event);
+	}
+
+	@Inject
+	@Override
+	public boolean isMoving()
+	{
+		return getPathLength() > 0;
 	}
 }

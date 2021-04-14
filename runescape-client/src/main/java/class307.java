@@ -1,18 +1,28 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kp")
+@ObfuscatedName("kc")
 public final class class307 {
-	@ObfuscatedName("b")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		longValue = -7604974747731258625L
+		longValue = -5661179998477145969L
 	)
-	static long field3731;
-	@ObfuscatedName("mi")
+	static long field3734;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 542480531
+		longValue = -6375840099148594553L
 	)
-	@Export("selectedSpellWidget")
-	static int selectedSpellWidget;
+	static long field3735;
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Llp;",
+		garbageValue = "1168600989"
+	)
+	@Export("FillMode_values")
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field3897, FillMode.SOLID, FillMode.field3896}; // L: 15
+	}
 }

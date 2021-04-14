@@ -4,41 +4,53 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("af")
+@ObfuscatedName("ae")
 @Implements("WorldMapSectionType")
 public enum WorldMapSectionType implements Enumerated {
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Laf;"
+		descriptor = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE0")
-	WORLDMAPSECTIONTYPE0(2, (byte)0),
-	@ObfuscatedName("b")
+	WORLDMAPSECTIONTYPE0(3, (byte)0),
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Laf;"
+		descriptor = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE1")
-	WORLDMAPSECTIONTYPE1(3, (byte)1),
-	@ObfuscatedName("l")
+	WORLDMAPSECTIONTYPE1(0, (byte)1),
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Laf;"
+		descriptor = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE2")
-	WORLDMAPSECTIONTYPE2(1, (byte)2),
-	@ObfuscatedName("m")
+	WORLDMAPSECTIONTYPE2(2, (byte)2),
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Laf;"
+		descriptor = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE3")
-	WORLDMAPSECTIONTYPE3(0, (byte)3);
+	WORLDMAPSECTIONTYPE3(1, (byte)3);
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("sm")
+	@ObfuscatedSignature(
+		descriptor = "Lcf;"
+	)
+	@Export("clientPreferences")
+	static ClientPreferences clientPreferences;
+	@ObfuscatedName("sv")
+	@ObfuscatedSignature(
+		descriptor = "Li;"
+	)
+	@Export("grandExchangeEvents")
+	static GrandExchangeEvents grandExchangeEvents;
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1960357597
+		intValue = -695780183
 	)
 	@Export("type")
 	final int type;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@Export("id")
 	final byte id;
 
@@ -47,75 +59,130 @@ public enum WorldMapSectionType implements Enumerated {
 		this.id = var4; // L: 18
 	} // L: 19
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "23"
+		garbageValue = "63"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 22
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "1810910487"
+		descriptor = "(Liy;IIIBZI)V",
+		garbageValue = "-1369121256"
 	)
-	@Export("ByteArrayPool_release")
-	public static synchronized void ByteArrayPool_release(byte[] var0) {
-		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < 1000) { // L: 76
-			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0; // L: 77
-		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < 250) { // L: 80
-			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0; // L: 81
-		} else if (var0.length == 30000 && ByteArrayPool.ByteArrayPool_largeCount < 50) { // L: 84
-			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0; // L: 85
-		} else {
-			if (ByteArrayPool.ByteArrayPool_arrays != null) { // L: 88
-				for (int var1 = 0; var1 < Coord.ByteArrayPool_alternativeSizes.length; ++var1) { // L: 89
-					if (var0.length == Coord.ByteArrayPool_alternativeSizes[var1] && FloorDecoration.ByteArrayPool_altSizeArrayCounts[var1] < ByteArrayPool.ByteArrayPool_arrays[var1].length) { // L: 90
-						ByteArrayPool.ByteArrayPool_arrays[var1][FloorDecoration.ByteArrayPool_altSizeArrayCounts[var1]++] = var0; // L: 91
-						return; // L: 92
+	@Export("requestNetFile")
+	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
+		long var6 = (long)((var1 << 16) + var2); // L: 60
+		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6); // L: 61
+		if (var8 == null) { // L: 62
+			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6); // L: 63
+			if (var8 == null) { // L: 64
+				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6); // L: 65
+				if (var8 != null) { // L: 66
+					if (var5) { // L: 67
+						var8.removeDual(); // L: 68
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 69
+						--NetCache.NetCache_pendingWritesCount; // L: 70
+						++NetCache.NetCache_pendingPriorityWritesCount; // L: 71
+					}
+
+				} else {
+					if (!var5) { // L: 75
+						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6); // L: 76
+						if (var8 != null) { // L: 77
+							return;
+						}
+					}
+
+					var8 = new NetFileRequest(); // L: 79
+					var8.archive = var0; // L: 80
+					var8.crc = var3; // L: 81
+					var8.padding = var4; // L: 82
+					if (var5) { // L: 83
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 84
+						++NetCache.NetCache_pendingPriorityWritesCount; // L: 85
+					} else {
+						NetCache.NetCache_pendingWritesQueue.addFirst(var8); // L: 88
+						NetCache.NetCache_pendingWrites.put(var8, var6); // L: 89
+						++NetCache.NetCache_pendingWritesCount; // L: 90
+					}
+
+				}
+			}
+		}
+	} // L: 73 92
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "-103793569"
+	)
+	static final int method320(int var0, int var1) {
+		int var2 = var1 * 57 + var0; // L: 558
+		var2 ^= var2 << 13; // L: 559
+		int var3 = var2 * (var2 * var2 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE; // L: 560
+		return var3 >> 19 & 255; // L: 561
+	}
+
+	@ObfuscatedName("go")
+	@ObfuscatedSignature(
+		descriptor = "(IIIII)V",
+		garbageValue = "-177467978"
+	)
+	static final void method318(int var0, int var1, int var2, int var3) {
+		Client.field778 = 0; // L: 4869
+		int var4 = (UserComparator9.localPlayer.x >> 7) + GrandExchangeOfferNameComparator.baseX; // L: 4870
+		int var5 = (UserComparator9.localPlayer.y >> 7) + NetCache.baseY; // L: 4871
+		if (var4 >= 3053 && var4 <= 3156 && var5 >= 3056 && var5 <= 3136) { // L: 4872
+			Client.field778 = 1;
+		}
+
+		if (var4 >= 3072 && var4 <= 3118 && var5 >= 9492 && var5 <= 9535) { // L: 4873
+			Client.field778 = 1;
+		}
+
+		if (Client.field778 == 1 && var4 >= 3139 && var4 <= 3199 && var5 >= 3008 && var5 <= 3062) { // L: 4874
+			Client.field778 = 0;
+		}
+
+	} // L: 4876
+
+	@ObfuscatedName("hp")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "417722917"
+	)
+	static final void method319() {
+		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 7291 7292 7311
+			if (var0.hitpoints > 0) { // L: 7293
+				--var0.hitpoints;
+			}
+
+			if (var0.hitpoints == 0) { // L: 7294
+				if (var0.objectId < 0 || TaskHandler.method3673(var0.objectId, var0.field945)) { // L: 7295
+					SpriteMask.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field944, var0.field945); // L: 7296
+					var0.remove(); // L: 7297
+				}
+			} else {
+				if (var0.delay > 0) { // L: 7301
+					--var0.delay;
+				}
+
+				if (var0.delay == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102 && (var0.id < 0 || TaskHandler.method3673(var0.id, var0.field948))) { // L: 7302 7303
+					SpriteMask.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.id, var0.orientation, var0.field948); // L: 7304
+					var0.delay = -1; // L: 7305
+					if (var0.objectId == var0.id && var0.objectId == -1) { // L: 7306
+						var0.remove();
+					} else if (var0.id == var0.objectId && var0.field944 == var0.orientation && var0.field948 == var0.field945) { // L: 7307
+						var0.remove();
 					}
 				}
 			}
-
 		}
-	} // L: 78 82 86 96
 
-	@ObfuscatedName("hr")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "1"
-	)
-	static final boolean method336(int var0) {
-		if (var0 < 0) { // L: 7925
-			return false;
-		} else {
-			int var1 = Client.menuOpcodes[var0]; // L: 7926
-			if (var1 >= 2000) { // L: 7927
-				var1 -= 2000;
-			}
-
-			return var1 == 1007; // L: 7928
-		}
-	}
-
-	@ObfuscatedName("jl")
-	@ObfuscatedSignature(
-		descriptor = "(Lht;IIIB)V",
-		garbageValue = "-90"
-	)
-	@Export("drawCompass")
-	static final void drawCompass(Widget var0, int var1, int var2, int var3) {
-		SpriteMask var4 = var0.getSpriteMask(false); // L: 11444
-		if (var4 != null) { // L: 11445
-			if (Client.minimapState < 3) { // L: 11446
-				UserComparator5.compass.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, 25, 25, Client.camAngleY, 256, var4.xStarts, var4.xWidths);
-			} else {
-				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths); // L: 11447
-			}
-
-		}
-	} // L: 11448
+	} // L: 7313
 }

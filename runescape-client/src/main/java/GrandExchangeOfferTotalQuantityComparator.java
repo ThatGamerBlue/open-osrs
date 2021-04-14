@@ -5,86 +5,111 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("s")
+@ObfuscatedName("f")
 @Implements("GrandExchangeOfferTotalQuantityComparator")
 final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
-	@ObfuscatedName("u")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -343674237
+		intValue = -308294739
 	)
-	static int field81;
+	@Export("canvasWidth")
+	public static int canvasWidth;
+	@ObfuscatedName("lu")
+	@ObfuscatedGetter(
+		intValue = -1017040151
+	)
+	@Export("menuHeight")
+	static int menuHeight;
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Ly;Ly;I)I",
-		garbageValue = "-2113100809"
+		descriptor = "(Lx;Lx;B)I",
+		garbageValue = "2"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
 		return var1.grandExchangeOffer.totalQuantity < var2.grandExchangeOffer.totalQuantity ? -1 : (var2.grandExchangeOffer.totalQuantity == var1.grandExchangeOffer.totalQuantity ? 0 : 1); // L: 69
 	}
 
-	public int compare(Object var1, Object var2) {
-		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
-	}
-
 	public boolean equals(Object var1) {
-		return super.equals(var1);
+		return super.equals(var1); // L: 77
 	}
 
-	@ObfuscatedName("f")
+	public int compare(Object var1, Object var2) {
+		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2); // L: 73
+	}
+
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "280235874"
+		descriptor = "(IIIB)Lcl;",
+		garbageValue = "-37"
 	)
-	static int method183(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 14
-		if (var2 == null) { // L: 15
-			return -1;
+	@Export("getWorldMapScript")
+	static Script getWorldMapScript(int var0, int var1, int var2) {
+		int var3 = (var1 << 8) + var0; // L: 39
+		Script var5 = class4.method46(var3, var0); // L: 42
+		if (var5 != null) { // L: 43
+			return var5; // L: 44
 		} else {
-			return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1; // L: 16 17
+			int var6 = (var2 + 40000 << 8) + var0; // L: 48
+			var5 = class4.method46(var6, var0); // L: 51
+			return var5 != null ? var5 : null; // L: 52 55
 		}
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "43"
+		descriptor = "(Ljava/lang/String;II)V",
+		garbageValue = "1998828049"
 	)
-	public static boolean method174() {
-		try {
-			if (class206.musicPlayerStatus == 2) { // L: 71
-				if (InterfaceParent.musicTrack == null) { // L: 72
-					InterfaceParent.musicTrack = MusicTrack.readTrack(class23.musicTrackArchive, TileItem.musicTrackGroupId, class206.musicTrackFileId); // L: 73
-					if (InterfaceParent.musicTrack == null) { // L: 74
-						return false;
-					}
-				}
+	static final void method163(String var0, int var1) {
+		PacketBufferNode var2 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2252, Client.packetWriter.isaacCipher); // L: 208
+		var2.packetBuffer.writeByte(WorldMapLabelSize.stringCp1252NullTerminatedByteSize(var0) + 1); // L: 209
+		var2.packetBuffer.writeByte(var1); // L: 210
+		var2.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 211
+		Client.packetWriter.addNode(var2); // L: 212
+	} // L: 213
 
-				if (LoginType.soundCache == null) { // L: 76
-					LoginType.soundCache = new SoundCache(class206.soundEffectsArchive, class206.musicSamplesArchive);
-				}
+	@ObfuscatedName("hl")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "1940935635"
+	)
+	static void method162(int var0, int var1) {
+		int var2 = ScriptEvent.fontBold12.stringWidth("Choose Option"); // L: 7985
 
-				if (class13.midiPcmStream.loadMusicTrack(InterfaceParent.musicTrack, class206.musicPatchesArchive, LoginType.soundCache, 22050)) { // L: 77
-					class13.midiPcmStream.clearAll(); // L: 78
-					class13.midiPcmStream.setPcmStreamVolume(class206.musicTrackVolume); // L: 79
-					class13.midiPcmStream.setMusicTrack(InterfaceParent.musicTrack, class195.musicTrackBoolean); // L: 80
-					class206.musicPlayerStatus = 0; // L: 81
-					InterfaceParent.musicTrack = null; // L: 82
-					LoginType.soundCache = null; // L: 83
-					class23.musicTrackArchive = null; // L: 84
-					return true; // L: 85
-				}
+		int var3;
+		int var4;
+		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) { // L: 7986
+			var4 = ScriptEvent.fontBold12.stringWidth(WorldMapLabel.method504(var3)); // L: 7987
+			if (var4 > var2) { // L: 7988
+				var2 = var4;
 			}
-		} catch (Exception var1) { // L: 89
-			var1.printStackTrace(); // L: 90
-			class13.midiPcmStream.clear(); // L: 91
-			class206.musicPlayerStatus = 0; // L: 92
-			InterfaceParent.musicTrack = null; // L: 93
-			LoginType.soundCache = null; // L: 94
-			class23.musicTrackArchive = null; // L: 95
 		}
 
-		return false; // L: 97
-	}
+		var2 += 8; // L: 7990
+		var3 = Client.menuOptionsCount * 15 + 22; // L: 7991
+		var4 = var0 - var2 / 2; // L: 7992
+		if (var4 + var2 > canvasWidth) { // L: 7993
+			var4 = canvasWidth - var2;
+		}
+
+		if (var4 < 0) { // L: 7994
+			var4 = 0;
+		}
+
+		int var5 = var1; // L: 7995
+		if (var3 + var1 > class25.canvasHeight) { // L: 7996
+			var5 = class25.canvasHeight - var3;
+		}
+
+		if (var5 < 0) { // L: 7997
+			var5 = 0;
+		}
+
+		ApproximateRouteStrategy.menuX = var4; // L: 7998
+		AbstractUserComparator.menuY = var5; // L: 7999
+		CollisionMap.menuWidth = var2; // L: 8000
+		menuHeight = Client.menuOptionsCount * 15 + 22; // L: 8001
+	} // L: 8002
 }

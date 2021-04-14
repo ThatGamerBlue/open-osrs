@@ -4,20 +4,26 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hv")
+@ObfuscatedName("hf")
 @Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "Lig;"
+	)
+	@Export("Widget_modelsArchive")
+	static AbstractArchive Widget_modelsArchive;
+	@ObfuscatedName("n")
 	@Export("directBuffer")
 	ByteBuffer directBuffer;
 
 	DirectByteArrayCopier() {
 	} // L: 10
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)[B",
-		garbageValue = "-47"
+		descriptor = "(I)[B",
+		garbageValue = "1361682252"
 	)
 	@Export("get")
 	byte[] get() {
@@ -27,15 +33,24 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		return var1; // L: 16
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "([BB)V",
-		garbageValue = "0"
+		descriptor = "([BI)V",
+		garbageValue = "262833794"
 	)
 	@Export("set")
 	void set(byte[] var1) {
-		this.directBuffer = ByteBuffer.allocateDirect(var1.length); // L: 20
+		this.directBuffer = ByteBuffer.allocateDirect(var1.length);
 		this.directBuffer.position(0); // L: 21
 		this.directBuffer.put(var1); // L: 22
 	} // L: 23
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(Lig;I)V",
+		garbageValue = "292233920"
+	)
+	public static void method4147(AbstractArchive var0) {
+		StructComposition.StructDefinition_archive = var0; // L: 19
+	} // L: 20
 }

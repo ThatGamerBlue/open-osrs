@@ -1,53 +1,41 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gj")
+@ObfuscatedName("gx")
 public class class200 {
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lgx;"
 	)
-	static final class200 field2391;
-	@ObfuscatedName("b")
+	static final class200 field2401;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lgx;"
 	)
-	static final class200 field2390;
-	@ObfuscatedName("l")
+	static final class200 field2398;
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lgx;"
 	)
-	static final class200 field2392;
+	static final class200 field2397;
+	@ObfuscatedName("y")
+	static byte[][][] field2399;
 
 	static {
-		field2391 = new class200(); // L: 4
-		field2390 = new class200(); // L: 5
-		field2392 = new class200(); // L: 6
+		field2401 = new class200(); // L: 4
+		field2398 = new class200(); // L: 5
+		field2397 = new class200(); // L: 6
 	}
 
 	class200() {
 	} // L: 8
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "96"
+		descriptor = "(II)I",
+		garbageValue = "1474141491"
 	)
-	public static void method3803() {
-		ItemDefinition.ItemDefinition_cached.clear(); // L: 543
-		ItemDefinition.ItemDefinition_cachedModels.clear(); // L: 544
-		ItemDefinition.ItemDefinition_cachedSprites.clear(); // L: 545
-	} // L: 546
-
-	@ObfuscatedName("gp")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1508888429"
-	)
-	static void method3804() {
-		if (PlayerType.localPlayer.x >> 7 == Client.destinationX && PlayerType.localPlayer.y >> 7 == Client.destinationY) { // L: 4809
-			Client.destinationX = 0; // L: 4810
-		}
-
-	} // L: 4812
+	public static int method3865(int var0) {
+		return ReflectionCheck.method2451(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 56
+	}
 }

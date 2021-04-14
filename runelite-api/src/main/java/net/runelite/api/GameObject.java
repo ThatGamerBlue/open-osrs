@@ -35,6 +35,19 @@ import net.runelite.api.coords.Angle;
  */
 public interface GameObject extends TileObject
 {
+	/**
+	 * Get the size of this object, in tiles, on the x axis
+	 *
+	 * @return
+	 */
+	int sizeX();
+
+	/**
+	 * Get the size of this object, in tiles, on the y axis
+	 *
+	 * @return
+	 */
+	int sizeY();
 
 	/**
 	 * Gets the minimum x and y scene coordinate pair for this game object.
@@ -68,9 +81,17 @@ public interface GameObject extends TileObject
 	 */
 	Angle getOrientation();
 
-	Entity getEntity();
+	Renderable getRenderable();
 
 	int getRsOrientation();
 
 	Model getModel();
+
+	/**
+	 * A bitfield containing various flags:
+	 * object type id = bits & 0x20
+	 * orientation (0-3) = bits >>> 6 & 3
+	 * the bitfield may contain other flags in addition to those mentioned above
+	 */
+	int getFlags();
 }

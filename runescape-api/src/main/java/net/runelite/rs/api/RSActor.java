@@ -28,7 +28,7 @@ package net.runelite.rs.api;
 import net.runelite.api.Actor;
 import net.runelite.mapping.Import;
 
-public interface RSActor extends RSEntity, Actor
+public interface RSActor extends RSRenderable, Actor
 {
 	@Import("targetIndex")
 	@Override
@@ -70,7 +70,15 @@ public interface RSActor extends RSEntity, Actor
 
 	@Import("sequenceFrame")
 	@Override
+	int getAnimationFrame();
+
+	@Import("sequenceFrame")
+	@Override
 	int getActionFrame();
+
+	@Import("sequenceFrame")
+	@Override
+	void setAnimationFrame(int frame);
 
 	@Import("sequenceFrame")
 	@Override
@@ -84,18 +92,18 @@ public interface RSActor extends RSEntity, Actor
 
 	@Import("spotAnimation")
 	@Override
-	int getSpotAnimation();
+	int getGraphic();
 
 	@Import("spotAnimation")
 	@Override
-	void setSpotAnimation(int id);
+	void setGraphic(int id);
 
 	@Import("spotAnimationFrame")
 	int getSpotAnimationFrame();
 
 	@Import("spotAnimationFrame")
 	@Override
-	void setSpotAnimationFrame(int id);
+	void setSpotAnimFrame(int id);
 
 	@Import("spotAnimationFrameCycle")
 	int getSpotAnimationFrameCycle();
@@ -169,19 +177,22 @@ public interface RSActor extends RSEntity, Actor
 
 	@Import("walkBackSequence")
 	@Override
-	int getWalkBackAnimation();
+	int getWalkRotate180();
 
 	@Import("walkLeftSequence")
 	@Override
-	int getWalkLeftAnimation();
+	int getWalkRotateLeft();
 
 	@Import("walkRightSequence")
 	@Override
-	int getWalkRightAnimation();
+	int getWalkRotateRight();
 
 	@Import("runSequence")
 	@Override
 	int getRunAnimation();
 
 	void setDead(boolean dead);
+
+	@Import("pathLength")
+	int getPathLength();
 }

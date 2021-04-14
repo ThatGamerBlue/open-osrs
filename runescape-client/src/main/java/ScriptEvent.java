@@ -4,74 +4,74 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bd")
+@ObfuscatedName("by")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("hk")
+	@ObfuscatedName("fj")
 	@ObfuscatedSignature(
-		descriptor = "[Llc;"
+		descriptor = "Lkl;"
 	)
-	@Export("mapMarkerSprites")
-	static Sprite[] mapMarkerSprites;
-	@ObfuscatedName("f")
+	@Export("fontBold12")
+	static Font fontBold12;
+	@ObfuscatedName("n")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@Export("isMouseInputEvent")
 	boolean isMouseInputEvent;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lht;"
+		descriptor = "Lhz;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -2101178453
+		intValue = 1697635159
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("z")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 405456203
+		intValue = 734230281
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 88513801
+		intValue = 944694965
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("k")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "Lht;"
+		descriptor = "Lhz;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 303757317
+		intValue = -905189557
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -844549747
+		intValue = 220260505
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("t")
+	@ObfuscatedName("l")
 	@Export("targetName")
 	String targetName;
-	@ObfuscatedName("e")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1420605637
+		intValue = -1071641047
 	)
-	int field600;
-	@ObfuscatedName("o")
+	int field593;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1188452695
+		intValue = 1196618585
 	)
 	@Export("type")
 	int type;
@@ -80,95 +80,43 @@ public class ScriptEvent extends Node {
 		this.type = 76; // L: 19
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/Object;S)V",
-		garbageValue = "31204"
+		descriptor = "([Ljava/lang/Object;I)V",
+		garbageValue = "807576822"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
-		this.args = var1;
-	}
+		this.args = var1; // L: 22
+	} // L: 23
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-370918947"
+		descriptor = "(IB)V",
+		garbageValue = "-67"
 	)
 	@Export("setType")
 	public void setType(int var1) {
-		this.type = var1;
-	}
+		this.type = var1; // L: 26
+	} // L: 27
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lje;",
-		garbageValue = "-32"
-	)
-	@Export("getObjectDefinition")
-	public static ObjectDefinition getObjectDefinition(int var0) {
-		ObjectDefinition var1 = (ObjectDefinition)ObjectDefinition.ObjectDefinition_cached.get((long)var0); // L: 72
-		if (var1 != null) { // L: 73
-			return var1;
-		} else {
-			byte[] var2 = ObjectDefinition.ObjectDefinition_archive.takeFile(6, var0); // L: 74
-			var1 = new ObjectDefinition(); // L: 75
-			var1.id = var0; // L: 76
-			if (var2 != null) { // L: 77
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.postDecode(); // L: 78
-			if (var1.isSolid) { // L: 79
-				var1.interactType = 0; // L: 80
-				var1.boolean1 = false; // L: 81
-			}
-
-			ObjectDefinition.ObjectDefinition_cached.put(var1, (long)var0); // L: 83
-			return var1; // L: 84
-		}
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lir;",
-		garbageValue = "2092789749"
-	)
-	static VerticalAlignment[] method1279() {
-		return new VerticalAlignment[]{VerticalAlignment.field3223, VerticalAlignment.VerticalAlignment_centered, VerticalAlignment.field3226}; // L: 14
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lit;",
-		garbageValue = "2033153348"
-	)
-	@Export("getInvDefinition")
-	public static InvDefinition getInvDefinition(int var0) {
-		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0); // L: 21
-		if (var1 != null) { // L: 22
-			return var1;
-		} else {
-			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0); // L: 23
-			var1 = new InvDefinition(); // L: 24
-			if (var2 != null) { // L: 25
-				var1.decode(new Buffer(var2));
-			}
-
-			InvDefinition.InvDefinition_cached.put(var1, (long)var0); // L: 26
-			return var1; // L: 27
-		}
-	}
-
-	@ObfuscatedName("kn")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-6"
+		garbageValue = "1"
 	)
-	static void method1282() {
-		if (Client.oculusOrbState == 1) { // L: 11669
-			Client.field725 = true; // L: 11670
-		}
+	public static void method1271() {
+		class105.reflectionChecks = new IterableNodeDeque(); // L: 24
+	} // L: 25
 
-	} // L: 11672
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1068960678"
+	)
+	public static void method1272() {
+		VertexNormal.midiPcmStream.clear(); // L: 44
+		class206.musicPlayerStatus = 1; // L: 45
+		class206.musicTrackArchive = null; // L: 46
+	} // L: 47
 }

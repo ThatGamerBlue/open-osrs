@@ -7,40 +7,44 @@ import java.util.LinkedList;
 import java.util.Queue;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("es")
+@ObfuscatedName("ed")
 @Implements("UrlRequester")
 public class UrlRequester implements Runnable {
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = -2009862837
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "Lly;"
 	)
-	@Export("Interpreter_stringStackSize")
-	static int Interpreter_stringStackSize;
-	@ObfuscatedName("f")
+	static IndexedSprite field1956;
+	@ObfuscatedName("dt")
+	@ObfuscatedSignature(
+		descriptor = "Liy;"
+	)
+	@Export("archive6")
+	static Archive archive6;
+	@ObfuscatedName("n")
 	@Export("thread")
 	final Thread thread;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@Export("isClosed")
 	volatile boolean isClosed;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@Export("requests")
 	Queue requests;
 
 	public UrlRequester() {
 		this.requests = new LinkedList(); // L: 15
-		this.thread = new Thread(this);
-		this.thread.setPriority(1);
-		this.thread.start();
-	}
+		this.thread = new Thread(this); // L: 18
+		this.thread.setPriority(1); // L: 19
+		this.thread.start(); // L: 20
+	} // L: 21
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/URL;B)Leg;",
-		garbageValue = "70"
+		descriptor = "(Ljava/net/URL;I)Lei;",
+		garbageValue = "1847135895"
 	)
 	@Export("request")
 	public UrlRequest request(URL var1) {
@@ -52,10 +56,10 @@ public class UrlRequester implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "1551713219"
+		garbageValue = "-158100516"
 	)
 	@Export("close")
 	public void close() {
@@ -73,14 +77,14 @@ public class UrlRequester implements Runnable {
 	} // L: 88
 
 	public void run() {
-		while (!this.isClosed) {
+		while (!this.isClosed) { // L: 24
 			try {
 				UrlRequest var1;
-				synchronized(this) {
-					var1 = (UrlRequest)this.requests.poll();
-					if (var1 == null) {
+				synchronized(this) { // L: 27
+					var1 = (UrlRequest)this.requests.poll(); // L: 28
+					if (var1 == null) { // L: 29
 						try {
-							this.wait();
+							this.wait(); // L: 31
 						} catch (InterruptedException var13) { // L: 33
 						}
 						continue;
@@ -88,7 +92,7 @@ public class UrlRequester implements Runnable {
 				}
 
 				DataInputStream var2 = null;
-				URLConnection var3 = null; // L: 38
+				URLConnection var3 = null;
 
 				try {
 					var3 = var1.url.openConnection(); // L: 40
@@ -118,83 +122,59 @@ public class UrlRequester implements Runnable {
 
 				}
 			} catch (Exception var17) { // L: 64
-				PacketWriter.RunException_sendStackTrace((String)null, var17); // L: 65
+				SequenceDefinition.RunException_sendStackTrace((String)null, var17); // L: 65
 			}
 		}
 
 	} // L: 68
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(I[BLlt;I)V",
-		garbageValue = "300500560"
+		descriptor = "([BI)[B",
+		garbageValue = "833500111"
 	)
-	static void method3417(int var0, byte[] var1, ArchiveDisk var2) {
-		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 18
-		var3.type = 0; // L: 19
-		var3.key = (long)var0; // L: 20
-		var3.data = var1; // L: 21
-		var3.archiveDisk = var2; // L: 22
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 23
-			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 24
-		} // L: 25
+	static byte[] method3460(byte[] var0) {
+		int var1 = var0.length; // L: 35
+		byte[] var2 = new byte[var1]; // L: 36
+		System.arraycopy(var0, 0, var2, 0, var1); // L: 37
+		return var2; // L: 38
+	}
 
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) { // L: 27
-			if (ArchiveDiskActionHandler.field3176 == 0) { // L: 28
-				class105.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler()); // L: 29
-				class105.ArchiveDiskActionHandler_thread.setDaemon(true); // L: 30
-				class105.ArchiveDiskActionHandler_thread.start(); // L: 31
-				class105.ArchiveDiskActionHandler_thread.setPriority(5); // L: 32
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "-630790234"
+	)
+	public static String method3467(String var0) {
+		int var1 = var0.length(); // L: 159
+		char[] var2 = new char[var1]; // L: 160
+		byte var3 = 2; // L: 161
+
+		for (int var4 = 0; var4 < var1; ++var4) { // L: 162
+			char var5 = var0.charAt(var4); // L: 163
+			if (var3 == 0) { // L: 164
+				var5 = Character.toLowerCase(var5);
+			} else if (var3 == 2 || Character.isUpperCase(var5)) { // L: 165
+				var5 = LoginScreenAnimation.method1927(var5);
 			}
 
-			ArchiveDiskActionHandler.field3176 = 600; // L: 34
+			if (Character.isLetter(var5)) { // L: 166
+				var3 = 0;
+			} else if (var5 != '.' && var5 != '?' && var5 != '!') { // L: 167
+				if (Character.isSpaceChar(var5)) { // L: 168
+					if (var3 != 2) { // L: 169
+						var3 = 1;
+					}
+				} else {
+					var3 = 1; // L: 171
+				}
+			} else {
+				var3 = 2;
+			}
+
+			var2[var4] = var5; // L: 172
 		}
-	} // L: 37
 
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;B)I",
-		garbageValue = "-25"
-	)
-	@Export("hashString")
-	public static int hashString(CharSequence var0) {
-		int var1 = var0.length(); // L: 136
-		int var2 = 0; // L: 137
-
-		for (int var3 = 0; var3 < var1; ++var3) { // L: 138
-			var2 = (var2 << 5) - var2 + class219.charToByteCp1252(var0.charAt(var3));
-		}
-
-		return var2; // L: 139
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "([BB)Lkq;",
-		garbageValue = "98"
-	)
-	public static Font method3430(byte[] var0) {
-		if (var0 == null) { // L: 239
-			return null;
-		} else {
-			Font var1 = new Font(var0, class336.SpriteBuffer_xOffsets, class225.SpriteBuffer_yOffsets, class336.SpriteBuffer_spriteWidths, class336.SpriteBuffer_spriteHeights, WorldMapID.SpriteBuffer_spritePalette, class13.SpriteBuffer_pixels); // L: 240
-			class336.SpriteBuffer_xOffsets = null; // L: 242
-			class225.SpriteBuffer_yOffsets = null; // L: 243
-			class336.SpriteBuffer_spriteWidths = null; // L: 244
-			class336.SpriteBuffer_spriteHeights = null; // L: 245
-			WorldMapID.SpriteBuffer_spritePalette = null; // L: 246
-			class13.SpriteBuffer_pixels = null; // L: 247
-			return var1; // L: 249
-		}
-	}
-
-	@ObfuscatedName("fp")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-4"
-	)
-	@Export("getWindowedMode")
-	static int getWindowedMode() {
-		return Client.isResizable ? 2 : 1; // L: 4200
+		return new String(var2); // L: 174
 	}
 }

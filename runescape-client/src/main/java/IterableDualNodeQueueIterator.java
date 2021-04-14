@@ -4,30 +4,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jb")
+@ObfuscatedName("ju")
 @Implements("IterableDualNodeQueueIterator")
 public class IterableDualNodeQueueIterator implements Iterator {
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Ljt;"
+		descriptor = "Ljf;"
 	)
 	@Export("queue")
 	IterableDualNodeQueue queue;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lgp;"
+		descriptor = "Lgj;"
 	)
 	@Export("head")
 	DualNode head;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lgp;"
+		descriptor = "Lgj;"
 	)
 	@Export("last")
 	DualNode last;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljt;)V"
+		descriptor = "(Ljf;)V"
 	)
 	IterableDualNodeQueueIterator(IterableDualNodeQueue var1) {
 		this.last = null; // L: 9
@@ -49,16 +49,12 @@ public class IterableDualNodeQueueIterator implements Iterator {
 		return var1; // L: 25
 	}
 
+	public void remove() {
+		this.last.removeDual(); // L: 34
+		this.last = null; // L: 35
+	} // L: 36
+
 	public boolean hasNext() {
 		return this.queue.sentinel != this.head; // L: 29
 	}
-
-	public void remove() {
-		if (this.last == null) { // L: 33
-			throw new IllegalStateException();
-		} else {
-			this.last.removeDual(); // L: 34
-			this.last = null; // L: 35
-		}
-	} // L: 36
 }

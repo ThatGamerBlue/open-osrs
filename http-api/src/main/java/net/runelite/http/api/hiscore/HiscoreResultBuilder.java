@@ -87,6 +87,7 @@ class HiscoreResultBuilder
 		hiscoreResult.setClueScrollElite(skills.get(index++));
 		hiscoreResult.setClueScrollMaster(skills.get(index++));
 		hiscoreResult.setLastManStanding(skills.get(index++));
+		hiscoreResult.setSoulWarsZeal(skills.get(index++));
 		// seasonal doesn't have boss hiscores
 		if (index < skills.size())
 		{
@@ -122,6 +123,10 @@ class HiscoreResultBuilder
 			hiscoreResult.setSarachnis(skills.get(index++));
 			hiscoreResult.setScorpia(skills.get(index++));
 			hiscoreResult.setSkotizo(skills.get(index++));
+			if (skills.size() >= 81)
+			{
+				hiscoreResult.setTempoross(skills.get(index++));
+			}
 			hiscoreResult.setGauntlet(skills.get(index++));
 			hiscoreResult.setCorruptedGauntlet(skills.get(index++));
 			hiscoreResult.setTheatreOfBlood(skills.get(index++));

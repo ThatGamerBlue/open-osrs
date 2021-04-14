@@ -1,13 +1,13 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kx")
+@ObfuscatedName("kw")
 public class class297 {
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -278592989
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
 	)
-	@Export("idxCount")
-	static int idxCount;
+	@Export("NetCache_socket")
+	public static AbstractSocket NetCache_socket;
 }

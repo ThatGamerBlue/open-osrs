@@ -4,41 +4,29 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lk")
+@ObfuscatedName("lw")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Llk;"
+		descriptor = "Llw;"
 	)
-	static final DefaultsGroup field3833;
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "Liw;"
-	)
-	@Export("SequenceDefinition_skeletonsArchive")
-	public static AbstractArchive SequenceDefinition_skeletonsArchive;
+	static final DefaultsGroup field3837;
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "[Lcf;"
+		descriptor = "[[Lhz;"
 	)
-	@Export("World_worlds")
-	static World[] World_worlds;
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "[Lle;"
-	)
-	@Export("title_muteSprite")
-	static IndexedSprite[] title_muteSprite;
-	@ObfuscatedName("b")
+	@Export("Widget_interfaceComponents")
+	public static Widget[][] Widget_interfaceComponents;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -506210431
+		intValue = -1717211989
 	)
 	@Export("group")
 	final int group;
 
 	static {
-		field3833 = new DefaultsGroup(3); // L: 4
+		field3837 = new DefaultsGroup(3); // L: 4
 	}
 
 	DefaultsGroup(int var1) {

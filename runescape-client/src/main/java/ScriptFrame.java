@@ -3,31 +3,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bm")
+@ObfuscatedName("bz")
 @Implements("ScriptFrame")
 public class ScriptFrame {
-	@ObfuscatedName("ea")
-	@ObfuscatedGetter(
-		intValue = 1760304111
-	)
-	static int field552;
-	@ObfuscatedName("f")
+	@ObfuscatedName("fl")
 	@ObfuscatedSignature(
-		descriptor = "Lco;"
+		descriptor = "Led;"
+	)
+	@Export("urlRequester")
+	static UrlRequester urlRequester;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Lcl;"
 	)
 	@Export("script")
 	Script script;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1649848391
+		intValue = -1121255489
 	)
 	@Export("pc")
 	int pc;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@Export("intLocals")
 	int[] intLocals;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@Export("stringLocals")
 	String[] stringLocals;
 
@@ -35,99 +37,64 @@ public class ScriptFrame {
 		this.pc = -1; // L: 5
 	} // L: 9
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Liw;I)V",
-		garbageValue = "181624025"
+		descriptor = "(IB)Ljz;",
+		garbageValue = "0"
 	)
-	public static void method1224(AbstractArchive var0) {
-		FloorUnderlayDefinition.FloorUnderlayDefinition_archive = var0; // L: 21
-	} // L: 22
-
-	@ObfuscatedName("l")
-	public static int method1228(long var0) {
-		return (int)(var0 >>> 0 & 127L); // L: 52
-	}
-
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-1190180925"
-	)
-	@Export("loadInterface")
-	public static boolean loadInterface(int var0) {
-		if (Widget.Widget_loadedInterfaces[var0]) { // L: 212
-			return true;
-		} else if (!Decimator.Widget_archive.tryLoadGroup(var0)) { // L: 213
-			return false;
+	public static HitSplatDefinition method1222(int var0) {
+		HitSplatDefinition var1 = (HitSplatDefinition)HitSplatDefinition.HitSplatDefinition_cached.get((long)var0); // L: 52
+		if (var1 != null) { // L: 53
+			return var1;
 		} else {
-			int var1 = Decimator.Widget_archive.getGroupFileCount(var0); // L: 214
-			if (var1 == 0) { // L: 215
-				Widget.Widget_loadedInterfaces[var0] = true; // L: 216
-				return true; // L: 217
-			} else {
-				if (Widget.Widget_interfaceComponents[var0] == null) { // L: 219
-					Widget.Widget_interfaceComponents[var0] = new Widget[var1];
-				}
-
-				for (int var2 = 0; var2 < var1; ++var2) { // L: 220
-					if (Widget.Widget_interfaceComponents[var0][var2] == null) { // L: 221
-						byte[] var3 = Decimator.Widget_archive.takeFile(var0, var2); // L: 222
-						if (var3 != null) { // L: 223
-							Widget.Widget_interfaceComponents[var0][var2] = new Widget(); // L: 224
-							Widget.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16); // L: 225
-							if (var3[0] == -1) { // L: 226
-								Widget.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
-							} else {
-								Widget.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3)); // L: 227
-							}
-						}
-					}
-				}
-
-				Widget.Widget_loadedInterfaces[var0] = true; // L: 231
-				return true; // L: 232
+			byte[] var2 = HitSplatDefinition.HitSplatDefinition_archive.takeFile(32, var0); // L: 54
+			var1 = new HitSplatDefinition(); // L: 55
+			if (var2 != null) { // L: 56
+				var1.decode(new Buffer(var2));
 			}
+
+			HitSplatDefinition.HitSplatDefinition_cached.put(var1, (long)var0); // L: 57
+			return var1; // L: 58
 		}
 	}
 
-	@ObfuscatedName("an")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-398927315"
+		descriptor = "(ILcl;ZI)I",
+		garbageValue = "461265882"
 	)
-	@Export("runWidgetOnLoadListener")
-	static void runWidgetOnLoadListener(int var0) {
-		if (var0 != -1) { // L: 3836
-			if (loadInterface(var0)) { // L: 3837
-				Widget[] var1 = Widget.Widget_interfaceComponents[var0]; // L: 3838
-
-				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 3839
-					Widget var3 = var1[var2]; // L: 3840
-					if (var3.onLoad != null) { // L: 3841
-						ScriptEvent var4 = new ScriptEvent(); // L: 3842
-						var4.widget = var3; // L: 3843
-						var4.args = var3.onLoad; // L: 3844
-						class58.runScript(var4, 5000000); // L: 3845
-					}
+	static int method1221(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.GETWINDOWMODE) { // L: 3196
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = BoundaryObject.getWindowedMode(); // L: 3197
+			return 1; // L: 3198
+		} else {
+			int var3;
+			if (var0 == ScriptOpcodes.SETWINDOWMODE) { // L: 3200
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 3201
+				if (var3 == 1 || var3 == 2) { // L: 3202
+					GameBuild.setWindowedMode(var3);
 				}
 
+				return 1; // L: 3203
+			} else if (var0 == ScriptOpcodes.GETDEFAULTWINDOWMODE) { // L: 3205
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapSectionType.clientPreferences.windowMode; // L: 3206
+				return 1; // L: 3207
+			} else if (var0 != ScriptOpcodes.SETDEFAULTWINDOWMODE) { // L: 3209
+				if (var0 == 5310) { // L: 3217
+					--Interpreter.Interpreter_intStackSize; // L: 3218
+					return 1; // L: 3219
+				} else {
+					return 2; // L: 3221
+				}
+			} else {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 3210
+				if (var3 == 1 || var3 == 2) { // L: 3211
+					WorldMapSectionType.clientPreferences.windowMode = var3; // L: 3212
+					class23.savePreferences(); // L: 3213
+				}
+
+				return 1; // L: 3215
 			}
 		}
-	} // L: 3848
-
-	@ObfuscatedName("jz")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-3110189"
-	)
-	@Export("clanKickUser")
-	static final void clanKickUser(String var0) {
-		if (DevicePcmPlayerProvider.clanChat != null) { // L: 11494
-			PacketBufferNode var1 = class4.getPacketBufferNode(ClientPacket.field2333, Client.packetWriter.isaacCipher); // L: 11495
-			var1.packetBuffer.writeByte(SpriteMask.stringCp1252NullTerminatedByteSize(var0)); // L: 11496
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 11497
-			Client.packetWriter.addNode(var1); // L: 11498
-		}
-	} // L: 11499
+	}
 }

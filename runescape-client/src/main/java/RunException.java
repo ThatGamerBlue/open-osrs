@@ -1,29 +1,25 @@
 import java.applet.Applet;
-import java.util.concurrent.ScheduledExecutorService;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("mp")
+@ObfuscatedName("mr")
 @Implements("RunException")
 public class RunException extends RuntimeException {
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@Export("RunException_applet")
 	public static Applet RunException_applet;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 303873541
+		intValue = 1196724945
 	)
 	@Export("RunException_revision")
 	public static int RunException_revision;
-	@ObfuscatedName("c")
-	@Export("soundSystemExecutor")
-	static ScheduledExecutorService soundSystemExecutor;
-	@ObfuscatedName("z")
+	@ObfuscatedName("y")
 	@Export("message")
 	String message;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@Export("throwable")
 	Throwable throwable;
 

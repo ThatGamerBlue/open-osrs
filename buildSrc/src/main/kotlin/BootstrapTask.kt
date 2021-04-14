@@ -1,3 +1,4 @@
+import groovy.json.JsonOutput
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.tasks.*
@@ -6,6 +7,7 @@ import org.gradle.kotlin.dsl.get
 import java.io.File
 import java.security.MessageDigest
 import javax.inject.Inject
+import kotlin.system.exitProcess
 
 open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultTask() {
 
@@ -42,11 +44,11 @@ open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultT
             val version = splat[2]
             lateinit var path: String
 
-            if (it.file.name.contains("injected-client") ||
-                    it.file.name.contains("runelite-client") ||
+            if (it.file.name.contains("runelite-client") ||
                     it.file.name.contains("http-api") ||
                     it.file.name.contains("runescape-api") ||
-                    it.file.name.contains("runelite-api")) {
+                    it.file.name.contains("runelite-api") ||
+                    it.file.name.contains("runelite-jshell")) {
                 path = "https://github.com/open-osrs/hosting/raw/master/${type}/${it.file.name}"
             } else if (it.file.name.contains("injection-annotations")) {
                 path = "https://github.com/open-osrs/hosting/raw/master/" + group.replace(".", "/") + "/${name}/$version/${it.file.name}"
@@ -56,13 +58,28 @@ open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultT
                     path += "-${it.classifier}"
                 }
                 path += ".jar"
-            } else if (it.file.name.contains("trident") || it.file.name.contains("discord") || it.file.name.contains("substance")) {
-                path = "https://repo.runelite.net/net/runelite/"
-                if (!it.file.name.contains("discord")) {
-                    path += "pushingpixels/"
+            } else if (
+                    it.file.name.contains("trident") ||
+                    it.file.name.contains("discord") ||
+                    it.file.name.contains("substance") ||
+                    it.file.name.contains("gluegen") ||
+                    it.file.name.contains("jogl") ||
+                    it.file.name.contains("jocl")
+            ) {
+                path = "https://repo.runelite.net/"
+                path += "${group.replace(".", "/")}/${name}/$version/${name}-$version"
+                if (it.classifier != null && it.classifier != "no_aop") {
+                    path += "-${it.classifier}"
                 }
-                path += "${name}/$version/${name}-$version.jar"
+                path += ".jar"
             }
+            else
+            {
+                println("ERROR: " + it.file.name + " has no download path!")
+                exitProcess(-1)
+            }
+
+
 
             val filePath = it.file.absolutePath
             val artifactFile = File(filePath)
@@ -102,11 +119,13 @@ open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultT
                 "artifacts" to getArtifacts()
         ).toString()
 
+        val prettyJson = JsonOutput.prettyPrint(json)
+
         val bootstrapDir = File("${project.buildDir}/bootstrap")
         bootstrapDir.mkdirs()
 
         File(bootstrapDir, "bootstrap-${type}.json").printWriter().use { out ->
-            out.println(json)
+            out.println(prettyJson)
         }
     }
 }

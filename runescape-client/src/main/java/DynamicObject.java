@@ -4,68 +4,79 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ck")
+@ObfuscatedName("cw")
 @Implements("DynamicObject")
-public class DynamicObject extends Entity {
-	@ObfuscatedName("f")
+public class DynamicObject extends Renderable {
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -550843083
+		intValue = 1608906951
+	)
+	static int field1311;
+	@ObfuscatedName("er")
+	@ObfuscatedGetter(
+		intValue = 1685580933
+	)
+	@Export("currentPort")
+	static int currentPort;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = -1583763067
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 174390429
+		intValue = 1077688157
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 89407283
+		intValue = -1461018485
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1374963731
+		intValue = 242558127
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("z")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -2010464009
+		intValue = -345704253
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 647351421
+		intValue = -2021063101
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("k")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "Ljg;"
+		descriptor = "Ljs;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 2125087057
+		intValue = -765264835
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 561855979
+		intValue = 1029669135
 	)
 	@Export("cycleStart")
 	int cycleStart;
 
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIZLej;)V"
+		descriptor = "(IIIIIIIZLem;)V"
 	)
-	DynamicObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, boolean var8, Entity var9) {
+	DynamicObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, boolean var8, Renderable var9) {
 		this.id = var1; // L: 20
 		this.type = var2; // L: 21
 		this.orientation = var3; // L: 22
@@ -73,10 +84,10 @@ public class DynamicObject extends Entity {
 		this.x = var5; // L: 24
 		this.y = var6; // L: 25
 		if (var7 != -1) { // L: 26
-			this.sequenceDefinition = class105.SequenceDefinition_get(var7); // L: 27
+			this.sequenceDefinition = InterfaceParent.SequenceDefinition_get(var7); // L: 27
 			this.frame = 0; // L: 28
 			this.cycleStart = Client.cycle - 1; // L: 29
-			if (this.sequenceDefinition.field3551 == 0 && var9 != null && var9 instanceof DynamicObject) { // L: 30
+			if (this.sequenceDefinition.field3548 == 0 && var9 != null && var9 instanceof DynamicObject) { // L: 30
 				DynamicObject var10 = (DynamicObject)var9; // L: 31
 				if (var10.sequenceDefinition == this.sequenceDefinition) { // L: 32
 					this.frame = var10.frame; // L: 33
@@ -93,10 +104,10 @@ public class DynamicObject extends Entity {
 
 	} // L: 43
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)Leh;",
-		garbageValue = "-2070677844"
+		descriptor = "(B)Lef;",
+		garbageValue = "127"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -126,7 +137,7 @@ public class DynamicObject extends Entity {
 			this.cycleStart = Client.cycle - var1; // L: 60
 		}
 
-		ObjectDefinition var12 = ScriptEvent.getObjectDefinition(this.id); // L: 62
+		ObjectComposition var12 = WorldMapAreaData.getObjectDefinition(this.id); // L: 62
 		if (var12.transforms != null) { // L: 63
 			var12 = var12.transform();
 		}
@@ -149,50 +160,10 @@ public class DynamicObject extends Entity {
 			int var6 = (var3 >> 1) + this.y; // L: 77
 			int var7 = (var3 + 1 >> 1) + this.y; // L: 78
 			int[][] var8 = Tiles.Tiles_heights[this.plane]; // L: 79
-			int var9 = var8[var4][var7] + var8[var4][var6] + var8[var5][var6] + var8[var5][var7] >> 2; // L: 80
+			int var9 = var8[var4][var6] + var8[var5][var6] + var8[var4][var7] + var8[var5][var7] >> 2; // L: 80
 			int var10 = (this.x << 7) + (var2 << 6); // L: 81
 			int var11 = (this.y << 7) + (var3 << 6); // L: 82
 			return var12.getModelDynamic(this.type, this.orientation, var8, var10, var9, var11, this.sequenceDefinition, this.frame); // L: 83
 		}
 	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "1129350300"
-	)
-	static final int method2357(int var0, int var1, int var2) {
-		int var3 = var0 / var2; // L: 436
-		int var4 = var0 & var2 - 1; // L: 437
-		int var5 = var1 / var2; // L: 438
-		int var6 = var1 & var2 - 1; // L: 439
-		int var7 = WorldMapID.method665(var3, var5); // L: 440
-		int var8 = WorldMapID.method665(var3 + 1, var5); // L: 441
-		int var9 = WorldMapID.method665(var3, var5 + 1); // L: 442
-		int var10 = WorldMapID.method665(var3 + 1, var5 + 1); // L: 443
-		int var11 = PendingSpawn.method1841(var7, var8, var4, var2); // L: 444
-		int var12 = PendingSpawn.method1841(var9, var10, var4, var2); // L: 445
-		return PendingSpawn.method1841(var11, var12, var6, var2); // L: 446
-	}
-
-	@ObfuscatedName("ip")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "-41"
-	)
-	static boolean method2362(int var0) {
-		return var0 == 57 || var0 == 58 || var0 == 1007 || var0 == 25 || var0 == 30; // L: 8956
-	}
-
-	@ObfuscatedName("jo")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIII)V",
-		garbageValue = "-2144644905"
-	)
-	@Export("updateRootInterface")
-	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (ScriptFrame.loadInterface(var0)) { // L: 10342
-			class69.updateInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6); // L: 10343
-		}
-	} // L: 10344
 }

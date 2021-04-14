@@ -4,36 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
+@ObfuscatedName("er")
 @Implements("FaceNormal")
 public class FaceNormal {
-	@ObfuscatedName("bo")
-	@ObfuscatedSignature(
-		descriptor = "[Lle;"
-	)
-	@Export("worldSelectFlagSprites")
-	static IndexedSprite[] worldSelectFlagSprites;
-	@ObfuscatedName("dy")
-	@ObfuscatedSignature(
-		descriptor = "Lid;"
-	)
-	@Export("archive3")
-	static Archive archive3;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 875969351
+		intValue = -687013303
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -440953057
+		intValue = -1872981457
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1278044513
+		intValue = -522101521
 	)
 	@Export("z")
 	int z;
@@ -41,35 +29,27 @@ public class FaceNormal {
 	FaceNormal() {
 	} // L: 8
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "([I[II)V",
-		garbageValue = "-2056587398"
+		descriptor = "(CI)Z",
+		garbageValue = "-1093535932"
 	)
-	public static void method3392(int[] var0, int[] var1) {
-		if (var0 != null && var1 != null) {
-			Coord.ByteArrayPool_alternativeSizes = var0; // L: 25
-			FloorDecoration.ByteArrayPool_altSizeArrayCounts = new int[var0.length]; // L: 26
-			ByteArrayPool.ByteArrayPool_arrays = new byte[var0.length][][]; // L: 27
+	public static boolean method3421(char var0) {
+		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) { // L: 45
+			if (var0 != 0) { // L: 46
+				char[] var1 = class298.cp1252AsciiExtension; // L: 48
 
-			for (int var2 = 0; var2 < Coord.ByteArrayPool_alternativeSizes.length; ++var2) { // L: 28
-				ByteArrayPool.ByteArrayPool_arrays[var2] = new byte[var1[var2]][]; // L: 29
+				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 49
+					char var3 = var1[var2]; // L: 50
+					if (var0 == var3) { // L: 52
+						return true;
+					}
+				}
 			}
 
+			return false; // L: 57
 		} else {
-			Coord.ByteArrayPool_alternativeSizes = null;
-			FloorDecoration.ByteArrayPool_altSizeArrayCounts = null; // L: 21
-			ByteArrayPool.ByteArrayPool_arrays = null; // L: 22
+			return true;
 		}
-	} // L: 23 31
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Liw;I)V",
-		garbageValue = "-1326300873"
-	)
-	public static void method3393(AbstractArchive var0) {
-		class25.VarpDefinition_archive = var0; // L: 18
-		VarpDefinition.VarpDefinition_fileCount = class25.VarpDefinition_archive.getGroupFileCount(16); // L: 19
-	} // L: 20
+	}
 }

@@ -4,30 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("it")
+@ObfuscatedName("ij")
 @Implements("InvDefinition")
 public class InvDefinition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Liw;"
+		descriptor = "Lig;"
 	)
 	@Export("InvDefinition_archive")
 	static AbstractArchive InvDefinition_archive;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lev;"
+		descriptor = "Lex;"
 	)
 	@Export("InvDefinition_cached")
 	static EvictingDualNodeHashTable InvDefinition_cached;
-	@ObfuscatedName("me")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1335589657
-	)
-	@Export("selectedItemSlot")
-	static int selectedItemSlot;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = -2004662257
+		intValue = 2039181525
 	)
 	@Export("size")
 	public int size;
@@ -40,10 +34,10 @@ public class InvDefinition extends DualNode {
 		this.size = 0; // L: 12
 	} // L: 14
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)V",
-		garbageValue = "1021098633"
+		descriptor = "(Lkx;B)V",
+		garbageValue = "-26"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -57,10 +51,10 @@ public class InvDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;IS)V",
-		garbageValue = "-6183"
+		descriptor = "(Lkx;II)V",
+		garbageValue = "-667990593"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -70,33 +64,25 @@ public class InvDefinition extends DualNode {
 
 	} // L: 41
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;Lll;I)Lll;",
-		garbageValue = "-1253554841"
+		descriptor = "(IB)Lic;",
+		garbageValue = "63"
 	)
-	@Export("readStringIntParameters")
-	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
-		int var2 = var0.readUnsignedByte(); // L: 16
-		int var3;
-		if (var1 == null) { // L: 17
-			var3 = WorldMapData_0.method266(var2); // L: 18
-			var1 = new IterableNodeHashTable(var3); // L: 19
-		}
-
-		for (var3 = 0; var3 < var2; ++var3) { // L: 21
-			boolean var4 = var0.readUnsignedByte() == 1; // L: 22
-			int var5 = var0.readMedium(); // L: 23
-			Object var6;
-			if (var4) { // L: 25
-				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
-			} else {
-				var6 = new IntegerNode(var0.readInt()); // L: 26
-			}
-
-			var1.put((Node)var6, (long)var5); // L: 27
-		}
-
-		return var1; // L: 29
+	@Export("WorldMapElement_get")
+	public static WorldMapElement WorldMapElement_get(int var0) {
+		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0); // L: 44 45
 	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "1853243794"
+	)
+	@Export("setLoginResponseString")
+	static void setLoginResponseString(String var0, String var1, String var2) {
+		Login.Login_response1 = var0; // L: 1447
+		Login.Login_response2 = var1; // L: 1448
+		Login.Login_response3 = var2; // L: 1449
+	} // L: 1450
 }

@@ -1,125 +1,148 @@
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
+@ObfuscatedName("eu")
 @Implements("WallDecoration")
 public final class WallDecoration {
-	@ObfuscatedName("gd")
-	@Export("regionLandArchiveIds")
-	static int[] regionLandArchiveIds;
-	@ObfuscatedName("f")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1368883061
+		intValue = 964756049
+	)
+	@Export("clientTickTimeIdx")
+	static int clientTickTimeIdx;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 719575047
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1255836875
+		intValue = -920611555
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1394186747
+		intValue = -730740551
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1069815711
+		intValue = 333766323
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("z")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1005575771
+		intValue = 1617230319
 	)
 	@Export("orientation2")
 	int orientation2;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 287109355
+		intValue = 2092861143
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("k")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -872509349
+		intValue = 1518269047
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lem;"
 	)
-	@Export("entity1")
-	public Entity entity1;
-	@ObfuscatedName("u")
+	@Export("renderable1")
+	public Renderable renderable1;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lem;"
 	)
-	@Export("entity2")
-	public Entity entity2;
-	@ObfuscatedName("t")
+	@Export("renderable2")
+	public Renderable renderable2;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		longValue = -3894207238426267157L
+		longValue = 1249498855339190201L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("e")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -237175035
+		intValue = -1390179163
 	)
 	@Export("flags")
 	int flags;
 
 	WallDecoration() {
-		this.tag = 0L; // L: 13
-		this.flags = 0; // L: 14
-	} // L: 16
+		this.tag = 0L;
+		this.flags = 0;
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "28"
+		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
+		garbageValue = "699816166"
 	)
-	@Export("loadWorlds")
-	static boolean loadWorlds() {
-		try {
-			if (class248.World_request == null) { // L: 31
-				class248.World_request = class52.urlRequester.request(new URL(PcmPlayer.worldListURL));
-			} else if (class248.World_request.isDone()) { // L: 33
-				byte[] var0 = class248.World_request.getResponse(); // L: 34
-				Buffer var1 = new Buffer(var0); // L: 35
-				var1.readInt(); // L: 36
-				World.World_count = var1.readUnsignedShort(); // L: 37
-				DefaultsGroup.World_worlds = new World[World.World_count]; // L: 38
+	public static String method3450(CharSequence var0) {
+		int var1 = var0.length(); // L: 11
+		StringBuilder var2 = new StringBuilder(var1); // L: 12
 
-				World var3;
-				for (int var2 = 0; var2 < World.World_count; var3.index = var2++) { // L: 39 47
-					var3 = DefaultsGroup.World_worlds[var2] = new World(); // L: 40
-					var3.id = var1.readUnsignedShort(); // L: 41
-					var3.properties = var1.readInt(); // L: 42
-					var3.host = var1.readStringCp1252NullTerminated(); // L: 43
-					var3.activity = var1.readStringCp1252NullTerminated(); // L: 44
-					var3.location = var1.readUnsignedByte(); // L: 45
-					var3.population = var1.readShort(); // L: 46
+		for (int var3 = 0; var3 < var1; ++var3) { // L: 13
+			char var4 = var0.charAt(var3); // L: 14
+			if ((var4 < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9') && var4 != '.' && var4 != '-' && var4 != '*' && var4 != '_') { // L: 15
+				if (var4 == ' ') { // L: 16
+					var2.append('+');
+				} else {
+					byte var5 = LoginPacket.charToByteCp1252(var4); // L: 18
+					var2.append('%'); // L: 19
+					int var6 = var5 >> 4 & 15; // L: 20
+					if (var6 >= 10) { // L: 21
+						var2.append((char)(var6 + 55));
+					} else {
+						var2.append((char)(var6 + 48)); // L: 22
+					}
+
+					var6 = var5 & 15; // L: 23
+					if (var6 >= 10) { // L: 24
+						var2.append((char)(var6 + 55));
+					} else {
+						var2.append((char)(var6 + 48));
+					}
 				}
-
-				ModeWhere.sortWorlds(DefaultsGroup.World_worlds, 0, DefaultsGroup.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 49
-				class248.World_request = null; // L: 50
-				return true; // L: 51
+			} else {
+				var2.append(var4); // L: 25
 			}
-		} catch (Exception var4) { // L: 55
-			var4.printStackTrace(); // L: 56
-			class248.World_request = null; // L: 57
 		}
 
-		return false; // L: 59
+		return var2.toString(); // L: 28
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(II)Ljo;",
+		garbageValue = "1862361389"
+	)
+	public static FloorOverlayDefinition method3449(int var0) {
+		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0); // L: 30
+		if (var1 != null) { // L: 31
+			return var1;
+		} else {
+			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0); // L: 32
+			var1 = new FloorOverlayDefinition(); // L: 33
+			if (var2 != null) { // L: 34
+				var1.decode(new Buffer(var2), var0);
+			}
+
+			var1.postDecode(); // L: 35
+			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0); // L: 36
+			return var1; // L: 37
+		}
 	}
 }

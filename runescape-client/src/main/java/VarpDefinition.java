@@ -4,24 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ig")
+@ObfuscatedName("il")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = 420940101
-	)
-	@Export("VarpDefinition_fileCount")
-	public static int VarpDefinition_fileCount;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lev;"
+		descriptor = "Lig;"
+	)
+	@Export("VarpDefinition_archive")
+	public static AbstractArchive VarpDefinition_archive;
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "Lex;"
 	)
 	@Export("VarpDefinition_cached")
 	static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1267423299
+		intValue = -921079377
 	)
 	@Export("type")
 	public int type;
@@ -34,33 +34,55 @@ public class VarpDefinition extends DualNode {
 		this.type = 0; // L: 13
 	} // L: 15
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;B)V",
-		garbageValue = "125"
+		descriptor = "(Lkx;I)V",
+		garbageValue = "-1864493120"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 34
-			if (var2 == 0) { // L: 35
-				return; // L: 38
+			int var2 = var1.readUnsignedByte(); // L: 29
+			if (var2 == 0) { // L: 30
+				return; // L: 33
 			}
 
-			this.decodeNext(var1, var2); // L: 36
+			this.decodeNext(var1, var2); // L: 31
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;II)V",
-		garbageValue = "822246894"
+		descriptor = "(Lkx;IB)V",
+		garbageValue = "54"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 5) { // L: 41
+		if (var2 == 5) { // L: 36
 			this.type = var1.readUnsignedShort();
 		}
 
-	} // L: 43
+	} // L: 38
+
+	@ObfuscatedName("ez")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "498467917"
+	)
+	static boolean method4552() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1389
+			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1390
+				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone); // L: 1391
+				if (!var0.isLoaded()) {
+					return false; // L: 1392
+				}
+
+				++Client.archiveLoadersDone; // L: 1393
+			}
+
+			return true; // L: 1395
+		} else {
+			return true;
+		}
+	}
 }

@@ -24,11 +24,11 @@
  */
 package net.runelite.api;
 
-import net.runelite.api.coords.LocalPoint;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Shape;
 import javax.annotation.Nullable;
+import net.runelite.api.coords.LocalPoint;
 
 /**
  * Represents an object on a Tile
@@ -103,4 +103,14 @@ public interface TileObject extends Locatable
 	 */
 	@Nullable
 	Shape getClickbox();
+	
+	/**
+	 * Gets the name of the object
+	 */
+	String getName();
+
+	/**
+	 * Gets the menu actions of the object
+	 */
+	String[] getActions();
 }
