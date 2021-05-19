@@ -72,6 +72,7 @@ import org.apache.commons.io.FileUtils;
 @SuppressWarnings("deprecation")
 public class ClientLoader implements Supplier<Applet>
 {
+	private static final String INJECTED_CLIENT_NAME = "/injected-client.oprs";
 	private static final int NUM_ATTEMPTS = 6;
 	private static File LOCK_FILE = new File(RuneLite.CACHE_DIR, "cache.lock");
 	private static File VANILLA_CACHE = new File(RuneLite.CACHE_DIR, "vanilla.cache");
@@ -81,15 +82,17 @@ public class ClientLoader implements Supplier<Applet>
 	private final ClientConfigLoader clientConfigLoader;
 	private ClientUpdateCheckMode updateCheckMode;
 	private final WorldSupplier worldSupplier;
+	private final String javConfigUrl;
 
 	private Object client;
 
-	public ClientLoader(OkHttpClient okHttpClient, ClientUpdateCheckMode updateCheckMode)
+	public ClientLoader(OkHttpClient okHttpClient, ClientUpdateCheckMode updateCheckMode, String javConfigUrl)
 	{
 		this.okHttpClient = okHttpClient;
 		this.clientConfigLoader = new ClientConfigLoader(okHttpClient);
 		this.updateCheckMode = updateCheckMode;
 		this.worldSupplier = new WorldSupplier(okHttpClient);
+		this.javConfigUrl = javConfigUrl;
 	}
 
 	@Override
@@ -132,9 +135,11 @@ public class ClientLoader implements Supplier<Applet>
 				// create the classloader for the jar while we hold the lock, and eagerly load and link all classes
 				// in the jar. Otherwise the jar can change on disk and can break future classloads.
 				File oprsInjected = new File(System.getProperty("user.home") + "/.openosrs/cache/injected-client.jar");
-				InputStream initialStream = RuneLite.class.getResourceAsStream("injected-client.oprs");
-				if (!oprsInjected.exists() || oprsInjected.length() != RuneLite.class.getResource("injected-client.oprs").getFile().length())
+				InputStream initialStream = RuneLite.class.getResourceAsStream(INJECTED_CLIENT_NAME);
+				if (!oprsInjected.exists() || oprsInjected.length() != RuneLite.class.getResource(INJECTED_CLIENT_NAME).getFile().length())
+				{
 					FileUtils.copyInputStreamToFile(initialStream, oprsInjected);
+				}
 
 				classLoader = createJarClassLoader(oprsInjected);
 			}
@@ -159,7 +164,7 @@ public class ClientLoader implements Supplier<Applet>
 
 	private RSConfig downloadConfig() throws IOException
 	{
-		HttpUrl url = HttpUrl.parse(RuneLiteProperties.getJavConfig());
+		HttpUrl url = HttpUrl.parse(javConfigUrl);
 		IOException err = null;
 		for (int attempt = 0; attempt < NUM_ATTEMPTS; attempt++)
 		{
@@ -177,6 +182,12 @@ public class ClientLoader implements Supplier<Applet>
 			catch (IOException e)
 			{
 				log.info("Failed to get jav_config from host \"{}\" ({})", url.host(), e.getMessage());
+
+				if (!javConfigUrl.equals(RuneLiteProperties.getJavConfig()))
+				{
+					throw e;
+				}
+
 				String host = worldSupplier.get().getAddress();
 				url = url.newBuilder().host(host).build();
 				err = e;
@@ -369,7 +380,7 @@ public class ClientLoader implements Supplier<Applet>
 					log.warn("Failed to download gamepack from \"{}\"", url, e);
 
 					// With fallback config do 1 attempt (there are no additional urls to try)
-					if (config.isFallback() || attempt >= NUM_ATTEMPTS)
+					if (!javConfigUrl.equals(RuneLiteProperties.getJavConfig()) || config.isFallback() || attempt >= NUM_ATTEMPTS)
 					{
 						throw e;
 					}

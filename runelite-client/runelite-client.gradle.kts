@@ -62,9 +62,9 @@ dependencies {
     implementation(group = "com.jakewharton.rxrelay3", name = "rxrelay", version = "3.0.0")
     implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "3.7.0")
     implementation(group = "io.reactivex.rxjava3", name = "rxjava", version = "3.0.10")
-    implementation(group = "net.java.dev.jna", name = "jna", version = "5.7.0")
+    implementation(group = "net.java.dev.jna", name = "jna", version = "5.8.0")
     implementation(group = "org.jgroups", name = "jgroups", version = "5.0.4.Final")
-    implementation(group = "net.java.dev.jna", name = "jna-platform", version = "5.7.0")
+    implementation(group = "net.java.dev.jna", name = "jna-platform", version = "5.8.0")
     implementation(group = "net.runelite", name = "discord", version = "1.4")
     implementation(group = "net.runelite.pushingpixels", name = "substance", version = "8.0.02")
     implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.1")
@@ -126,7 +126,7 @@ tasks {
     }
 
     compileJava {
-        dependsOn("packInjectedClient")
+        // dependsOn("packInjectedClient")
     }
 
     processResources {
@@ -155,9 +155,11 @@ tasks {
     register<Copy>("packInjectedClient") {
         dependsOn(":injector:inject")
 
-        from("src/main/resources/")
+        from("build/injected/")
         include("**/injected-client.oprs")
         into("${buildDir}/resources/main")
+
+        outputs.upToDateWhen { false }
     }
 
     jar {
@@ -174,6 +176,10 @@ tasks {
         dependsOn(":runelite-script-assembler-plugin:assembleMojo")
 
         from("${buildDir}/scripts")
+
+        dependsOn(":injector:inject")
+
+        from("build/injected")
     }
 
     withType<BootstrapTask> {

@@ -37,7 +37,6 @@ import java.util.Map;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.inject.Named;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.EnumComposition;
 import net.runelite.api.Friend;
@@ -55,15 +54,6 @@ import net.runelite.api.ItemComposition;
 import net.runelite.api.MenuAction;
 import static net.runelite.api.MenuAction.*;
 import net.runelite.api.MenuEntry;
-import net.runelite.api.MenuAction;
-import static net.runelite.api.MenuAction.PLAYER_EIGTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FIFTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FIRST_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FOURTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SECOND_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SEVENTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SIXTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_THIRD_OPTION;
 import net.runelite.api.MessageNode;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
@@ -153,6 +143,7 @@ import net.runelite.rs.api.RSUsername;
 import net.runelite.rs.api.RSWidget;
 import net.runelite.rs.api.RSWorld;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
@@ -161,16 +152,14 @@ public abstract class RSClientMixin implements RSClient
 	private static RSClient client;
 
 	@Inject
+	public static Logger rl$logger = LoggerFactory.getLogger("injected-client");
+
+	@Inject
 	@javax.inject.Inject
 	private Callbacks callbacks;
 
 	@Inject
 	private DrawCallbacks drawCallbacks;
-
-	@Inject
-	@javax.inject.Inject
-	@Named("Core Logger")
-	private Logger logger;
 
 	@Inject
 	private static int tickCount;
@@ -330,6 +319,13 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
+	public String getBuildID()
+	{
+		return "OpenOSRS";
+	}
+
+	@Inject
+	@Override
 	public Callbacks getCallbacks()
 	{
 		return callbacks;
@@ -353,7 +349,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public Logger getLogger()
 	{
-		return logger;
+		return rl$logger;
 	}
 
 	@Inject
@@ -589,7 +585,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public void setGameState(GameState gameState)
 	{
-		assert this.isClientThread();
+		assert this.isClientThread() : "setGameState must be called on client thread";
 		setGameState(gameState.getState());
 	}
 
@@ -716,7 +712,7 @@ public abstract class RSClientMixin implements RSClient
 
 		if (skill == Skill.OVERALL)
 		{
-			logger.debug("getSkillExperience called for {}!", skill);
+			rl$logger.debug("getSkillExperience called for {}!", skill);
 			return (int) getOverallExperience();
 		}
 
@@ -979,7 +975,8 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale)
 	{
-		assert isClientThread();
+		assert isClientThread() : "createItemSprite must be called on client thread";
+
 		int zoom = get3dZoom();
 		set3dZoom(scale);
 		try
@@ -1098,12 +1095,19 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	public static void gameStateChanged(int idx)
 	{
-		GameStateChanged gameStateChange = new GameStateChanged();
 		GameState gameState = client.getGameState();
+		client.getLogger().debug("Game state changed: {}", gameState);
+		GameStateChanged gameStateChange = new GameStateChanged();
 		gameStateChange.setGameState(gameState);
 		client.getCallbacks().post(gameStateChange);
+
 		if (gameState == GameState.LOGGED_IN)
 		{
+			if (client.getLocalPlayer() == null)
+			{
+				return;
+			}
+
 			int plane = client.getPlane();
 			RSScene scene = client.getScene();
 			RSTile[][][] tiles = scene.getTiles();
@@ -1446,15 +1450,16 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		copy$menuAction(menuOptionClicked.getActionParam(), menuOptionClicked.getWidgetId(),
-			menuOptionClicked.getMenuAction().getId(), menuOptionClicked.getId(),
-			menuOptionClicked.getMenuOption(), menuOptionClicked.getMenuTarget(), canvasX, canvasY);
+			menuOptionClicked.getMenuAction() == UNKNOWN ? opcode : menuOptionClicked.getMenuAction().getId(),
+			menuOptionClicked.getId(), menuOptionClicked.getMenuOption(), menuOptionClicked.getMenuTarget(),
+			canvasX, canvasY);
 	}
 
 	@Override
 	@Inject
 	public void invokeMenuAction(String option, String target, int identifier, int opcode, int param0, int param1)
 	{
-		assert isClientThread();
+		assert isClientThread() : "invokeMenuAction must be called on client thread";
 
 		client.sendMenuAction(param0, param1, opcode, identifier, option, target, 658, 384);
 	}
@@ -1504,7 +1509,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@MethodHook("updateNpcs")
-	public static void updateNpcs(boolean var0, RSPacketBuffer var1)
+	public static void updateNpcs(boolean var0, RSPacketBuffer var1, boolean var2)
 	{
 		client.getCallbacks().updateNpcs();
 	}
