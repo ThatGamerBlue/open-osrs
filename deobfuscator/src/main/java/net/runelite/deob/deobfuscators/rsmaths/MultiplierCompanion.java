@@ -1,7 +1,6 @@
 package net.runelite.deob.deobfuscators.rsmaths;
 
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
