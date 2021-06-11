@@ -41,6 +41,7 @@ dependencies {
     implementation(project(":runelite-api"))
     implementation(project(":runescape-api"))
     implementation(kotlin("stdlib"))
+    implementation(project(":cache"))
     implementation(group = "org.jetbrains", name = "annotations", version = "20.1.0")
     implementation(group = "org.ow2.asm", name = "asm", version = "9.0")
     implementation(group = "org.ow2.asm", name = "asm-util", version = "9.0")

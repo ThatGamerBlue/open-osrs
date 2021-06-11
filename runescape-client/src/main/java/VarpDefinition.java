@@ -3,31 +3,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("je")
+@ObfuscatedName("ex")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("rr")
+	@ObfuscatedGetter(
+		intValue = 634754105
+	)
+	static int field1544;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lir;"
+		descriptor = "Ljv;"
 	)
 	@Export("VarpDefinition_archive")
 	static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1381184627
+		intValue = -1782450907
 	)
 	@Export("VarpDefinition_fileCount")
 	public static int VarpDefinition_fileCount;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lgf;"
+		descriptor = "Lhz;"
 	)
 	@Export("VarpDefinition_cached")
 	public static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1440962611
+		intValue = 812709151
 	)
 	@Export("type")
 	public int type;
@@ -40,10 +46,10 @@ public class VarpDefinition extends DualNode {
 		this.type = 0; // L: 13
 	} // L: 15
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "923214413"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "1856210017"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -57,10 +63,10 @@ public class VarpDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;II)V",
-		garbageValue = "1336556891"
+		descriptor = "(Lnd;II)V",
+		garbageValue = "1230881703"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -70,34 +76,38 @@ public class VarpDefinition extends DualNode {
 
 	} // L: 43
 
-	@ObfuscatedName("aa")
+	@ObfuscatedName("p")
+	public static int method2630(long var0) {
+		return (int)(var0 >>> 0 & 127L); // L: 64
+	}
+
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(ILcc;ZB)I",
-		garbageValue = "47"
+		descriptor = "(ILcf;ZI)I",
+		garbageValue = "-2015232474"
 	)
-	static int method4898(int var0, Script var1, boolean var2) {
-		if (var0 == 7100) { // L: 4212
-			++class16.Interpreter_intStackSize; // L: 4213
-			return 1; // L: 4214
-		} else if (var0 == 7101) { // L: 4216
-			Interpreter.Interpreter_stringStackSize += 2; // L: 4217
-			return 1; // L: 4218
-		} else if (var0 != 7102 && var0 != 7103 && var0 != 7104 && var0 != 7105 && var0 != 7109) { // L: 4220
-			if (var0 == 7106) { // L: 4224
-				++class16.Interpreter_intStackSize; // L: 4225
-				return 1; // L: 4226
-			} else if (var0 == 7107) { // L: 4228
-				++class16.Interpreter_intStackSize; // L: 4229
-				return 1; // L: 4230
-			} else if (var0 == 7108) { // L: 4232
-				Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = Huffman.method4311() ? 1 : 0; // L: 4233
-				return 1; // L: 4234
-			} else {
-				return 2; // L: 4236
-			}
+	static int method2629(int var0, Script var1, boolean var2) {
+		Widget var3 = Frames.getWidget(Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize]); // L: 1252
+		if (var0 == ScriptOpcodes.IF_GETX) { // L: 1253
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.x; // L: 1254
+			return 1; // L: 1255
+		} else if (var0 == ScriptOpcodes.IF_GETY) { // L: 1257
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.y; // L: 1258
+			return 1; // L: 1259
+		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) { // L: 1261
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.width; // L: 1262
+			return 1; // L: 1263
+		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) { // L: 1265
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.height; // L: 1266
+			return 1; // L: 1267
+		} else if (var0 == ScriptOpcodes.IF_GETHIDE) { // L: 1269
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1270
+			return 1; // L: 1271
+		} else if (var0 == ScriptOpcodes.IF_GETLAYER) { // L: 1273
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.parentId; // L: 1274
+			return 1; // L: 1275
 		} else {
-			++class16.Interpreter_intStackSize; // L: 4221
-			return 1; // L: 4222
+			return 2; // L: 1277
 		}
 	}
 }

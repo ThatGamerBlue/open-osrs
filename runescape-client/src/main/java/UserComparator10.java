@@ -4,21 +4,21 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("db")
+@ObfuscatedName("du")
 @Implements("UserComparator10")
 public class UserComparator10 extends AbstractUserComparator {
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1931551411
+		intValue = -2005962759
 	)
-	static int field1439;
-	@ObfuscatedName("mm")
+	static int field1457;
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1081078287
+		intValue = -1166420103
 	)
-	@Export("selectedSpellFlags")
-	static int selectedSpellFlags;
-	@ObfuscatedName("f")
+	@Export("cacheGamebuild")
+	public static int cacheGamebuild;
+	@ObfuscatedName("v")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -26,10 +26,10 @@ public class UserComparator10 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Llg;Llg;I)I",
-		garbageValue = "-1459911395"
+		descriptor = "(Llv;Llv;I)I",
+		garbageValue = "254646745"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -44,20 +44,35 @@ public class UserComparator10 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 22
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Throwable;Ljava/lang/String;)Lor;"
+		descriptor = "(Ljv;I)V",
+		garbageValue = "2118947714"
 	)
-	@Export("newRunException")
-	public static RunException newRunException(Throwable var0, String var1) {
-		RunException var2;
-		if (var0 instanceof RunException) { // L: 57
-			var2 = (RunException)var0; // L: 58
-			var2.message = var2.message + ' ' + var1; // L: 59
-		} else {
-			var2 = new RunException(var0, var1); // L: 61
-		}
+	public static void method2471(AbstractArchive var0) {
+		VarbitComposition.VarbitDefinition_archive = var0; // L: 26
+	} // L: 27
 
-		return var2; // L: 62
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(CB)Z",
+		garbageValue = "-13"
+	)
+	@Export("isDigit")
+	public static boolean isDigit(char var0) {
+		return var0 >= '0' && var0 <= '9'; // L: 138
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-1839553264"
+	)
+	public static int method2474(int var0) {
+		if (var0 > 0) { // L: 183
+			return 1;
+		} else {
+			return var0 < 0 ? -1 : 0; // L: 184 185
+		}
 	}
 }

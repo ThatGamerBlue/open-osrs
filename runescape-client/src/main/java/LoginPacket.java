@@ -4,96 +4,85 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gc")
+@ObfuscatedName("hv")
 @Implements("LoginPacket")
-public class LoginPacket implements class201 {
+public class LoginPacket implements class223 {
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Lhv;"
+	)
+	public static final LoginPacket field2806;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Lhv;"
+	)
+	static final LoginPacket field2800;
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lgc;"
+		descriptor = "Lhv;"
 	)
-	public static final LoginPacket field2456;
-	@ObfuscatedName("o")
+	public static final LoginPacket field2802;
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lgc;"
+		descriptor = "Lhv;"
 	)
-	static final LoginPacket field2454;
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "Lgc;"
-	)
-	public static final LoginPacket field2451;
+	public static final LoginPacket field2799;
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lgc;"
+		descriptor = "Lhv;"
 	)
-	public static final LoginPacket field2452;
+	public static final LoginPacket field2803;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Lhv;"
+	)
+	static final LoginPacket field2804;
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Lgc;"
-	)
-	public static final LoginPacket field2450;
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "Lgc;"
-	)
-	static final LoginPacket field2449;
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "[Lgc;"
+		descriptor = "[Lhv;"
 	)
 	@Export("LoginPacket_indexedValues")
 	static final LoginPacket[] LoginPacket_indexedValues;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 819348427
+		intValue = -2104818809
 	)
 	@Export("id")
 	public final int id;
 
 	static {
-		field2456 = new LoginPacket(14, 0); // L: 5
-		field2454 = new LoginPacket(15, 4); // L: 6
-		field2451 = new LoginPacket(16, -2); // L: 7
-		field2452 = new LoginPacket(18, -2); // L: 8
-		field2450 = new LoginPacket(19, -2); // L: 9
-		field2449 = new LoginPacket(27, 0); // L: 10
+		field2806 = new LoginPacket(14, 0); // L: 5
+		field2800 = new LoginPacket(15, 4); // L: 6
+		field2802 = new LoginPacket(16, -2); // L: 7
+		field2799 = new LoginPacket(18, -2); // L: 8
+		field2803 = new LoginPacket(19, -2); // L: 9
+		field2804 = new LoginPacket(27, 0); // L: 10
 		LoginPacket_indexedValues = new LoginPacket[32]; // L: 12
-		LoginPacket[] var0 = PacketWriter.method2386(); // L: 15
+		LoginPacket[] var0 = new LoginPacket[]{field2804, field2806, field2803, field2799, field2800, field2802}; // L: 17
+		LoginPacket[] var1 = var0; // L: 19
 
-		for (int var1 = 0; var1 < var0.length; ++var1) { // L: 16
-			LoginPacket_indexedValues[var0[var1].id] = var0[var1]; // L: 17
+		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 20
+			LoginPacket_indexedValues[var1[var2].id] = var1[var2]; // L: 21
 		}
 
-	}
+	} // L: 23
 
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
 		garbageValue = "0"
 	)
 	LoginPacket(int var1, int var2) {
-		this.id = var1;
+		this.id = var1; // L: 26
 	} // L: 27
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("kh")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lka;",
-		garbageValue = "1973214574"
+		descriptor = "(II)V",
+		garbageValue = "-1030853503"
 	)
-	@Export("StructDefinition_getStructDefinition")
-	public static StructComposition StructDefinition_getStructDefinition(int var0) {
-		StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0); // L: 19
-		if (var1 != null) { // L: 20
-			return var1;
-		} else {
-			byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0); // L: 21
-			var1 = new StructComposition(); // L: 22
-			if (var2 != null) { // L: 23
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.postDecode(); // L: 24
-			StructComposition.StructDefinition_cached.put(var1, (long)var0); // L: 25
-			return var1; // L: 26
-		}
-	}
+	static final void method4373(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127); // L: 10926
+		ObjectComposition.clientPreferences.areaSoundEffectsVolume = var0; // L: 10927
+		TileItem.savePreferences(); // L: 10928
+	} // L: 10929
 }

@@ -1,74 +1,56 @@
+import java.lang.management.GarbageCollectorMXBean;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("df")
+@ObfuscatedName("dl")
 public class class124 implements class123 {
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = -1858583893
-	)
-	@Export("SpriteBuffer_spriteCount")
-	static int SpriteBuffer_spriteCount;
-
-	@ObfuscatedName("f")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1284583399"
+		descriptor = "Lhp;"
 	)
-	public static int method2490() {
-		return ViewportMouse.ViewportMouse_entityCount; // L: 44
-	}
+	@Export("midiPcmStream")
+	public static MidiPcmStream midiPcmStream;
+	@ObfuscatedName("af")
+	@Export("garbageCollector")
+	static GarbageCollectorMXBean garbageCollector;
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "2146818180"
+		descriptor = "(II)Llm;",
+		garbageValue = "-333681005"
 	)
-	public static int method2489(int var0, int var1) {
-		return (-3 - var0 << 8) + var1; // L: 17
-	}
+	public static PrivateChatMode method2498(int var0) {
+		PrivateChatMode[] var1 = new PrivateChatMode[]{PrivateChatMode.field3888, PrivateChatMode.field3887, PrivateChatMode.field3889}; // L: 18
+		PrivateChatMode[] var2 = var1; // L: 20
 
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(CLjh;B)I",
-		garbageValue = "3"
-	)
-	@Export("lowercaseChar")
-	static int lowercaseChar(char var0, Language var1) {
-		int var2 = var0 << 4; // L: 104
-		if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) { // L: 105
-			var0 = Character.toLowerCase(var0); // L: 106
-			var2 = (var0 << 4) + 1; // L: 107
+		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 21
+			PrivateChatMode var4 = var2[var3]; // L: 22
+			if (var0 == var4.field3890) { // L: 24
+				return var4;
+			}
 		}
 
-		if (var0 == 241 && var1 == Language.Language_ES) { // L: 109
-			var2 = 1762;
-		}
-
-		return var2; // L: 110
+		return null; // L: 28
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lir;Ljava/lang/String;Ljava/lang/String;I)[Loh;",
-		garbageValue = "-64813696"
+		descriptor = "(II)Lbi;",
+		garbageValue = "1712316428"
 	)
-	public static SpritePixels[] method2492(AbstractArchive var0, String var1, String var2) {
-		int var3 = var0.getGroupId(var1); // L: 176
-		int var4 = var0.getFileId(var3, var2); // L: 177
-		return class337.method5985(var0, var3, var4); // L: 178
+	@Export("Messages_getMessage")
+	static Message Messages_getMessage(int var0) {
+		return (Message)Messages.Messages_hashTable.get((long)var0); // L: 40
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("kw")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1303478774"
+		descriptor = "(B)V",
+		garbageValue = "90"
 	)
-	static final void method2488() {
-		Object var10000 = null; // L: 118
-		String var0 = "Your friend list is full. Max of 200 for free users, and 400 for members";
-		class69.addGameMessage(30, "", var0); // L: 120
-	} // L: 122
+	static final void method2496() {
+		Client.field654 = Client.cycleCntr; // L: 11285
+		class21.field190 = true; // L: 11286
+	} // L: 11287
 }

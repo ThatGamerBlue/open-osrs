@@ -1,16 +1,24 @@
 import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ix")
+@ObfuscatedName("jr")
 @Implements("GrandExchangeOfferTotalQuantityComparator")
 final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
-	@ObfuscatedName("f")
+	@ObfuscatedName("ef")
+	@ObfuscatedGetter(
+		intValue = 1162087447
+	)
+	@Export("js5Port")
+	static int js5Port;
+
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljt;Ljt;I)I",
-		garbageValue = "-838249653"
+		descriptor = "(Ljs;Ljs;I)I",
+		garbageValue = "1946951772"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {

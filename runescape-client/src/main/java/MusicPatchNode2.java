@@ -2,48 +2,48 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("ha")
+@ObfuscatedName("hk")
 @Implements("MusicPatchNode2")
 public class MusicPatchNode2 {
+	@ObfuscatedName("v")
+	byte[] field2825;
+	@ObfuscatedName("n")
+	byte[] field2816;
 	@ObfuscatedName("f")
-	byte[] field2470;
-	@ObfuscatedName("o")
-	byte[] field2467;
-	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1877428517
+		intValue = -1176756579
 	)
-	int field2469;
+	int field2815;
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = -2020328807
+	)
+	int field2821;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1878715995
+		intValue = -540295213
 	)
-	int field2475;
+	int field2819;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 1149162475
+	)
+	int field2820;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = 1263113975
+	)
+	int field2822;
 	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1235467717
+		intValue = -75268449
 	)
-	int field2476;
-	@ObfuscatedName("e")
+	int field2817;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 337586923
+		intValue = -1029030671
 	)
-	int field2472;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = -1393879737
-	)
-	int field2473;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = -257585679
-	)
-	int field2474;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = -1349826997
-	)
-	int field2468;
+	int field2823;
 
 	MusicPatchNode2() {
 	} // L: 14

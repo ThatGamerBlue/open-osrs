@@ -2,28 +2,28 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("bb")
+@ObfuscatedName("bl")
 @Implements("VorbisResidue")
 public class VorbisResidue {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("residueType")
 	int residueType;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("begin")
 	int begin;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@Export("end")
 	int end;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@Export("partitionSize")
 	int partitionSize;
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@Export("classifications")
 	int classifications;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("classbook")
 	int classbook;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@Export("cascade")
 	int[] cascade;
 
@@ -56,8 +56,8 @@ public class VorbisResidue {
 
 	} // L: 31
 
-	@ObfuscatedName("f")
-	void method891(float[] var1, int var2, boolean var3) {
+	@ObfuscatedName("v")
+	void method833(float[] var1, int var2, boolean var3) {
 		int var4;
 		for (var4 = 0; var4 < var2; ++var4) { // L: 34
 			var1[var4] = 0.0F;
@@ -76,7 +76,7 @@ public class VorbisResidue {
 					int var10;
 					int var11;
 					if (var8 == 0) { // L: 43
-						var10 = VorbisSample.VorbisSample_codebooks[this.classbook].method1068(); // L: 45
+						var10 = VorbisSample.VorbisSample_codebooks[this.classbook].method1014(); // L: 45
 
 						for (var11 = var4 - 1; var11 >= 0; --var11) { // L: 46
 							if (var9 + var11 < var6) { // L: 47
@@ -98,7 +98,7 @@ public class VorbisResidue {
 								var15 = this.partitionSize / var14.dimensions; // L: 60
 
 								for (int var19 = 0; var19 < var15; ++var19) { // L: 61
-									float[] var20 = var14.method1069(); // L: 62
+									float[] var20 = var14.method1015(); // L: 62
 
 									for (int var18 = 0; var18 < var14.dimensions; ++var18) { // L: 63
 										var1[var13 + var19 + var18 * var15] += var20[var18];
@@ -108,7 +108,7 @@ public class VorbisResidue {
 								var15 = 0; // L: 67
 
 								while (var15 < this.partitionSize) { // L: 68
-									float[] var16 = var14.method1069(); // L: 69
+									float[] var16 = var14.method1015(); // L: 69
 
 									for (int var17 = 0; var17 < var14.dimensions; ++var17) { // L: 70
 										var1[var13 + var15] += var16[var17]; // L: 71

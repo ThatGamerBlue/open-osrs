@@ -1,49 +1,57 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hd")
+@ObfuscatedName("im")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
+	@ObfuscatedName("ry")
+	@ObfuscatedGetter(
+		intValue = -941868037
+	)
+	static int field3119;
+
 	AbstractByteArrayCopier() {
 	} // L: 4
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "-1722490231"
+		descriptor = "(B)[B",
+		garbageValue = "74"
 	)
 	@Export("get")
 	abstract byte[] get();
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "1564375073"
+		descriptor = "([BB)V",
+		garbageValue = "43"
 	)
 	@Export("set")
-	public abstract void set(byte[] var1);
+	abstract void set(byte[] var1);
 
-	@ObfuscatedName("ie")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIZI)V",
-		garbageValue = "-1232233436"
+		descriptor = "(Ljv;III)Lop;",
+		garbageValue = "1690865732"
 	)
-	@Export("insertMenuItem")
-	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, boolean var6) {
-		if (!Client.isMenuOpen) { // L: 9004
-			if (Client.menuOptionsCount < 500) { // L: 9005
-				Client.menuActions[Client.menuOptionsCount] = var0; // L: 9006
-				Client.menuTargets[Client.menuOptionsCount] = var1; // L: 9007
-				Client.menuOpcodes[Client.menuOptionsCount] = var2; // L: 9008
-				Client.menuIdentifiers[Client.menuOptionsCount] = var3; // L: 9009
-				Client.menuArguments1[Client.menuOptionsCount] = var4; // L: 9010
-				Client.menuArguments2[Client.menuOptionsCount] = var5; // L: 9011
-				Client.menuShiftClick[Client.menuOptionsCount] = var6; // L: 9012
-				++Client.menuOptionsCount; // L: 9013
-			}
-
+	static IndexedSprite method4802(AbstractArchive var0, int var1, int var2) {
+		if (!class339.method6015(var0, var1, var2)) { // L: 28
+			return null;
+		} else {
+			IndexedSprite var4 = new IndexedSprite(); // L: 31
+			var4.width = class396.SpriteBuffer_spriteWidth; // L: 32
+			var4.height = UserComparator2.SpriteBuffer_spriteHeight; // L: 33
+			var4.xOffset = WorldMapDecoration.SpriteBuffer_xOffsets[0]; // L: 34
+			var4.yOffset = Calendar.SpriteBuffer_yOffsets[0]; // L: 35
+			var4.subWidth = class396.SpriteBuffer_spriteWidths[0]; // L: 36
+			var4.subHeight = class302.SpriteBuffer_spriteHeights[0]; // L: 37
+			var4.palette = MilliClock.SpriteBuffer_spritePalette; // L: 38
+			var4.pixels = class396.SpriteBuffer_pixels[0]; // L: 39
+			MilliClock.method2587(); // L: 40
+			return var4; // L: 43
 		}
-	} // L: 9015
+	}
 }

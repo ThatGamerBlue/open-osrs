@@ -4,82 +4,84 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("li")
+@ObfuscatedName("ls")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
+	@ObfuscatedName("gt")
+	@ObfuscatedSignature(
+		descriptor = "Lgt;"
+	)
+	@Export("scene")
+	static Scene scene;
+
 	protected AbstractSocket() {
 	} // L: 7
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1705512918"
+		garbageValue = "1654713390"
 	)
 	@Export("close")
 	public abstract void close();
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-75"
+		descriptor = "(I)I",
+		garbageValue = "479468921"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-65"
+		descriptor = "(I)I",
+		garbageValue = "1659206769"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "1604537239"
+		garbageValue = "-211935081"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)I",
-		garbageValue = "121"
+		descriptor = "([BIII)I",
+		garbageValue = "-2041736219"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "199608149"
+		garbageValue = "263213011"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1917773732"
+		descriptor = "(I)I",
+		garbageValue = "-1943221493"
 	)
-	@Export("runWidgetOnLoadListener")
-	static void runWidgetOnLoadListener(int var0) {
-		if (var0 != -1) { // L: 4271
-			if (class15.loadInterface(var0)) { // L: 4272
-				Widget[] var1 = Widget.Widget_interfaceComponents[var0]; // L: 4273
+	static int method5901() {
+		return 12;
+	}
 
-				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 4274
-					Widget var3 = var1[var2]; // L: 4275
-					if (var3.onLoad != null) { // L: 4276
-						ScriptEvent var4 = new ScriptEvent(); // L: 4277
-						var4.widget = var3; // L: 4278
-						var4.args = var3.onLoad; // L: 4279
-						FaceNormal.runScript(var4, 5000000, 0); // L: 4280
-					}
-				}
-
-			}
-		}
-	} // L: 4283
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "(Ljv;Ljv;Ljava/lang/String;Ljava/lang/String;B)Lkt;",
+		garbageValue = "88"
+	)
+	public static Font method5900(AbstractArchive var0, AbstractArchive var1, String var2, String var3) {
+		int var4 = var0.getGroupId(var2); // L: 121
+		int var5 = var0.getFileId(var4, var3); // L: 122
+		return AbstractArchive.method5018(var0, var1, var4, var5); // L: 123
+	}
 }

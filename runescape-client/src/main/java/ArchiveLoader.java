@@ -7,27 +7,38 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ck")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "Lig;"
+		descriptor = "Ly;"
+	)
+	static ClanChannel field1147;
+	@ObfuscatedName("ho")
+	@ObfuscatedSignature(
+		descriptor = "[Loh;"
+	)
+	@Export("crossSprites")
+	static SpritePixels[] crossSprites;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Ljp;"
 	)
 	@Export("archive")
 	final Archive archive;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1980734893
+		intValue = 605141689
 	)
 	@Export("groupCount")
 	final int groupCount;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -429442875
+		intValue = -1897441913
 	)
 	@Export("loadedCount")
 	int loadedCount;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lig;Ljava/lang/String;)V"
+		descriptor = "(Ljp;Ljava/lang/String;)V"
 	)
 	ArchiveLoader(Archive var1, String var2) {
 		this.loadedCount = 0; // L: 9
@@ -35,17 +46,17 @@ public class ArchiveLoader {
 		this.groupCount = var1.getGroupCount(); // L: 13
 	} // L: 14
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-2006264172"
+		descriptor = "(B)Z",
+		garbageValue = "14"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		this.loadedCount = 0; // L: 17
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) { // L: 18
-			if (!this.archive.method4440(var1) || this.archive.method4458(var1)) {
+			if (!this.archive.method4887(var1) || this.archive.method4884(var1)) {
 				++this.loadedCount; // L: 19
 			}
 		}
@@ -55,35 +66,49 @@ public class ArchiveLoader {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(I)Low;",
-		garbageValue = "-237450232"
+		descriptor = "(II)Lei;",
+		garbageValue = "598444391"
 	)
-	static IndexedSprite method2076() {
-		IndexedSprite var0 = new IndexedSprite(); // L: 203
-		var0.width = class395.SpriteBuffer_spriteWidth; // L: 204
-		var0.height = class395.SpriteBuffer_spriteHeight; // L: 205
-		var0.xOffset = class0.SpriteBuffer_xOffsets[0]; // L: 206
-		var0.yOffset = Interpreter.SpriteBuffer_yOffsets[0]; // L: 207
-		var0.subWidth = class395.SpriteBuffer_spriteWidths[0]; // L: 208
-		var0.subHeight = class157.SpriteBuffer_spriteHeights[0]; // L: 209
-		var0.palette = Varps.SpriteBuffer_spritePalette; // L: 210
-		var0.pixels = class223.SpriteBuffer_pixels[0]; // L: 211
-		WorldMapDecorationType.method4370(); // L: 212
-		return var0; // L: 213
+	@Export("StructDefinition_getStructDefinition")
+	public static StructComposition StructDefinition_getStructDefinition(int var0) {
+		StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0); // L: 23
+		if (var1 != null) { // L: 24
+			return var1;
+		} else {
+			byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0); // L: 25
+			var1 = new StructComposition(); // L: 26
+			if (var2 != null) { // L: 27
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode(); // L: 28
+			StructComposition.StructDefinition_cached.put(var1, (long)var0); // L: 29
+			return var1; // L: 30
+		}
 	}
 
-	@ObfuscatedName("ke")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-231921181"
+		descriptor = "(IIIIIIII)Z",
+		garbageValue = "1961168244"
 	)
-	@Export("Clan_joinChat")
-	static final void Clan_joinChat(String var0) {
-		if (!var0.equals("")) { // L: 11522
-			PacketBufferNode var1 = ObjectComposition.getPacketBufferNode(ClientPacket.field2252, Client.packetWriter.isaacCipher); // L: 11524
-			var1.packetBuffer.writeByte(Friend.stringCp1252NullTerminatedByteSize(var0)); // L: 11525
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 11526
-			Client.packetWriter.addNode(var1); // L: 11527
+	static final boolean method2059(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		int var7 = ViewportMouse.ViewportMouse_y + var6; // L: 156
+		if (var7 < var0 && var7 < var1 && var7 < var2) { // L: 157
+			return false;
+		} else {
+			var7 = ViewportMouse.ViewportMouse_y - var6; // L: 158
+			if (var7 > var0 && var7 > var1 && var7 > var2) {
+				return false; // L: 159
+			} else {
+				var7 = ViewportMouse.ViewportMouse_x + var6; // L: 160
+				if (var7 < var3 && var7 < var4 && var7 < var5) { // L: 161
+					return false;
+				} else {
+					var7 = ViewportMouse.ViewportMouse_x - var6; // L: 162
+					return var7 <= var3 || var7 <= var4 || var7 <= var5; // L: 163
+				}
+			}
 		}
-	} // L: 11528
+	}
 }

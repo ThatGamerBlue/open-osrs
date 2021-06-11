@@ -4,42 +4,41 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ic")
+@ObfuscatedName("jf")
 @Implements("NetFileRequest")
 public class NetFileRequest extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lig;"
+		descriptor = "Ljp;"
 	)
 	@Export("archive")
-	Archive archive;
-	@ObfuscatedName("o")
+	public Archive archive;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -8399381
+		intValue = 1816786653
 	)
 	@Export("crc")
-	int crc;
-	@ObfuscatedName("u")
+	public int crc;
+	@ObfuscatedName("f")
 	@Export("padding")
-	byte padding;
+	public byte padding;
 
 	NetFileRequest() {
 	} // L: 10
 
-	@ObfuscatedName("gc")
+	@ObfuscatedName("fw")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-392050849"
+		garbageValue = "-552402310"
 	)
-	static final void method4472() {
-		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 6816 6817 6823
-			if (var0.hitpoints == -1) { // L: 6818
-				var0.delay = 0; // L: 6819
-				class341.method6017(var0); // L: 6820
-			} else {
-				var0.remove(); // L: 6822
-			}
+	static final void method4912() {
+		if (Client.logoutTimer > 0) { // L: 2687
+			class7.logOut(); // L: 2688
+		} else {
+			Client.timer.method5590(); // L: 2691
+			class12.updateGameState(40); // L: 2692
+			Client.field688 = Client.packetWriter.getSocket(); // L: 2693
+			Client.packetWriter.removeSocket(); // L: 2694
 		}
-
-	} // L: 6825
+	} // L: 2689 2695
 }

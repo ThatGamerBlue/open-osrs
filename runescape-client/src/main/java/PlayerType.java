@@ -4,67 +4,70 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("it")
+@ObfuscatedName("ja")
 @Implements("PlayerType")
 public enum PlayerType implements Enumerated {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lit;"
+		descriptor = "Lja;"
 	)
 	@Export("PlayerType_normal")
 	PlayerType_normal(0, -1, true, false, true),
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lit;"
+		descriptor = "Lja;"
 	)
 	@Export("PlayerType_playerModerator")
 	PlayerType_playerModerator(1, 0, true, true, true),
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lit;"
+		descriptor = "Lja;"
 	)
 	@Export("PlayerType_jagexModerator")
 	PlayerType_jagexModerator(2, 1, true, true, false),
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lit;"
+		descriptor = "Lja;"
 	)
 	@Export("PlayerType_ironman")
 	PlayerType_ironman(3, 2, false, false, true),
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lit;"
+		descriptor = "Lja;"
 	)
 	@Export("PlayerType_ultimateIronman")
 	PlayerType_ultimateIronman(4, 3, false, false, true),
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lit;"
+		descriptor = "Lja;"
 	)
 	@Export("PlayerType_hardcoreIronman")
 	PlayerType_hardcoreIronman(5, 10, false, false, true),
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Lit;"
+		descriptor = "Lja;"
 	)
-	field3226(6, 22, false, false, true);
+	field3548(6, 22, false, false, true);
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("k")
+	@Export("cacheSubPaths")
+	public static String[] cacheSubPaths;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1018159087
+		intValue = -614053173
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("h")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 210736671
+		intValue = 417414069
 	)
 	@Export("modIcon")
 	public final int modIcon;
-	@ObfuscatedName("n")
+	@ObfuscatedName("s")
 	@Export("isPrivileged")
 	public final boolean isPrivileged;
-	@ObfuscatedName("l")
+	@ObfuscatedName("u")
 	@Export("isUser")
 	public final boolean isUser;
 
@@ -75,73 +78,24 @@ public enum PlayerType implements Enumerated {
 		this.isUser = var7; // L: 27
 	} // L: 28
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1000839247"
+		garbageValue = "-907662946"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 31
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("jw")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "58"
+		descriptor = "(IIIZB)V",
+		garbageValue = "77"
 	)
-	public static void method4414() {
-		synchronized(MouseHandler.MouseHandler_instance) { // L: 58
-			MouseHandler.MouseHandler_currentButton = MouseHandler.MouseHandler_currentButtonVolatile; // L: 59
-			MouseHandler.MouseHandler_x = MouseHandler.MouseHandler_xVolatile; // L: 60
-			MouseHandler.MouseHandler_y = MouseHandler.MouseHandler_yVolatile; // L: 61
-			MouseHandler.MouseHandler_millis = MouseHandler.MouseHandler_lastMovedVolatile; // L: 62
-			MouseHandler.MouseHandler_lastButton = MouseHandler.MouseHandler_lastButtonVolatile; // L: 63
-			MouseHandler.MouseHandler_lastPressedX = MouseHandler.MouseHandler_lastPressedXVolatile; // L: 64
-			MouseHandler.MouseHandler_lastPressedY = MouseHandler.MouseHandler_lastPressedYVolatile; // L: 65
-			MouseHandler.MouseHandler_lastPressedTimeMillis = MouseHandler.MouseHandler_lastPressedTimeMillisVolatile; // L: 66
-			MouseHandler.MouseHandler_lastButtonVolatile = 0; // L: 67
+	static final void method4857(int var0, int var1, int var2, boolean var3) {
+		if (Clock.loadInterface(var0)) { // L: 9766
+			class27.resizeInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3); // L: 9767
 		}
-	} // L: 69
-
-	@ObfuscatedName("hm")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-96"
-	)
-	static final void method4410() {
-		boolean var0 = false; // L: 8967
-
-		while (!var0) { // L: 8968
-			var0 = true; // L: 8969
-
-			for (int var1 = 0; var1 < Client.menuOptionsCount - 1; ++var1) { // L: 8970
-				if (Client.menuOpcodes[var1] < 1000 && Client.menuOpcodes[var1 + 1] > 1000) { // L: 8971
-					String var2 = Client.menuTargets[var1]; // L: 8972
-					Client.menuTargets[var1] = Client.menuTargets[var1 + 1]; // L: 8973
-					Client.menuTargets[var1 + 1] = var2; // L: 8974
-					String var3 = Client.menuActions[var1]; // L: 8975
-					Client.menuActions[var1] = Client.menuActions[var1 + 1]; // L: 8976
-					Client.menuActions[var1 + 1] = var3; // L: 8977
-					int var4 = Client.menuOpcodes[var1]; // L: 8978
-					Client.menuOpcodes[var1] = Client.menuOpcodes[var1 + 1]; // L: 8979
-					Client.menuOpcodes[var1 + 1] = var4; // L: 8980
-					var4 = Client.menuArguments1[var1]; // L: 8981
-					Client.menuArguments1[var1] = Client.menuArguments1[var1 + 1]; // L: 8982
-					Client.menuArguments1[var1 + 1] = var4; // L: 8983
-					var4 = Client.menuArguments2[var1]; // L: 8984
-					Client.menuArguments2[var1] = Client.menuArguments2[var1 + 1]; // L: 8985
-					Client.menuArguments2[var1 + 1] = var4; // L: 8986
-					var4 = Client.menuIdentifiers[var1]; // L: 8987
-					Client.menuIdentifiers[var1] = Client.menuIdentifiers[var1 + 1]; // L: 8988
-					Client.menuIdentifiers[var1 + 1] = var4; // L: 8989
-					boolean var5 = Client.menuShiftClick[var1]; // L: 8990
-					Client.menuShiftClick[var1] = Client.menuShiftClick[var1 + 1]; // L: 8991
-					Client.menuShiftClick[var1 + 1] = var5; // L: 8992
-					var0 = false; // L: 8993
-				}
-			}
-		}
-
-	} // L: 8997
+	} // L: 9768
 }

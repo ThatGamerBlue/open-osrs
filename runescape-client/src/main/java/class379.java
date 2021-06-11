@@ -1,18 +1,16 @@
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ny")
-public class class379 {
-	@ObfuscatedName("jr")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "1966944763"
+@ObfuscatedName("ng")
+public final class class379 {
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		longValue = -7034796619104833383L
 	)
-	@Export("runIntfCloseListeners")
-	static final void runIntfCloseListeners(int var0, int var1) {
-		if (class15.loadInterface(var0)) { // L: 10879
-			Clock.runComponentCloseListeners(Widget.Widget_interfaceComponents[var0], var1); // L: 10880
-		}
-	} // L: 10881
+	static long field4146;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		longValue = 1841679994680013491L
+	)
+	static long field4147;
 }

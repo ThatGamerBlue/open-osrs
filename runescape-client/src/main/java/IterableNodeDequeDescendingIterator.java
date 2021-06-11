@@ -4,38 +4,38 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jx")
+@ObfuscatedName("kq")
 @Implements("IterableNodeDequeDescendingIterator")
 public class IterableNodeDequeDescendingIterator implements Iterator {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ljc;"
+		descriptor = "Lki;"
 	)
 	@Export("deque")
 	IterableNodeDeque deque;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lmh;"
+		descriptor = "Lmw;"
 	)
-	Node field3383;
-	@ObfuscatedName("u")
+	Node field3706;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lmh;"
+		descriptor = "Lmw;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljc;)V"
+		descriptor = "(Lki;)V"
 	)
 	IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
 		this.last = null; // L: 9
 		this.setDeque(var1); // L: 12
 	} // L: 13
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljc;)V"
+		descriptor = "(Lki;)V"
 	)
 	@Export("setDeque")
 	void setDeque(IterableNodeDeque var1) {
@@ -43,10 +43,10 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 		this.start(); // L: 17
 	} // L: 18
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("start")
 	void start() {
-		this.field3383 = this.deque != null ? this.deque.sentinel.previous : null; // L: 21
+		this.field3706 = this.deque != null ? this.deque.sentinel.previous : null; // L: 21
 		this.last = null; // L: 22
 	} // L: 23
 
@@ -60,16 +60,16 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 	} // L: 44
 
 	public boolean hasNext() {
-		return this.deque.sentinel != this.field3383; // L: 37
+		return this.deque.sentinel != this.field3706; // L: 37
 	}
 
 	public Object next() {
-		Node var1 = this.field3383; // L: 26
+		Node var1 = this.field3706; // L: 26
 		if (var1 == this.deque.sentinel) { // L: 27
 			var1 = null; // L: 28
-			this.field3383 = null; // L: 29
+			this.field3706 = null; // L: 29
 		} else {
-			this.field3383 = var1.previous; // L: 31
+			this.field3706 = var1.previous; // L: 31
 		}
 
 		this.last = var1; // L: 32

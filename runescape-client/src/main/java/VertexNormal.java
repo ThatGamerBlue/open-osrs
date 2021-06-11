@@ -4,30 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ge")
+@ObfuscatedName("gc")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "Ljv;"
+	)
+	@Export("Widget_fontsArchive")
+	public static AbstractArchive Widget_fontsArchive;
+	@ObfuscatedName("gg")
 	@ObfuscatedGetter(
-		intValue = 1974778043
+		intValue = 697161691
+	)
+	@Export("baseX")
+	static int baseX;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = -573742035
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -537542863
+		intValue = -501649501
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 987855995
+		intValue = 256687101
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1799823947
+		intValue = 1984775097
 	)
 	@Export("magnitude")
 	int magnitude;
@@ -36,40 +48,22 @@ public class VertexNormal {
 	} // L: 9
 
 	@ObfuscatedSignature(
-		descriptor = "(Lge;)V"
+		descriptor = "(Lgc;)V"
 	)
 	VertexNormal(VertexNormal var1) {
 		this.x = var1.x; // L: 12
 		this.y = var1.y; // L: 13
 		this.z = var1.z; // L: 14
-		this.magnitude = var1.magnitude; // L: 15
+		this.magnitude = var1.magnitude;
 	} // L: 16
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lir;Lir;S)V",
-		garbageValue = "6851"
+		descriptor = "(I)[Lon;",
+		garbageValue = "-1929062245"
 	)
-	public static void method3782(AbstractArchive var0, AbstractArchive var1) {
-		HealthBarDefinition.HealthBarDefinition_archive = var0; // L: 30
-		HealthBarDefinition.HitSplatDefinition_spritesArchive = var1; // L: 31
-	} // L: 32
-
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(Lir;II)Low;",
-		garbageValue = "577836402"
-	)
-	public static IndexedSprite method3783(AbstractArchive var0, int var1) {
-		byte[] var3 = var0.takeFileFlat(var1); // L: 190
-		boolean var2;
-		if (var3 == null) { // L: 191
-			var2 = false; // L: 192
-		} else {
-			class244.SpriteBuffer_decode(var3); // L: 195
-			var2 = true; // L: 196
-		}
-
-		return !var2 ? null : ArchiveLoader.method2076(); // L: 198 199
+	@Export("FillMode_values")
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4233, FillMode.SOLID, FillMode.field4232}; // L: 15
 	}
 }

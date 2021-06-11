@@ -1,27 +1,16 @@
-import java.awt.FontMetrics;
 import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iw")
+@ObfuscatedName("jc")
 @Implements("GrandExchangeOfferNameComparator")
 final class GrandExchangeOfferNameComparator implements Comparator {
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "[Ljy;"
-	)
-	@Export("WorldMapElement_cached")
-	static WorldMapElement[] WorldMapElement_cached;
-	@ObfuscatedName("aq")
-	@Export("loginScreenFontMetrics")
-	static FontMetrics loginScreenFontMetrics;
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Ljt;Ljt;I)I",
-		garbageValue = "-2027428779"
+		descriptor = "(Ljs;Ljs;I)I",
+		garbageValue = "-929613700"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -36,89 +25,16 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 		return super.equals(var1); // L: 64
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("fu")
 	@ObfuscatedSignature(
-		descriptor = "(CLjh;I)C",
-		garbageValue = "-1148690699"
+		descriptor = "(III)V",
+		garbageValue = "-1454161058"
 	)
-	@Export("standardizeChar")
-	static char standardizeChar(char var0, Language var1) {
-		if (var0 >= 192 && var0 <= 255) { // L: 69
-			if (var0 >= 192 && var0 <= 198) { // L: 70
-				return 'A';
-			}
-
-			if (var0 == 199) { // L: 71
-				return 'C';
-			}
-
-			if (var0 >= 200 && var0 <= 203) { // L: 72
-				return 'E';
-			}
-
-			if (var0 >= 204 && var0 <= 207) { // L: 73
-				return 'I';
-			}
-
-			if (var0 == 209 && var1 != Language.Language_ES) { // L: 74
-				return 'N';
-			}
-
-			if (var0 >= 210 && var0 <= 214) { // L: 75
-				return 'O';
-			}
-
-			if (var0 >= 217 && var0 <= 220) { // L: 76
-				return 'U';
-			}
-
-			if (var0 == 221) { // L: 77
-				return 'Y';
-			}
-
-			if (var0 == 223) { // L: 78
-				return 's';
-			}
-
-			if (var0 >= 224 && var0 <= 230) { // L: 79
-				return 'a';
-			}
-
-			if (var0 == 231) { // L: 80
-				return 'c';
-			}
-
-			if (var0 >= 232 && var0 <= 235) { // L: 81
-				return 'e';
-			}
-
-			if (var0 >= 236 && var0 <= 239) { // L: 82
-				return 'i';
-			}
-
-			if (var0 == 241 && var1 != Language.Language_ES) { // L: 83
-				return 'n';
-			}
-
-			if (var0 >= 242 && var0 <= 246) { // L: 84
-				return 'o';
-			}
-
-			if (var0 >= 249 && var0 <= 252) { // L: 85
-				return 'u';
-			}
-
-			if (var0 == 253 || var0 == 255) { // L: 86
-				return 'y';
-			}
+	static void method5059(int var0, int var1) {
+		if (ObjectComposition.clientPreferences.musicVolume != 0 && var0 != -1) { // L: 3401
+			LoginScreenAnimation.method2219(WorldMapManager.archive11, var0, 0, ObjectComposition.clientPreferences.musicVolume, false); // L: 3402
+			Client.field881 = true; // L: 3403
 		}
 
-		if (var0 == 338) { // L: 88
-			return 'O';
-		} else if (var0 == 339) { // L: 89
-			return 'o';
-		} else {
-			return var0 == 376 ? 'Y' : var0; // L: 90
-		}
-	}
+	} // L: 3405
 }

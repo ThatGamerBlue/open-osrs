@@ -1,102 +1,93 @@
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bx")
+@ObfuscatedName("bc")
 @Implements("ObjectSound")
 public final class ObjectSound extends Node {
-	@ObfuscatedName("qb")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lm;"
-	)
-	static class11 field928;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Lju;"
+		descriptor = "Lkx;"
 	)
 	@Export("objectSounds")
 	static NodeDeque objectSounds;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1467616233
+		intValue = 1262714503
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1683122899
+		intValue = 382039955
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -2011686891
+		intValue = -377542945
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1571650761
+		intValue = -1913199289
 	)
-	int field916;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 606469859
-	)
-	int field917;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = 948333273
-	)
-	int field918;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = -1224516347
-	)
-	@Export("soundEffectId")
-	int soundEffectId;
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "Lbk;"
-	)
-	@Export("stream1")
-	RawPcmStream stream1;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = -300336185
-	)
-	int field921;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = -1348614677
-	)
-	int field922;
-	@ObfuscatedName("m")
-	@Export("soundEffectIds")
-	int[] soundEffectIds;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 57547595
-	)
-	int field924;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lbk;"
-	)
-	@Export("stream2")
-	RawPcmStream stream2;
+	int field956;
 	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 846164283
+	)
+	int field957;
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Lkj;"
+		descriptor = "Leg;"
 	)
 	@Export("obj")
 	ObjectComposition obj;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 2101998419
+	)
+	int field958;
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = 2113426875
+	)
+	@Export("soundEffectId")
+	int soundEffectId;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = 1385478755
+	)
+	int field961;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "Lbv;"
+	)
+	@Export("stream1")
+	RawPcmStream stream1;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = -1819837691
+	)
+	int field964;
+	@ObfuscatedName("o")
+	@Export("soundEffectIds")
+	int[] soundEffectIds;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = 1313201795
+	)
+	int field954;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "Lbv;"
+	)
+	@Export("stream2")
+	RawPcmStream stream2;
 
 	static {
 		objectSounds = new NodeDeque(); // L: 11
@@ -107,155 +98,170 @@ public final class ObjectSound extends Node {
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1410090359"
+		descriptor = "(B)V",
+		garbageValue = "10"
 	)
 	@Export("set")
 	void set() {
-		int var1 = this.soundEffectId; // L: 30
-		ObjectComposition var2 = this.obj.transform(); // L: 31
-		if (var2 != null) { // L: 32
-			this.soundEffectId = var2.ambientSoundId; // L: 33
-			this.field918 = var2.int4 * 128; // L: 34
-			this.field921 = var2.int5; // L: 35
-			this.field922 = var2.int6;
-			this.soundEffectIds = var2.soundEffectIds;
+		int var1 = this.soundEffectId; // L: 50
+		ObjectComposition var2 = this.obj.transform(); // L: 51
+		if (var2 != null) { // L: 52
+			this.soundEffectId = var2.ambientSoundId; // L: 53
+			this.field958 = var2.int4 * 128; // L: 54
+			this.field961 = var2.int5; // L: 55
+			this.field964 = var2.int6; // L: 56
+			this.soundEffectIds = var2.soundEffectIds; // L: 57
 		} else {
-			this.soundEffectId = -1;
-			this.field918 = 0;
-			this.field921 = 0;
-			this.field922 = 0;
-			this.soundEffectIds = null;
+			this.soundEffectId = -1; // L: 60
+			this.field958 = 0; // L: 61
+			this.field961 = 0; // L: 62
+			this.field964 = 0; // L: 63
+			this.soundEffectIds = null; // L: 64
 		}
 
-		if (var1 != this.soundEffectId && this.stream1 != null) {
-			Huffman.pcmStreamMixer.removeSubStream(this.stream1); // L: 47
-			this.stream1 = null;
+		if (var1 != this.soundEffectId && this.stream1 != null) { // L: 66
+			class308.pcmStreamMixer.removeSubStream(this.stream1); // L: 67
+			this.stream1 = null; // L: 68
 		}
 
-	}
+	} // L: 70
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ki")
 	@ObfuscatedSignature(
-		descriptor = "(B)J",
-		garbageValue = "0"
+		descriptor = "(Lio;IIII)V",
+		garbageValue = "-1477565954"
 	)
-	@Export("currentTimeMillis")
-	public static final synchronized long currentTimeMillis() {
-		long var0 = System.currentTimeMillis(); // L: 14
-		if (var0 < class378.field4146) { // L: 15
-			class378.field4145 += class378.field4146 - var0; // L: 16
-		}
+	@Export("drawMinimap")
+	static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
+		HealthBarUpdate.playPcmPlayers(); // L: 11121
+		SpriteMask var4 = var0.getSpriteMask(false); // L: 11122
+		if (var4 != null) { // L: 11123
+			Rasterizer2D.Rasterizer2D_setClip(var1, var2, var4.width + var1, var2 + var4.height); // L: 11124
+			if (Client.minimapState != 2 && Client.minimapState != 5) { // L: 11125
+				int var5 = Client.camAngleY & 2047; // L: 11126
+				int var6 = class93.localPlayer.x / 32 + 48; // L: 11127
+				int var7 = 464 - class93.localPlayer.y / 32; // L: 11128
+				GameEngine.sceneMinimapSprite.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, var6, var7, var5, 256, var4.xStarts, var4.xWidths); // L: 11129
 
-		class378.field4146 = var0; // L: 18
-		return var0 + class378.field4145; // L: 19
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)J",
-		garbageValue = "-23572140"
-	)
-	static long method1798() {
-		try {
-			URL var0 = new URL(FontName.method6285("services", false) + "m=accountappeal/login.ws"); // L: 36
-			URLConnection var1 = var0.openConnection(); // L: 37
-			var1.setRequestProperty("connection", "close"); // L: 38
-			var1.setDoInput(true); // L: 39
-			var1.setDoOutput(true); // L: 40
-			var1.setConnectTimeout(5000); // L: 41
-			OutputStreamWriter var2 = new OutputStreamWriter(var1.getOutputStream()); // L: 42
-			var2.write("data1=req"); // L: 43
-			var2.flush(); // L: 44
-			InputStream var3 = var1.getInputStream(); // L: 45
-			Buffer var4 = new Buffer(new byte[1000]); // L: 46
-
-			do {
-				int var5 = var3.read(var4.array, var4.offset, 1000 - var4.offset); // L: 48
-				if (var5 == -1) { // L: 49
-					var4.offset = 0; // L: 55
-					long var7 = var4.readLong(); // L: 56
-					return var7; // L: 57
+				int var8;
+				int var10;
+				int var16;
+				for (var8 = 0; var8 < Client.mapIconCount; ++var8) { // L: 11130
+					var16 = Client.mapIconXs[var8] * 4 + 2 - class93.localPlayer.x / 32; // L: 11131
+					var10 = Client.mapIconYs[var8] * 4 + 2 - class93.localPlayer.y / 32; // L: 11132
+					ObjectComposition.drawSpriteOnMinimap(var1, var2, var16, var10, Client.mapIcons[var8], var4); // L: 11133
 				}
 
-				var4.offset += var5; // L: 50
-			} while(var4.offset < 1000); // L: 51
+				int var11;
+				int var12;
+				for (var8 = 0; var8 < 104; ++var8) { // L: 11135
+					for (var16 = 0; var16 < 104; ++var16) { // L: 11136
+						NodeDeque var14 = Client.groundItems[class22.Client_plane][var8][var16]; // L: 11137
+						if (var14 != null) { // L: 11138
+							var11 = var8 * 4 + 2 - class93.localPlayer.x / 32; // L: 11139
+							var12 = var16 * 4 + 2 - class93.localPlayer.y / 32; // L: 11140
+							ObjectComposition.drawSpriteOnMinimap(var1, var2, var11, var12, class170.mapDotSprites[0], var4); // L: 11141
+						}
+					}
+				}
 
-			return 0L; // L: 52
-		} catch (Exception var9) { // L: 59
-			return 0L; // L: 60
-		}
-	}
+				for (var8 = 0; var8 < Client.npcCount; ++var8) { // L: 11145
+					NPC var9 = Client.npcs[Client.npcIndices[var8]]; // L: 11146
+					if (var9 != null && var9.isVisible()) { // L: 11147
+						NPCComposition var18 = var9.definition; // L: 11148
+						if (var18 != null && var18.transforms != null) { // L: 11149
+							var18 = var18.transform();
+						}
 
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(Lir;Lir;ZIS)V",
-		garbageValue = "12426"
-	)
-	static void method1796(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
-		if (class5.clearLoginScreen) { // L: 128
-			if (var3 == 4) { // L: 129
-				Login.loginIndex = 4; // L: 130
-			}
+						if (var18 != null && var18.drawMapDot && var18.isInteractable) { // L: 11150
+							var11 = var9.x / 32 - class93.localPlayer.x / 32; // L: 11151
+							var12 = var9.y / 32 - class93.localPlayer.y / 32; // L: 11152
+							ObjectComposition.drawSpriteOnMinimap(var1, var2, var11, var12, class170.mapDotSprites[1], var4); // L: 11153
+						}
+					}
+				}
 
-		} else {
-			Login.loginIndex = var3; // L: 134
-			Rasterizer2D.Rasterizer2D_clear(); // L: 135
-			byte[] var4 = var0.takeFileByNames("title.jpg", ""); // L: 136
-			Client.leftTitleSprite = WorldMapDecorationType.convertJpgToSprite(var4); // L: 137
-			ArchiveDiskActionHandler.rightTitleSprite = Client.leftTitleSprite.mirrorHorizontally(); // L: 138
-			int var5 = Client.worldProperties; // L: 139
-			if ((var5 & 536870912) != 0) { // L: 141
-				class125.logoSprite = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "logo_deadman_mode", ""); // L: 142
-			} else if ((var5 & 1073741824) != 0) { // L: 144
-				class125.logoSprite = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "logo_seasonal_mode", ""); // L: 145
+				var8 = Players.Players_count; // L: 11157
+				int[] var17 = Players.Players_indices; // L: 11158
+
+				for (var10 = 0; var10 < var8; ++var10) { // L: 11159
+					Player var15 = Client.players[var17[var10]]; // L: 11160
+					if (var15 != null && var15.isVisible() && !var15.isHidden && var15 != class93.localPlayer) { // L: 11161
+						var12 = var15.x / 32 - class93.localPlayer.x / 32; // L: 11162
+						int var13 = var15.y / 32 - class93.localPlayer.y / 32; // L: 11163
+						if (var15.isFriend()) { // L: 11164
+							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[3], var4);
+						} else if (class93.localPlayer.team != 0 && var15.team != 0 && var15.team == class93.localPlayer.team) { // L: 11165
+							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[4], var4);
+						} else if (var15.isFriendsChatMember()) { // L: 11166
+							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[5], var4);
+						} else if (var15.isClanMember()) { // L: 11167
+							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[6], var4);
+						} else {
+							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[2], var4); // L: 11168
+						}
+					}
+				}
+
+				if (Client.hintArrowType != 0 && Client.cycle % 20 < 10) { // L: 11171
+					if (Client.hintArrowType == 1 && Client.hintArrowNpcIndex >= 0 && Client.hintArrowNpcIndex < Client.npcs.length) { // L: 11172
+						NPC var19 = Client.npcs[Client.hintArrowNpcIndex]; // L: 11173
+						if (var19 != null) { // L: 11174
+							var11 = var19.x / 32 - class93.localPlayer.x / 32; // L: 11175
+							var12 = var19.y / 32 - class93.localPlayer.y / 32; // L: 11176
+							MenuAction.worldToMinimap(var1, var2, var11, var12, WorldMapArea.mapMarkerSprites[1], var4); // L: 11177
+						}
+					}
+
+					if (Client.hintArrowType == 2) { // L: 11180
+						var10 = Client.hintArrowX * 4 - VertexNormal.baseX * 4 + 2 - class93.localPlayer.x / 32; // L: 11181
+						var11 = Client.hintArrowY * 4 - SoundSystem.baseY * 4 + 2 - class93.localPlayer.y / 32; // L: 11182
+						MenuAction.worldToMinimap(var1, var2, var10, var11, WorldMapArea.mapMarkerSprites[1], var4); // L: 11183
+					}
+
+					if (Client.hintArrowType == 10 && Client.hintArrowPlayerIndex >= 0 && Client.hintArrowPlayerIndex < Client.players.length) { // L: 11185
+						Player var20 = Client.players[Client.hintArrowPlayerIndex]; // L: 11186
+						if (var20 != null) { // L: 11187
+							var11 = var20.x / 32 - class93.localPlayer.x / 32; // L: 11188
+							var12 = var20.y / 32 - class93.localPlayer.y / 32; // L: 11189
+							MenuAction.worldToMinimap(var1, var2, var11, var12, WorldMapArea.mapMarkerSprites[1], var4); // L: 11190
+						}
+					}
+				}
+
+				if (Client.destinationX != 0) { // L: 11194
+					var10 = Client.destinationX * 4 + 2 - class93.localPlayer.x / 32; // L: 11195
+					var11 = Client.destinationY * 4 + 2 - class93.localPlayer.y / 32; // L: 11196
+					ObjectComposition.drawSpriteOnMinimap(var1, var2, var10, var11, WorldMapArea.mapMarkerSprites[0], var4); // L: 11197
+				}
+
+				if (!class93.localPlayer.isHidden) { // L: 11199
+					Rasterizer2D.Rasterizer2D_fillRectangle(var4.width / 2 + var1 - 1, var4.height / 2 + var2 - 1, 3, 3, 16777215);
+				}
 			} else {
-				class125.logoSprite = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "logo", ""); // L: 148
+				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths); // L: 11201
 			}
 
-			TileItem.titleboxSprite = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", ""); // L: 151
-			Interpreter.titlebuttonSprite = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", ""); // L: 152
-			Login.runesSprite = Players.method2284(var1, "runes", ""); // L: 153
-			class373.title_muteSprite = Players.method2284(var1, "title_mute", ""); // L: 154
-			TileItem.options_buttons_0Sprite = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", ""); // L: 155
-			UrlRequester.field1400 = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", ""); // L: 156
-			Skeleton.options_buttons_2Sprite = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", ""); // L: 157
-			VarcInt.field3429 = WorldMapSection1.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", ""); // L: 158
-			class225.field2777 = TileItem.options_buttons_0Sprite.subWidth; // L: 159
-			class34.field232 = TileItem.options_buttons_0Sprite.subHeight; // L: 160
-			Login.loginScreenRunesAnimation = new LoginScreenAnimation(Login.runesSprite); // L: 161
-			if (var2) { // L: 162
-				Login.Login_username = ""; // L: 163
-				Login.Login_password = ""; // L: 164
-			}
-
-			class139.field1560 = 0; // L: 166
-			Bounds.otp = ""; // L: 167
-			Login.field1005 = true; // L: 168
-			Login.worldSelectOpen = false; // L: 169
-			if (!Login.clientPreferences.titleMusicDisabled) { // L: 170
-				WorldMapRectangle.method3103(2, class8.archive6, "scape main", "", 255, false);
-			} else {
-				PacketWriter.method2368(2); // L: 171
-			}
-
-			class246.method4409(false); // L: 172
-			class5.clearLoginScreen = true; // L: 173
-			Login.xPadding = (InterfaceParent.canvasWidth - 765) / 2; // L: 174
-			Login.loginBoxX = Login.xPadding + 202; // L: 175
-			GraphicsObject.loginBoxCenter = Login.loginBoxX + 180; // L: 176
-			Client.leftTitleSprite.drawAt(Login.xPadding, 0); // L: 177
-			ArchiveDiskActionHandler.rightTitleSprite.drawAt(Login.xPadding + 382, 0); // L: 178
-			class125.logoSprite.drawAt(Login.xPadding + 382 - class125.logoSprite.subWidth / 2, 18); // L: 179
+			Client.field780[var3] = true; // L: 11202
 		}
-	} // L: 132 180
+	} // L: 11203
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("ls")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1063868291"
+		descriptor = "(I)V",
+		garbageValue = "-1750320042"
 	)
-	public static boolean method1797(int var0) {
-		return (var0 >> 20 & 1) != 0; // L: 21
-	}
+	static void method1761() {
+		if (UserComparator3.field1444 != null) { // L: 11541
+			Client.field717 = Client.cycle; // L: 11542
+			UserComparator3.field1444.method5126(); // L: 11543
+
+			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 11544
+				if (Client.players[var0] != null) { // L: 11545
+					UserComparator3.field1444.method5117((Client.players[var0].x >> 7) + VertexNormal.baseX, (Client.players[var0].y >> 7) + SoundSystem.baseY); // L: 11546
+				}
+			}
+		}
+
+	} // L: 11550
 }

@@ -4,69 +4,59 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fo")
+@ObfuscatedName("fr")
 @Implements("WorldMapID")
 public class WorldMapID {
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Lfr;"
+	)
+	static final WorldMapID field2110;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Lfr;"
+	)
+	static final WorldMapID field2107;
+	@ObfuscatedName("d")
+	static int[] field2112;
+	@ObfuscatedName("be")
+	@ObfuscatedSignature(
+		descriptor = "Lop;"
+	)
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("do")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("js5Socket")
+	static AbstractSocket js5Socket;
 	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Lfo;"
-	)
-	static final WorldMapID field1741;
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "Lfo;"
-	)
-	static final WorldMapID field1744;
-	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1654868251
-	)
-	@Export("musicTrackFileId")
-	public static int musicTrackFileId;
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = -1211698009
+		intValue = 1539271557
 	)
 	@Export("value")
 	final int value;
 
 	static {
-		field1741 = new WorldMapID(0); // L: 4
-		field1744 = new WorldMapID(1); // L: 5
+		field2110 = new WorldMapID(0); // L: 4
+		field2107 = new WorldMapID(1); // L: 5
 	}
 
 	WorldMapID(int var1) {
 		this.value = var1; // L: 9
 	} // L: 10
 
-	@ObfuscatedName("er")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1238552841"
+		descriptor = "(Ljv;Ljv;Ljv;Lhp;I)Z",
+		garbageValue = "-670462193"
 	)
-	static int method3116(int var0) {
-		return var0 * 3 + 600; // L: 1277
+	public static boolean method3636(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
+		class232.musicPatchesArchive = var0; // L: 26
+		class232.musicSamplesArchive = var1; // L: 27
+		WorldMapElement.soundEffectsArchive = var2; // L: 28
+		class124.midiPcmStream = var3; // L: 29
+		return true; // L: 30
 	}
-
-	@ObfuscatedName("hf")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "397252901"
-	)
-	@Export("Widget_runOnTargetLeave")
-	static void Widget_runOnTargetLeave() {
-		if (Client.isSpellSelected) { // L: 8840
-			Widget var0 = class231.getWidgetChild(class148.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 8841
-			if (var0 != null && var0.onTargetLeave != null) { // L: 8842
-				ScriptEvent var1 = new ScriptEvent(); // L: 8843
-				var1.widget = var0; // L: 8844
-				var1.args = var0.onTargetLeave; // L: 8845
-				class19.runScriptEvent(var1); // L: 8846
-			}
-
-			Client.field874 = -1; // L: 8848
-			Client.isSpellSelected = false; // L: 8849
-			class29.invalidateWidget(var0); // L: 8850
-		}
-	} // L: 8851
 }

@@ -1,16 +1,13 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nb")
-public final class class378 {
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		longValue = 955023585666784833L
+@ObfuscatedName("nr")
+public class class378 {
+	@ObfuscatedName("bh")
+	@ObfuscatedSignature(
+		descriptor = "Lkk;"
 	)
-	static long field4146;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		longValue = 3001331764796270147L
-	)
-	static long field4145;
+	@Export("clientLanguage")
+	static Language clientLanguage;
 }

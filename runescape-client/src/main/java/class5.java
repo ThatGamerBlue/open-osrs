@@ -3,33 +3,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("e")
+@ObfuscatedName("j")
 public class class5 extends class16 {
-	@ObfuscatedName("re")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 612354285
+		intValue = 1071759603
 	)
-	static int field40;
-	@ObfuscatedName("o")
-	@Export("clearLoginScreen")
-	static boolean clearLoginScreen;
-	@ObfuscatedName("dp")
+	static int field53;
+	@ObfuscatedName("ez")
 	@ObfuscatedSignature(
-		descriptor = "Lig;"
+		descriptor = "Ljp;"
 	)
-	@Export("archive3")
-	static Archive archive3;
-	@ObfuscatedName("ef")
+	@Export("archive20")
+	static Archive archive20;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 2112256777
+		intValue = -625073017
 	)
-	@Export("currentPort")
-	static int currentPort;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = 1021832225
-	)
-	int field42;
+	int field56;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
 		descriptor = "Lx;"
@@ -41,16 +32,16 @@ public class class5 extends class16 {
 	)
 	class5(class19 var1) {
 		this.this$0 = var1;
-		this.field42 = -1; // L: 81
+		this.field56 = -1; // L: 81
 	} // L: 83
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "-1239860939"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "68071115"
 	)
-	void vmethod356(Buffer var1) {
-		this.field42 = var1.readUnsignedShort(); // L: 86
+	void vmethod266(Buffer var1) {
+		this.field56 = var1.readUnsignedShort(); // L: 86
 		var1.readUnsignedByte(); // L: 87
 		if (var1.readUnsignedByte() != 255) { // L: 88
 			--var1.offset; // L: 89
@@ -59,54 +50,90 @@ public class class5 extends class16 {
 
 	} // L: 92
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lp;I)V",
-		garbageValue = "1583378087"
+		descriptor = "(Ly;I)V",
+		garbageValue = "-1846892157"
 	)
-	void vmethod352(class3 var1) {
-		var1.method45(this.field42); // L: 95
+	void vmethod264(ClanChannel var1) {
+		var1.removeMember(this.field56); // L: 95
 	} // L: 96
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(ILlp;Lig;I)V",
-		garbageValue = "1497398389"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "1508723564"
 	)
-	static void method85(int var0, ArchiveDisk var1, Archive var2) {
-		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 30
-		var3.type = 1; // L: 31
-		var3.key = (long)var0; // L: 32
-		var3.archiveDisk = var1; // L: 33
-		var3.archive = var2; // L: 34
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 35
-			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 36
-		} // L: 37
+	@Export("addChatMessage")
+	static void addChatMessage(int var0, String var1, String var2, String var3) {
+		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 23
+		if (var4 == null) { // L: 24
+			var4 = new ChatChannel(); // L: 25
+			Messages.Messages_channels.put(var0, var4); // L: 26
+		}
 
-		ItemLayer.method3271(); // L: 38
-	} // L: 39
+		Message var5 = var4.addMessage(var0, var1, var2, var3); // L: 28
+		Messages.Messages_hashTable.put(var5, (long)var5.count); // L: 29
+		Messages.Messages_queue.add(var5); // L: 30
+		Client.chatCycle = Client.cycleCntr; // L: 31
+	} // L: 32
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "74"
+		descriptor = "(IS)[B",
+		garbageValue = "3296"
 	)
-	static final int method83(int var0, int var1) {
-		int var2 = class312.method5606(var0 - 1, var1 - 1) + class312.method5606(1 + var0, var1 - 1) + class312.method5606(var0 - 1, var1 + 1) + class312.method5606(var0 + 1, 1 + var1); // L: 977
-		int var3 = class312.method5606(var0 - 1, var1) + class312.method5606(1 + var0, var1) + class312.method5606(var0, var1 - 1) + class312.method5606(var0, var1 + 1); // L: 978
-		int var4 = class312.method5606(var0, var1); // L: 979
-		return var2 / 16 + var3 / 8 + var4 / 4; // L: 980
+	@Export("ByteArrayPool_getArray")
+	public static synchronized byte[] ByteArrayPool_getArray(int var0) {
+		return ByteArrayPool.ByteArrayPool_getArrayBool(var0, false); // L: 72
 	}
 
-	@ObfuscatedName("jf")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIB)V",
-		garbageValue = "52"
+		descriptor = "(IB)I",
+		garbageValue = "30"
 	)
-	@Export("updateRootInterface")
-	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (class15.loadInterface(var0)) { // L: 10400
-			GameObject.updateInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6); // L: 10401
+	public static int method58(int var0) {
+		return VarpDefinition.method2630(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 60
+	}
+
+	@ObfuscatedName("ih")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Z",
+		garbageValue = "113"
+	)
+	static final boolean method51(int var0) {
+		if (var0 < 0) { // L: 7764
+			return false;
+		} else {
+			int var1 = Client.menuOpcodes[var0]; // L: 7765
+			if (var1 >= 2000) { // L: 7766
+				var1 -= 2000;
+			}
+
+			return var1 == 1007; // L: 7767
 		}
-	} // L: 10402
+	}
+
+	@ObfuscatedName("ik")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1850055815"
+	)
+	@Export("Widget_runOnTargetLeave")
+	static void Widget_runOnTargetLeave() {
+		if (Client.isSpellSelected) { // L: 8647
+			Widget var0 = ModeWhere.getWidgetChild(Decimator.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 8648
+			if (var0 != null && var0.onTargetLeave != null) { // L: 8649
+				ScriptEvent var1 = new ScriptEvent(); // L: 8650
+				var1.widget = var0; // L: 8651
+				var1.args = var0.onTargetLeave; // L: 8652
+				PacketWriter.runScriptEvent(var1); // L: 8653
+			}
+
+			Client.field788 = -1; // L: 8655
+			Client.isSpellSelected = false; // L: 8656
+			WorldMapCacheName.invalidateWidget(var0); // L: 8657
+		}
+	} // L: 8658
 }

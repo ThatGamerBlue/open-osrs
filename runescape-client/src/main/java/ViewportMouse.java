@@ -2,52 +2,59 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gj")
+@ObfuscatedName("gy")
 @Implements("ViewportMouse")
 public class ViewportMouse {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("ViewportMouse_isInViewport")
-	public static boolean ViewportMouse_isInViewport;
-	@ObfuscatedName("o")
+	static boolean ViewportMouse_isInViewport;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -108577355
+		intValue = 836373803
 	)
 	@Export("ViewportMouse_x")
-	public static int ViewportMouse_x;
-	@ObfuscatedName("u")
+	static int ViewportMouse_x;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 463191059
+		intValue = 1131754581
 	)
 	@Export("ViewportMouse_y")
-	public static int ViewportMouse_y;
-	@ObfuscatedName("p")
+	static int ViewportMouse_y;
+	@ObfuscatedName("y")
 	@Export("ViewportMouse_false0")
-	public static boolean ViewportMouse_false0;
-	@ObfuscatedName("g")
+	static boolean ViewportMouse_false0;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1570054271
+		intValue = -1563417631
 	)
-	static int field2135;
-	@ObfuscatedName("h")
+	static int field2492;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1844660953
+		intValue = 1940869639
 	)
-	static int field2136;
-	@ObfuscatedName("m")
+	static int field2497;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 809710403
+		intValue = -1999867305
 	)
-	static int field2137;
+	static int field2496;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -131115169
+		intValue = 253416581
 	)
 	@Export("ViewportMouse_entityCount")
-	public static int ViewportMouse_entityCount;
-	@ObfuscatedName("j")
+	static int ViewportMouse_entityCount;
+	@ObfuscatedName("e")
 	@Export("ViewportMouse_entityTags")
 	public static long[] ViewportMouse_entityTags;
+	@ObfuscatedName("os")
+	@ObfuscatedSignature(
+		descriptor = "Lnu;"
+	)
+	@Export("HitSplatDefinition_cachedSprites")
+	static class369 HitSplatDefinition_cachedSprites;
 
 	static {
 		ViewportMouse_isInViewport = false; // L: 4

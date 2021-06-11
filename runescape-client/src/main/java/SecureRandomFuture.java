@@ -7,13 +7,13 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cz")
+@ObfuscatedName("cr")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("executor")
 	ExecutorService executor;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("future")
 	Future future;
 
@@ -22,74 +22,92 @@ public class SecureRandomFuture {
 		this.future = this.executor.submit(new SecureRandomCallable()); // L: 14
 	} // L: 15
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1367386525"
+		descriptor = "(B)V",
+		garbageValue = "32"
 	)
 	@Export("shutdown")
 	void shutdown() {
-		this.executor.shutdown(); // L: 18
-		this.executor = null; // L: 19
-	} // L: 20
+		this.executor.shutdown();
+		this.executor = null;
+	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "16711680"
+		garbageValue = "-1067207786"
 	)
 	@Export("isDone")
 	boolean isDone() {
-		return this.future.isDone(); // L: 23
+		return this.future.isDone();
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(B)Ljava/security/SecureRandom;",
-		garbageValue = "-104"
+		garbageValue = "97"
 	)
 	@Export("get")
 	SecureRandom get() {
 		try {
-			return (SecureRandom)this.future.get(); // L: 28
+			return (SecureRandom)this.future.get();
 		} catch (Exception var2) { // L: 30
-			return class238.method4380(); // L: 31
+			return PlayerComposition.method4711();
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "1485262906"
+		descriptor = "([I[II)V",
+		garbageValue = "-2018126556"
 	)
-	@Export("itemContainerSetItem")
-	static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
-		ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 39
-		if (var4 == null) { // L: 40
-			var4 = new ItemContainer(); // L: 41
-			ItemContainer.itemContainers.put(var4, (long)var0); // L: 42
-		}
+	public static void method1981(int[] var0, int[] var1) {
+		if (var0 != null && var1 != null) { // L: 19
+			ByteArrayPool.ByteArrayPool_alternativeSizes = var0; // L: 25
+			ByteArrayPool.ByteArrayPool_altSizeArrayCounts = new int[var0.length]; // L: 26
+			class20.ByteArrayPool_arrays = new byte[var0.length][][]; // L: 27
 
-		if (var4.ids.length <= var1) { // L: 44
-			int[] var5 = new int[var1 + 1]; // L: 45
-			int[] var6 = new int[var1 + 1]; // L: 46
-
-			int var7;
-			for (var7 = 0; var7 < var4.ids.length; ++var7) { // L: 47
-				var5[var7] = var4.ids[var7]; // L: 48
-				var6[var7] = var4.quantities[var7]; // L: 49
+			for (int var2 = 0; var2 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var2) { // L: 28
+				class20.ByteArrayPool_arrays[var2] = new byte[var1[var2]][]; // L: 29
 			}
 
-			for (var7 = var4.ids.length; var7 < var1; ++var7) { // L: 51
-				var5[var7] = -1; // L: 52
-				var6[var7] = 0; // L: 53
-			}
-
-			var4.ids = var5; // L: 55
-			var4.quantities = var6; // L: 56
+		} else {
+			ByteArrayPool.ByteArrayPool_alternativeSizes = null; // L: 20
+			ByteArrayPool.ByteArrayPool_altSizeArrayCounts = null; // L: 21
+			class20.ByteArrayPool_arrays = null; // L: 22
 		}
+	} // L: 23 31
 
-		var4.ids[var1] = var2; // L: 58
-		var4.quantities[var1] = var3; // L: 59
-	} // L: 60
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "-1561643653"
+	)
+	static String method1982(int var0) {
+		return "<img=" + var0 + ">"; // L: 18
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(Lmr;III)I",
+		garbageValue = "-1327945264"
+	)
+	static int method1977(IterableNodeHashTable var0, int var1, int var2) {
+		if (var0 == null) { // L: 33
+			return var2;
+		} else {
+			IntegerNode var3 = (IntegerNode)var0.get((long)var1); // L: 34
+			return var3 == null ? var2 : var3.integer; // L: 35 36
+		}
+	}
+
+	@ObfuscatedName("fa")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "353118952"
+	)
+	static int method1980(int var0) {
+		return var0 * 3 + 600; // L: 1507
+	}
 }

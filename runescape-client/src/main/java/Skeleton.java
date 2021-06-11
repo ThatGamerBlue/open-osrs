@@ -4,36 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fa")
+@ObfuscatedName("ge")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("ro")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = 49328929
+		intValue = 1049112805
 	)
-	static int field1927;
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		descriptor = "Low;"
-	)
-	@Export("options_buttons_2Sprite")
-	static IndexedSprite options_buttons_2Sprite;
-	@ObfuscatedName("f")
+	static int field2287;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1569878469
+		intValue = -2039033351
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1560016173
+		intValue = -1780750535
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@Export("labels")
 	int[][] labels;
 
@@ -61,61 +55,63 @@ public class Skeleton extends Node {
 
 	} // L: 23
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "1482747310"
+		descriptor = "(II)I",
+		garbageValue = "-651931102"
 	)
-	public static int method3431(int var0, int var1) {
-		int var2;
-		for (var2 = 1; var1 > 1; var1 >>= 1) { // L: 24 25 28
-			if ((var1 & 1) != 0) {
-				var2 = var0 * var2; // L: 26
-			}
-
-			var0 *= var0; // L: 27
-		}
-
-		if (var1 == 1) { // L: 30
-			return var0 * var2;
-		} else {
-			return var2; // L: 31
-		}
+	@Export("getVarbit")
+	public static int getVarbit(int var0) {
+		VarbitComposition var1 = FontName.method6299(var0); // L: 24
+		int var2 = var1.baseVar; // L: 25
+		int var3 = var1.startBit; // L: 26
+		int var4 = var1.endBit; // L: 27
+		int var5 = Varps.Varps_masks[var4 - var3]; // L: 28
+		return Varps.Varps_main[var2] >> var3 & var5; // L: 29
 	}
 
-	@ObfuscatedName("iu")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-259166904"
+		descriptor = "(I)V",
+		garbageValue = "-2037150007"
 	)
-	static final int method3433() {
-		return Client.menuOptionsCount - 1; // L: 9018
+	static void method3921() {
+		ItemContainer.itemContainers = new NodeHashTable(32); // L: 78
+	} // L: 79
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "-698896598"
+	)
+	static final int method3920(int var0, int var1, int var2) {
+		int var3 = var0 / var2; // L: 804
+		int var4 = var0 & var2 - 1; // L: 805
+		int var5 = var1 / var2; // L: 806
+		int var6 = var1 & var2 - 1; // L: 807
+		int var7 = Occluder.method4109(var3, var5); // L: 808
+		int var8 = Occluder.method4109(var3 + 1, var5); // L: 809
+		int var9 = Occluder.method4109(var3, var5 + 1); // L: 810
+		int var10 = Occluder.method4109(var3 + 1, var5 + 1); // L: 811
+		int var12 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1; // L: 814
+		int var11 = ((65536 - var12) * var7 >> 16) + (var12 * var8 >> 16); // L: 815
+		int var13 = SoundSystem.method806(var9, var10, var4, var2); // L: 818
+		int var15 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var6 * 1024 / var2] >> 1; // L: 821
+		int var14 = ((65536 - var15) * var11 >> 16) + (var13 * var15 >> 16); // L: 822
+		return var14; // L: 824
 	}
 
-	@ObfuscatedName("iz")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIII)V",
-		garbageValue = "353587604"
+		descriptor = "(ILii;ZI)V",
+		garbageValue = "1737731022"
 	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (class15.loadInterface(var0)) { // L: 9407
-			WallDecoration.field2179 = null; // L: 9414
-			class2.drawInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7); // L: 9415
-			if (WallDecoration.field2179 != null) { // L: 9416
-				class2.drawInterface(WallDecoration.field2179, -1412584499, var1, var2, var3, var4, class11.field106, class235.field2843, var7); // L: 9417
-				WallDecoration.field2179 = null; // L: 9418
-			}
-
-		} else {
-			if (var7 != -1) { // L: 9408
-				Client.field811[var7] = true;
-			} else {
-				for (int var8 = 0; var8 < 100; ++var8) { // L: 9410
-					Client.field811[var8] = true;
-				}
-			}
-
-		}
-	} // L: 9412 9420
+	static void method3922(int var0, Coord var1, boolean var2) {
+		WorldMapArea var3 = HealthBarUpdate.getWorldMap().getMapArea(var0); // L: 4336
+		int var4 = class93.localPlayer.plane; // L: 4337
+		int var5 = (class93.localPlayer.x >> 7) + VertexNormal.baseX; // L: 4338
+		int var6 = (class93.localPlayer.y >> 7) + SoundSystem.baseY; // L: 4339
+		Coord var7 = new Coord(var4, var5, var6); // L: 4340
+		HealthBarUpdate.getWorldMap().method6291(var3, var7, var1, var2); // L: 4341
+	} // L: 4342
 }

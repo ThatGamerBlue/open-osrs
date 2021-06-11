@@ -3,15 +3,21 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ie")
+@ObfuscatedName("iw")
 @Implements("Skills")
 public class Skills {
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("Skills_enabled")
 	public static final boolean[] Skills_enabled;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@Export("Skills_experienceTable")
 	public static int[] Skills_experienceTable;
+	@ObfuscatedName("ck")
+	@ObfuscatedSignature(
+		descriptor = "Lcb;"
+	)
+	@Export("mouseRecorder")
+	static MouseRecorder mouseRecorder;
 
 	static {
 		Skills_enabled = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false}; // L: 5
@@ -26,16 +32,4 @@ public class Skills {
 		}
 
 	} // L: 16
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1387857562"
-	)
-	public static void method4377() {
-		if (class303.NetCache_socket != null) { // L: 271
-			class303.NetCache_socket.close();
-		}
-
-	} // L: 272
 }

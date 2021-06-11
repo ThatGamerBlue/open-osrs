@@ -47,4 +47,8 @@ public final class EnumID
 	public static final int ANCIENT_SPELLBOOK = 1983;
 	public static final int LUNAR_SPELLBOOK = 1984;
 	public static final int ARCEUUS_SPELLBOOK = 1985;
+
+	public static final int FRIENDS_CHAT_RANK_ICONS = 1543;
+	public static final int CLAN_RANK_NAME = 3797;
+	public static final int CLAN_RANK_GRAPHIC = 3798;
 }

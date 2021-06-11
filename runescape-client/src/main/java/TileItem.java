@@ -4,30 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dg")
+@ObfuscatedName("dr")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("b")
+	@ObfuscatedName("ro")
 	@ObfuscatedSignature(
-		descriptor = "Low;"
+		descriptor = "Lbe;"
 	)
-	@Export("titleboxSprite")
-	static IndexedSprite titleboxSprite;
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "Low;"
-	)
-	@Export("options_buttons_0Sprite")
-	static IndexedSprite options_buttons_0Sprite;
-	@ObfuscatedName("f")
+	@Export("decimator")
+	static Decimator decimator;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -52258563
+		intValue = -467972035
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -438803775
+		intValue = 223075527
 	)
 	@Export("quantity")
 	int quantity;
@@ -35,22 +29,38 @@ public final class TileItem extends Renderable {
 	TileItem() {
 	} // L: 11
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgv;",
-		garbageValue = "1835906978"
+		descriptor = "(B)Lgr;",
+		garbageValue = "-76"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return class23.ItemDefinition_get(this.id).getModel(this.quantity); // L: 14
+		return class260.ItemDefinition_get(this.id).getModel(this.quantity); // L: 14
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "936749737"
+		descriptor = "(I)V",
+		garbageValue = "-1655147086"
 	)
-	static int method2266(int var0) {
-		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F)); // L: 3461
-	}
+	@Export("savePreferences")
+	static void savePreferences() {
+		AccessFile var0 = null; // L: 95
+
+		try {
+			var0 = class82.getPreferencesFile("", SoundSystem.field461.name, true); // L: 97
+			Buffer var1 = ObjectComposition.clientPreferences.toBuffer(); // L: 98
+			var0.write(var1.array, 0, var1.offset); // L: 99
+		} catch (Exception var3) { // L: 101
+		}
+
+		try {
+			if (var0 != null) { // L: 103
+				var0.closeSync(true); // L: 104
+			}
+		} catch (Exception var2) { // L: 107
+		}
+
+	} // L: 108
 }

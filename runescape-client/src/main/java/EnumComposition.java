@@ -4,49 +4,49 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jz")
+@ObfuscatedName("er")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lir;"
+		descriptor = "Ljv;"
 	)
 	@Export("EnumDefinition_archive")
-	public static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("o")
+	static AbstractArchive EnumDefinition_archive;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lgf;"
+		descriptor = "Lhz;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1791938445
+		intValue = 865656165
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1639426453
+		intValue = -2113237229
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("g")
+	@ObfuscatedName("b")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("h")
+	@ObfuscatedName("d")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("n")
+	@ObfuscatedName("s")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -59,70 +59,82 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0; // L: 17
 	} // L: 22
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "1691183927"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "1467910885"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 36
-			if (var2 == 0) { // L: 37
-				return; // L: 40
+			int var2 = var1.readUnsignedByte(); // L: 40
+			if (var2 == 0) { // L: 41
+				return; // L: 44
 			}
 
-			this.decodeNext(var1, var2); // L: 38
+			this.decodeNext(var1, var2); // L: 42
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;II)V",
-		garbageValue = "-440567835"
+		descriptor = "(Lnd;IB)V",
+		garbageValue = "-60"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 1) { // L: 43
+		if (var2 == 1) { // L: 47
 			this.inputType = (char)var1.readUnsignedByte();
-		} else if (var2 == 2) { // L: 44
+		} else if (var2 == 2) { // L: 48
 			this.outputType = (char)var1.readUnsignedByte();
-		} else if (var2 == 3) { // L: 45
+		} else if (var2 == 3) { // L: 49
 			this.defaultStr = var1.readStringCp1252NullTerminated();
-		} else if (var2 == 4) { // L: 46
+		} else if (var2 == 4) { // L: 50
 			this.defaultInt = var1.readInt();
 		} else {
 			int var3;
-			if (var2 == 5) { // L: 47
-				this.outputCount = var1.readUnsignedShort(); // L: 48
-				this.keys = new int[this.outputCount]; // L: 49
-				this.strVals = new String[this.outputCount]; // L: 50
+			if (var2 == 5) { // L: 51
+				this.outputCount = var1.readUnsignedShort(); // L: 52
+				this.keys = new int[this.outputCount]; // L: 53
+				this.strVals = new String[this.outputCount]; // L: 54
 
-				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 51
-					this.keys[var3] = var1.readInt(); // L: 52
-					this.strVals[var3] = var1.readStringCp1252NullTerminated(); // L: 53
+				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 55
+					this.keys[var3] = var1.readInt(); // L: 56
+					this.strVals[var3] = var1.readStringCp1252NullTerminated(); // L: 57
 				}
-			} else if (var2 == 6) { // L: 56
-				this.outputCount = var1.readUnsignedShort(); // L: 57
-				this.keys = new int[this.outputCount]; // L: 58
-				this.intVals = new int[this.outputCount]; // L: 59
+			} else if (var2 == 6) { // L: 60
+				this.outputCount = var1.readUnsignedShort(); // L: 61
+				this.keys = new int[this.outputCount]; // L: 62
+				this.intVals = new int[this.outputCount]; // L: 63
 
-				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 60
-					this.keys[var3] = var1.readInt(); // L: 61
-					this.intVals[var3] = var1.readInt(); // L: 62
+				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 64
+					this.keys[var3] = var1.readInt(); // L: 65
+					this.intVals[var3] = var1.readInt(); // L: 66
 				}
 			}
 		}
 
-	} // L: 66
+	} // L: 70
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "765918269"
+		garbageValue = "-149949948"
 	)
 	@Export("size")
 	public int size() {
-		return this.outputCount; // L: 69
+		return this.outputCount; // L: 73
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(Ljv;Ljava/lang/String;Ljava/lang/String;I)Lop;",
+		garbageValue = "-1892718374"
+	)
+	@Export("SpriteBuffer_getIndexedSpriteByName")
+	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1); // L: 109
+		int var4 = var0.getFileId(var3, var2); // L: 110
+		return AbstractByteArrayCopier.method4802(var0, var3, var4); // L: 111
 	}
 }

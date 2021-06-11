@@ -1,39 +1,59 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bi")
+@ObfuscatedName("bu")
 @Implements("SoundCache")
 public class SoundCache {
-	@ObfuscatedName("f")
+	@ObfuscatedName("rw")
+	@ObfuscatedGetter(
+		intValue = -1515591247
+	)
+	static int field468;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 264174683
+	)
+	@Export("idxCount")
+	public static int idxCount;
+	@ObfuscatedName("de")
 	@ObfuscatedSignature(
-		descriptor = "Lir;"
+		descriptor = "Ljp;"
+	)
+	@Export("archive10")
+	static Archive archive10;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Ljv;"
 	)
 	@Export("soundEffectIndex")
 	AbstractArchive soundEffectIndex;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lir;"
+		descriptor = "Ljv;"
 	)
 	@Export("musicSampleIndex")
 	AbstractArchive musicSampleIndex;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lmg;"
+		descriptor = "Lmd;"
 	)
 	@Export("musicSamples")
 	NodeHashTable musicSamples;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lmg;"
+		descriptor = "Lmd;"
 	)
 	@Export("rawSounds")
 	NodeHashTable rawSounds;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lir;Lir;)V"
+		descriptor = "(Ljv;Ljv;)V"
 	)
 	public SoundCache(AbstractArchive var1, AbstractArchive var2) {
 		this.musicSamples = new NodeHashTable(256); // L: 9
@@ -42,10 +62,10 @@ public class SoundCache {
 		this.musicSampleIndex = var2; // L: 14
 	} // L: 15
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II[II)Lah;",
-		garbageValue = "1896632187"
+		descriptor = "(II[IB)Lau;",
+		garbageValue = "22"
 	)
 	@Export("getSoundEffect0")
 	RawSound getSoundEffect0(int var1, int var2, int[] var3) {
@@ -55,11 +75,11 @@ public class SoundCache {
 		RawSound var7 = (RawSound)this.rawSounds.get(var5); // L: 21
 		if (var7 != null) { // L: 22
 			return var7;
-		} else if (var3 != null && var3[0] <= 0) {
-			return null; // L: 23
+		} else if (var3 != null && var3[0] <= 0) { // L: 23
+			return null;
 		} else {
-			SoundEffect var8 = SoundEffect.readSoundEffect(this.soundEffectIndex, var1, var2); // L: 24
-			if (var8 == null) { // L: 25
+			SoundEffect var8 = SoundEffect.readSoundEffect(this.soundEffectIndex, var1, var2);
+			if (var8 == null) {
 				return null;
 			} else {
 				var7 = var8.toRawSound(); // L: 26
@@ -73,10 +93,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(II[IB)Lah;",
-		garbageValue = "-1"
+		descriptor = "(II[IB)Lau;",
+		garbageValue = "83"
 	)
 	@Export("getMusicSample0")
 	RawSound getMusicSample0(int var1, int var2, int[] var3) {
@@ -110,10 +130,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I[II)Lah;",
-		garbageValue = "-1575700242"
+		descriptor = "(I[IB)Lau;",
+		garbageValue = "36"
 	)
 	@Export("getSoundEffect")
 	public RawSound getSoundEffect(int var1, int[] var2) {
@@ -126,10 +146,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(I[II)Lah;",
-		garbageValue = "1575999128"
+		descriptor = "(I[II)Lau;",
+		garbageValue = "2094009970"
 	)
 	@Export("getMusicSample")
 	public RawSound getMusicSample(int var1, int[] var2) {
@@ -142,77 +162,162 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(ILcc;ZB)I",
-		garbageValue = "5"
+		descriptor = "(I)V",
+		garbageValue = "-1930699867"
 	)
-	static int method883(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? FriendSystem.scriptDotWidget : class4.scriptActiveWidget; // L: 1171
-		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) { // L: 1172
-			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.itemId; // L: 1173
-			return 1; // L: 1174
-		} else if (var0 == ScriptOpcodes.CC_GETINVCOUNT) { // L: 1176
-			if (var3.itemId != -1) { // L: 1177
-				Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.itemQuantity;
-			} else {
-				Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = 0; // L: 1178
-			}
+	public static void method811() {
+		class69.reflectionChecks = new IterableNodeDeque(); // L: 24
+	} // L: 25
 
-			return 1; // L: 1179
-		} else if (var0 == ScriptOpcodes.CC_GETID) { // L: 1181
-			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.childIndex; // L: 1182
-			return 1; // L: 1183
-		} else {
-			return 2; // L: 1185
-		}
-	}
-
-	@ObfuscatedName("hz")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;B)V",
-		garbageValue = "-7"
+		descriptor = "([Lbg;II[I[II)V",
+		garbageValue = "-408447852"
 	)
-	static void method889(int var0, String var1) {
-		int var2 = Players.Players_count; // L: 8781
-		int[] var3 = Players.Players_indices; // L: 8782
-		boolean var4 = false; // L: 8783
-		Username var5 = new Username(var1, AbstractUserComparator.loginType); // L: 8784
+	@Export("sortWorlds")
+	static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
+		if (var1 < var2) { // L: 81
+			int var5 = var1 - 1; // L: 82
+			int var6 = var2 + 1; // L: 83
+			int var7 = (var2 + var1) / 2; // L: 84
+			World var8 = var0[var7]; // L: 85
+			var0[var7] = var0[var1]; // L: 86
+			var0[var1] = var8; // L: 87
 
-		for (int var6 = 0; var6 < var2; ++var6) { // L: 8785
-			Player var7 = Client.players[var3[var6]]; // L: 8786
-			if (var7 != null && var7 != Varcs.localPlayer && var7.username != null && var7.username.equals(var5)) { // L: 8787
-				PacketBufferNode var8;
-				if (var0 == 1) { // L: 8788
-					var8 = ObjectComposition.getPacketBufferNode(ClientPacket.field2318, Client.packetWriter.isaacCipher); // L: 8790
-					var8.packetBuffer.method6639(0); // L: 8791
-					var8.packetBuffer.method6614(var3[var6]); // L: 8792
-					Client.packetWriter.addNode(var8); // L: 8793
-				} else if (var0 == 4) { // L: 8795
-					var8 = ObjectComposition.getPacketBufferNode(ClientPacket.field2250, Client.packetWriter.isaacCipher); // L: 8797
-					var8.packetBuffer.writeShortLE(0); // L: 8798
-					var8.packetBuffer.method6771(var3[var6]); // L: 8799
-					Client.packetWriter.addNode(var8); // L: 8800
-				} else if (var0 == 6) { // L: 8802
-					var8 = ObjectComposition.getPacketBufferNode(ClientPacket.field2276, Client.packetWriter.isaacCipher); // L: 8804
-					var8.packetBuffer.method6614(var3[var6]); // L: 8805
-					var8.packetBuffer.method6606(0); // L: 8806
-					Client.packetWriter.addNode(var8); // L: 8807
-				} else if (var0 == 7) { // L: 8809
-					var8 = ObjectComposition.getPacketBufferNode(ClientPacket.field2244, Client.packetWriter.isaacCipher); // L: 8811
-					var8.packetBuffer.writeShortLE(0); // L: 8812
-					var8.packetBuffer.method6614(var3[var6]); // L: 8813
-					Client.packetWriter.addNode(var8); // L: 8814
+			while (var5 < var6) { // L: 88
+				boolean var9 = true; // L: 89
+
+				int var10;
+				int var11;
+				int var12;
+				do {
+					--var6; // L: 91
+
+					for (var10 = 0; var10 < 4; ++var10) { // L: 92
+						if (var3[var10] == 2) { // L: 95
+							var11 = var0[var6].index; // L: 96
+							var12 = var8.index; // L: 97
+						} else if (var3[var10] == 1) { // L: 99
+							var11 = var0[var6].population; // L: 100
+							var12 = var8.population; // L: 101
+							if (var11 == -1 && var4[var10] == 1) { // L: 102
+								var11 = 2001;
+							}
+
+							if (var12 == -1 && var4[var10] == 1) { // L: 103
+								var12 = 2001;
+							}
+						} else if (var3[var10] == 3) { // L: 105
+							var11 = var0[var6].isMembersOnly() ? 1 : 0; // L: 106
+							var12 = var8.isMembersOnly() ? 1 : 0; // L: 107
+						} else {
+							var11 = var0[var6].id; // L: 110
+							var12 = var8.id; // L: 111
+						}
+
+						if (var11 != var12) { // L: 113
+							if ((var4[var10] != 1 || var11 <= var12) && (var4[var10] != 0 || var11 >= var12)) { // L: 116 117
+								var9 = false; // L: 119
+							}
+							break;
+						}
+
+						if (var10 == 3) { // L: 114
+							var9 = false;
+						}
+					}
+				} while(var9);
+
+				var9 = true; // L: 124
+
+				do {
+					++var5; // L: 126
+
+					for (var10 = 0; var10 < 4; ++var10) { // L: 127
+						if (var3[var10] == 2) { // L: 130
+							var11 = var0[var5].index; // L: 131
+							var12 = var8.index; // L: 132
+						} else if (var3[var10] == 1) { // L: 134
+							var11 = var0[var5].population; // L: 135
+							var12 = var8.population; // L: 136
+							if (var11 == -1 && var4[var10] == 1) { // L: 137
+								var11 = 2001;
+							}
+
+							if (var12 == -1 && var4[var10] == 1) { // L: 138
+								var12 = 2001;
+							}
+						} else if (var3[var10] == 3) { // L: 140
+							var11 = var0[var5].isMembersOnly() ? 1 : 0; // L: 141
+							var12 = var8.isMembersOnly() ? 1 : 0; // L: 142
+						} else {
+							var11 = var0[var5].id; // L: 145
+							var12 = var8.id; // L: 146
+						}
+
+						if (var11 != var12) { // L: 148
+							if ((var4[var10] != 1 || var11 >= var12) && (var4[var10] != 0 || var11 <= var12)) { // L: 151 152
+								var9 = false; // L: 154
+							}
+							break;
+						}
+
+						if (var10 == 3) { // L: 149
+							var9 = false;
+						}
+					}
+				} while(var9);
+
+				if (var5 < var6) { // L: 159
+					World var13 = var0[var5]; // L: 160
+					var0[var5] = var0[var6]; // L: 161
+					var0[var6] = var13; // L: 162
 				}
-
-				var4 = true; // L: 8816
-				break;
 			}
+
+			sortWorlds(var0, var1, var6, var3, var4); // L: 165
+			sortWorlds(var0, var6 + 1, var2, var3, var4); // L: 166
 		}
 
-		if (!var4) { // L: 8820
-			class69.addGameMessage(4, "", "Unable to find " + var1);
+	} // L: 168
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1514973539"
+	)
+	public static void method830() {
+		try {
+			File var0 = new File(class22.userHomeDirectory, "random.dat"); // L: 195
+			int var2;
+			if (var0.exists()) { // L: 196
+				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0); // L: 197
+			} else {
+				label38:
+				for (int var1 = 0; var1 < PlayerType.cacheSubPaths.length; ++var1) { // L: 200
+					for (var2 = 0; var2 < InterfaceParent.cacheParentPaths.length; ++var2) { // L: 201
+						File var3 = new File(InterfaceParent.cacheParentPaths[var2] + PlayerType.cacheSubPaths[var1] + File.separatorChar + "random.dat"); // L: 202
+						if (var3.exists()) { // L: 203
+							JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var3, "rw", 25L), 24, 0); // L: 204
+							break label38; // L: 205
+						}
+					}
+				}
+			}
+
+			if (JagexCache.JagexCache_randomDat == null) { // L: 210
+				RandomAccessFile var4 = new RandomAccessFile(var0, "rw"); // L: 211
+				var2 = var4.read(); // L: 212
+				var4.seek(0L); // L: 213
+				var4.write(var2); // L: 214
+				var4.seek(0L); // L: 215
+				var4.close(); // L: 216
+				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0); // L: 217
+			}
+		} catch (IOException var5) { // L: 220
 		}
 
-	} // L: 8821
+	} // L: 221
 }

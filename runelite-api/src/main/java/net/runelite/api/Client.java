@@ -34,6 +34,8 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import net.runelite.api.annotations.VisibleForExternalPlugins;
+import net.runelite.api.clan.ClanChannel;
+import net.runelite.api.clan.ClanSettings;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.PlayerChanged;
@@ -523,6 +525,11 @@ public interface Client extends GameEngine
 	void setDraggedOnWidget(Widget widget);
 
 	/**
+	 * Gets Interface ID of the root widget
+	 */
+	int getTopLevelInterfaceId();
+
+	/**
 	 * Gets the root widgets.
 	 *
 	 * @return the root widgets
@@ -666,11 +673,18 @@ public interface Client extends GameEngine
 	boolean isMenuOpen();
 
 	/**
-	 * Gets the angle of the map, or camera yaw.
+	 * Gets the angle of the map, or target camera yaw.
 	 *
 	 * @return the map angle
 	 */
 	int getMapAngle();
+
+	/**
+	 * Set the target camera yaw
+	 *
+	 * @param cameraYawTarget
+	 */
+	void setCameraYawTarget(int cameraYawTarget);
 
 	/**
 	 * Checks whether the client window is currently resized.
@@ -1396,6 +1410,8 @@ public interface Client extends GameEngine
 	 * @return the map sprite
 	 */
 	SpritePixels drawInstanceMap(int z);
+
+	void setMinimapReceivesClicks(boolean minimapReceivesClicks);
 
 	/**
 	 * Executes a client script from the cache
@@ -2189,4 +2205,32 @@ public interface Client extends GameEngine
 	 * @return
 	 */
 	int getCrossWorldMessageIdsIndex();
+
+	/**
+	 * Get the primary clan channel the player is in.
+	 * @return
+	 */
+	@Nullable
+	ClanChannel getClanChannel();
+
+	/**
+	 * Get the guest clan channel the player is in.
+	 * @return
+	 */
+	@Nullable
+	ClanChannel getGuestClanChannel();
+
+	/**
+	 * Get clan settings for the clan the user is in.
+	 * @return
+	 */
+	@Nullable
+	ClanSettings getClanSettings();
+
+	/**
+	 * Get the guest clan's settings.
+	 * @return
+	 */
+	@Nullable
+	ClanSettings getGuestClanSettings();
 }

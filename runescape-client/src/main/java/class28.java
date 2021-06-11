@@ -1,30 +1,33 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("am")
+@ObfuscatedName("ab")
 public class class28 implements class31 {
-	@ObfuscatedName("f")
+	class28() {
+	} // L: 8
+
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;)Lnu;"
+		descriptor = "(Lnd;)Lnd;"
 	)
-	public Buffer vmethod389(Buffer var1) {
-		Buffer var2 = new Buffer(100); // L: 9
-		this.method384(var1, var2); // L: 10
-		return var2; // L: 11
+	public Buffer vmethod297(Buffer var1) {
+		Buffer var2 = new Buffer(100); // L: 11
+		this.method285(var1, var2); // L: 12
+		return var2; // L: 13
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;Lnu;)V"
+		descriptor = "(Lnd;Lnd;)V"
 	)
-	void method384(Buffer var1, Buffer var2) {
-		class36 var3 = new class36(var1); // L: 15
-		class33 var4 = new class33(var3); // L: 16
+	void method285(Buffer var1, Buffer var2) {
+		class36 var3 = new class36(var1); // L: 17
+		class33 var4 = new class33(var3); // L: 18
 
 		long var5;
-		for (var5 = 0L; !var4.method396(var3.method436(), var3.method437(), var5); ++var5) { // L: 17 18 19
+		for (var5 = 0L; !var4.method307(var3.method346(), var3.method345(), var5); ++var5) { // L: 19 20 21
 		}
 
-		var2.writeLong(var5); // L: 21
-	} // L: 22
+		var2.writeLong(var5); // L: 23
+	} // L: 24
 }

@@ -4,30 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
+@ObfuscatedName("fc")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-	@ObfuscatedName("f")
+	@ObfuscatedName("ih")
 	@ObfuscatedGetter(
-		intValue = 997501595
+		intValue = -1113352723
+	)
+	@Export("oculusOrbFocalPointX")
+	static int oculusOrbFocalPointX;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = -1931856815
 	)
 	@Export("approxDestinationX")
 	public int approxDestinationX;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -502030217
+		intValue = -2132337773
 	)
 	@Export("approxDestinationY")
 	public int approxDestinationY;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1934250883
+		intValue = 203403193
 	)
 	@Export("approxDestinationSizeX")
 	public int approxDestinationSizeX;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1021808117
+		intValue = 308023697
 	)
 	@Export("approxDestinationSizeY")
 	public int approxDestinationSizeY;
@@ -35,20 +41,11 @@ public abstract class RouteStrategy {
 	protected RouteStrategy() {
 	} // L: 9
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIILel;I)Z",
-		garbageValue = "120127354"
+		descriptor = "(IIILfz;I)Z",
+		garbageValue = "496202097"
 	)
 	@Export("hasArrived")
-	public abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
-
-	@ObfuscatedName("id")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "95"
-	)
-	static boolean method2653(int var0) {
-		return var0 == 57 || var0 == 58 || var0 == 1007 || var0 == 25 || var0 == 30; // L: 9045
-	}
+	protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
 }

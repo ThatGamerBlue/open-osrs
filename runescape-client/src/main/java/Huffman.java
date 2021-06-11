@@ -1,24 +1,22 @@
+import java.util.concurrent.ScheduledExecutorService;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hx")
+@ObfuscatedName("id")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("qz")
-	@ObfuscatedSignature(
-		descriptor = "Lak;"
-	)
-	@Export("pcmStreamMixer")
-	static PcmStreamMixer pcmStreamMixer;
-	@ObfuscatedName("f")
+	@ObfuscatedName("b")
+	@Export("soundSystemExecutor")
+	static ScheduledExecutorService soundSystemExecutor;
+	@ObfuscatedName("v")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@Export("keys")
 	int[] keys;
 
@@ -47,7 +45,7 @@ public class Huffman {
 
 					for (var10 = var6 - 1; var10 >= 1; --var10) { // L: 25
 						var11 = var3[var10]; // L: 26
-						if (var11 != var8) { // L: 27
+						if (var8 != var11) { // L: 27
 							break;
 						}
 
@@ -105,10 +103,10 @@ public class Huffman {
 
 	} // L: 60
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "([BII[BII)I",
-		garbageValue = "310251163"
+		garbageValue = "-1771956050"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -156,10 +154,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5; // L: 97
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "([BI[BIIB)I",
-		garbageValue = "74"
+		descriptor = "([BI[BIII)I",
+		garbageValue = "2146568122"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -278,8 +276,8 @@ public class Huffman {
 					var6 = 0; // L: 155
 				}
 
-				if ((var8 & 1) != 0) { // L: 157
-					var6 = this.keys[var6];
+				if ((var8 & 1) != 0) {
+					var6 = this.keys[var6]; // L: 157
 				} else {
 					++var6; // L: 158
 				}
@@ -298,14 +296,5 @@ public class Huffman {
 
 			return var7 + 1 - var2; // L: 165
 		}
-	}
-
-	@ObfuscatedName("hw")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-1260509455"
-	)
-	static final boolean method4311() {
-		return Client.isMenuOpen; // L: 7813
 	}
 }

@@ -1,22 +1,37 @@
-import java.applet.Applet;
+import java.security.SecureRandom;
 import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cq")
+@ObfuscatedName("co")
 @Implements("SecureRandomCallable")
 public class SecureRandomCallable implements Callable {
-	@ObfuscatedName("f")
-	@Export("RunException_applet")
-	public static Applet RunException_applet;
-	@ObfuscatedName("g")
-	static byte[][][] field1106;
+	@ObfuscatedName("hs")
+	@ObfuscatedGetter(
+		intValue = 45831589
+	)
+	@Export("cameraY")
+	static int cameraY;
 
 	SecureRandomCallable() {
 	} // L: 36
 
 	public Object call() {
-		return class238.method4380(); // L: 45
+		SecureRandom var2 = new SecureRandom(); // L: 47
+		var2.nextInt(); // L: 48
+		return var2; // L: 51
 	}
+
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "61"
+	)
+	public static void method2055() {
+		SequenceDefinition.SequenceDefinition_cached.clear(); // L: 218
+		SequenceDefinition.SequenceDefinition_cachedFrames.clear(); // L: 219
+	} // L: 220
 }

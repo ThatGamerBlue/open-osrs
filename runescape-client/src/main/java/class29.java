@@ -4,53 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ag")
+@ObfuscatedName("al")
 public class class29 implements Callable {
-	@ObfuscatedName("r")
+	@ObfuscatedName("d")
+	public static short[] field233;
+	@ObfuscatedName("lt")
 	@ObfuscatedGetter(
-		intValue = 254933769
+		intValue = 1498703923
 	)
-	@Export("clientTickTimeIdx")
-	static int clientTickTimeIdx;
-	@ObfuscatedName("f")
+	@Export("menuWidth")
+	static int menuWidth;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lnu;"
+		descriptor = "Lnd;"
 	)
-	final Buffer field216;
-	@ObfuscatedName("o")
+	final Buffer field238;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lat;"
+		descriptor = "Lai;"
 	)
-	final class31 field215;
+	final class31 field235;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lax;"
+		descriptor = "Las;"
 	)
 	final class35 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lax;Lnu;Lat;)V"
+		descriptor = "(Las;Lnd;Lai;)V"
 	)
 	class29(class35 var1, Buffer var2, class31 var3) {
 		this.this$0 = var1; // L: 47
-		this.field216 = var2; // L: 48
-		this.field215 = var3; // L: 49
+		this.field238 = var2; // L: 48
+		this.field235 = var3; // L: 49
 	} // L: 50
 
 	public Object call() {
-		return this.field215.vmethod389(this.field216); // L: 53
+		return this.field235.vmethod297(this.field238); // L: 53
 	}
-
-	@ObfuscatedName("ju")
-	@ObfuscatedSignature(
-		descriptor = "(Lhu;I)V",
-		garbageValue = "1142852074"
-	)
-	@Export("invalidateWidget")
-	static void invalidateWidget(Widget var0) {
-		if (var0.cycle == Client.field810) { // L: 11035
-			Client.field811[var0.rootIndex] = true; // L: 11036
-		}
-
-	} // L: 11038
 }

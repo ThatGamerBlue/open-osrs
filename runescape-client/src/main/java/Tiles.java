@@ -4,108 +4,87 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ch")
+@ObfuscatedName("cg")
 @Implements("Tiles")
 public final class Tiles {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("Tiles_heights")
 	static int[][][] Tiles_heights;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("Tiles_renderFlags")
 	static byte[][][] Tiles_renderFlags;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -725804883
+		intValue = 1752941579
 	)
 	@Export("Tiles_minPlane")
 	static int Tiles_minPlane;
-	@ObfuscatedName("b")
-	static byte[][][] field1092;
-	@ObfuscatedName("e")
-	static byte[][][] field1091;
-	@ObfuscatedName("n")
-	@Export("Tiles_hue")
-	static int[] Tiles_hue;
+	@ObfuscatedName("y")
+	static byte[][][] field1120;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "[Lbg;"
+	)
+	@Export("World_worlds")
+	static World[] World_worlds;
 	@ObfuscatedName("l")
-	@Export("Tiles_saturation")
-	static int[] Tiles_saturation;
-	@ObfuscatedName("m")
 	@Export("Tiles_lightness")
 	static int[] Tiles_lightness;
-	@ObfuscatedName("v")
-	static final int[] field1094;
+	@ObfuscatedName("m")
+	static final int[] field1117;
 	@ObfuscatedName("x")
-	static final int[] field1098;
+	static final int[] field1125;
 	@ObfuscatedName("z")
-	static final int[] field1097;
-	@ObfuscatedName("i")
-	static final int[] field1100;
-	@ObfuscatedName("a")
-	static final int[] field1101;
+	static final int[] field1126;
 	@ObfuscatedName("w")
-	static final int[] field1099;
-	@ObfuscatedName("s")
+	static final int[] field1123;
+	@ObfuscatedName("t")
+	static final int[] field1128;
+	@ObfuscatedName("h")
+	static final int[] field1129;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1418652947
+		intValue = -760931637
 	)
-	static int field1103;
-	@ObfuscatedName("y")
+	static int field1130;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 4127251
+		intValue = 696638661
 	)
-	static int field1104;
+	static int field1131;
 
 	static {
 		Tiles_heights = new int[4][105][105]; // L: 16
 		Tiles_renderFlags = new byte[4][104][104]; // L: 17
 		Tiles_minPlane = 99; // L: 18
-		field1094 = new int[]{1, 2, 4, 8}; // L: 34
-		field1098 = new int[]{16, 32, 64, 128}; // L: 35
-		field1097 = new int[]{1, 0, -1, 0}; // L: 36
-		field1100 = new int[]{0, -1, 0, 1}; // L: 37
-		field1101 = new int[]{1, -1, -1, 1};
-		field1099 = new int[]{-1, -1, 1, 1};
-		field1103 = (int)(Math.random() * 17.0D) - 8;
-		field1104 = (int)(Math.random() * 33.0D) - 16;
+		field1117 = new int[]{1, 2, 4, 8}; // L: 34
+		field1125 = new int[]{16, 32, 64, 128}; // L: 35
+		field1126 = new int[]{1, 0, -1, 0}; // L: 36
+		field1123 = new int[]{0, -1, 0, 1}; // L: 37
+		field1128 = new int[]{1, -1, -1, 1}; // L: 38
+		field1129 = new int[]{-1, -1, 1, 1}; // L: 39
+		field1130 = (int)(Math.random() * 17.0D) - 8; // L: 40
+		field1131 = (int)(Math.random() * 33.0D) - 16; // L: 41
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)Lcc;",
-		garbageValue = "-560076270"
+		descriptor = "(I)V",
+		garbageValue = "928975395"
 	)
-	@Export("getWorldMapScript")
-	static Script getWorldMapScript(int var0, int var1, int var2) {
-		int var3 = class137.method2654(var1, var0); // L: 38
-		Script var4 = Widget.method4292(var3, var0); // L: 39
-		if (var4 != null) { // L: 40
-			return var4; // L: 41
-		} else {
-			var3 = class124.method2489(var2, var0); // L: 43
-			var4 = Widget.method4292(var3, var0); // L: 44
-			return var4 != null ? var4 : null; // L: 45 48
-		}
-	}
+	static final void method2053() {
+		Object var10000 = null; // L: 114
+		String var0 = "Your friend list is full. Max of 200 for free users, and 400 for members";
+		World.addGameMessage(30, "", var0); // L: 116
+	} // L: 118
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lky;",
-		garbageValue = "-2019872849"
+		descriptor = "(Ljava/lang/String;I)I",
+		garbageValue = "-175787881"
 	)
-	public static FloorUnderlayDefinition method2035(int var0) {
-		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0); // L: 23
-		if (var1 != null) { // L: 24
-			return var1;
-		} else {
-			byte[] var2 = FloorUnderlayDefinition.FloorUnderlayDefinition_archive.takeFile(1, var0); // L: 25
-			var1 = new FloorUnderlayDefinition(); // L: 26
-			if (var2 != null) { // L: 27
-				var1.decode(new Buffer(var2), var0);
-			}
-
-			var1.postDecode(); // L: 28
-			FloorUnderlayDefinition.FloorUnderlayDefinition_cached.put(var1, (long)var0); // L: 29
-			return var1; // L: 30
-		}
+	@Export("stringCp1252NullTerminatedByteSize")
+	public static int stringCp1252NullTerminatedByteSize(String var0) {
+		return var0.length() + 1; // L: 115
 	}
 }

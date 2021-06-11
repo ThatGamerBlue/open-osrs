@@ -3,36 +3,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("cw")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("h")
-	static int[] field1311;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Ljg;"
+		descriptor = "Let;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Ljc;"
+		descriptor = "Lki;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljg;)V"
+		descriptor = "(Let;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque(); // L: 12
 		this.definition = var1; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "35"
+		descriptor = "(IIIII)V",
+		garbageValue = "-2108595638"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -65,10 +63,10 @@ public class HealthBar extends Node {
 		}
 	} // L: 31 35
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lcl;",
-		garbageValue = "-1462227076"
+		descriptor = "(IB)Lcx;",
+		garbageValue = "-3"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -79,7 +77,7 @@ public class HealthBar extends Node {
 				var2 = var3; // L: 43
 			}
 
-			if (this.definition.int5 + var2.cycleOffset + var2.cycle > var1) { // L: 47
+			if (this.definition.int5 + var2.cycle + var2.cycleOffset > var1) { // L: 47
 				return var2;
 			} else {
 				var2.remove(); // L: 49
@@ -90,13 +88,13 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-1"
+		descriptor = "(I)Z",
+		garbageValue = "1762138493"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method4787(); // L: 55
+		return this.updates.method5236(); // L: 55
 	}
 }

@@ -1,161 +1,145 @@
 import java.nio.ByteBuffer;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hb")
+@ObfuscatedName("if")
 @Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
-	@ObfuscatedName("f")
+	@ObfuscatedName("r")
+	static byte[][][] field3128;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = -1885485519
+	)
+	static int field3126;
+	@ObfuscatedName("v")
 	@Export("directBuffer")
 	ByteBuffer directBuffer;
 
-	@ObfuscatedName("u")
+	DirectByteArrayCopier() {
+	} // L: 10
+
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "-1722490231"
+		descriptor = "(B)[B",
+		garbageValue = "74"
 	)
 	@Export("get")
 	byte[] get() {
-		byte[] var1 = new byte[this.directBuffer.capacity()];
-		this.directBuffer.position(0);
-		this.directBuffer.get(var1);
-		return var1;
+		byte[] var1 = new byte[this.directBuffer.capacity()]; // L: 13
+		this.directBuffer.position(0); // L: 14
+		this.directBuffer.get(var1); // L: 15
+		return var1; // L: 16
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "1564375073"
+		descriptor = "([BB)V",
+		garbageValue = "43"
 	)
 	@Export("set")
-	public void set(byte[] var1) {
-		this.directBuffer = ByteBuffer.allocateDirect(var1.length);
+	void set(byte[] var1) {
+		this.directBuffer = ByteBuffer.allocateDirect(var1.length); // L: 20
 		this.directBuffer.position(0); // L: 21
 		this.directBuffer.put(var1); // L: 22
-	}
+	} // L: 23
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1136750578"
+		descriptor = "(Ljp;IIIBZB)V",
+		garbageValue = "-95"
 	)
-	static int method4354() {
-		return 12; // L: 123
-	}
+	@Export("requestNetFile")
+	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
+		long var6 = (long)((var1 << 16) + var2); // L: 72
+		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6); // L: 73
+		if (var8 == null) { // L: 74
+			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6); // L: 75
+			if (var8 == null) { // L: 76
+				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6); // L: 77
+				if (var8 != null) { // L: 78
+					if (var5) { // L: 79
+						var8.removeDual(); // L: 80
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 81
+						--NetCache.NetCache_pendingWritesCount; // L: 82
+						++NetCache.NetCache_pendingPriorityWritesCount; // L: 83
+					}
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljh;B)I",
-		garbageValue = "98"
-	)
-	@Export("compareStrings")
-	public static int compareStrings(CharSequence var0, CharSequence var1, Language var2) {
-		int var3 = var0.length(); // L: 11
-		int var4 = var1.length(); // L: 12
-		int var5 = 0; // L: 13
-		int var6 = 0; // L: 14
-		char var7 = 0; // L: 15
-		char var8 = 0; // L: 16
+				} else {
+					if (!var5) { // L: 87
+						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6); // L: 88
+						if (var8 != null) { // L: 89
+							return;
+						}
+					}
 
-		while (var5 - var7 < var3 || var6 - var8 < var4) { // L: 18
-			if (var5 - var7 >= var3) { // L: 19
-				return -1;
-			}
+					var8 = new NetFileRequest(); // L: 91
+					var8.archive = var0; // L: 92
+					var8.crc = var3; // L: 93
+					var8.padding = var4; // L: 94
+					if (var5) { // L: 95
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 96
+						++NetCache.NetCache_pendingPriorityWritesCount; // L: 97
+					} else {
+						NetCache.NetCache_pendingWritesQueue.addFirst(var8); // L: 100
+						NetCache.NetCache_pendingWrites.put(var8, var6); // L: 101
+						++NetCache.NetCache_pendingWritesCount; // L: 102
+					}
 
-			if (var6 - var8 >= var4) { // L: 20
-				return 1;
-			}
-
-			char var9;
-			if (var7 != 0) { // L: 23
-				var9 = var7; // L: 24
-				boolean var14 = false; // L: 25
-			} else {
-				var9 = var0.charAt(var5++); // L: 27
-			}
-
-			char var10;
-			if (var8 != 0) { // L: 28
-				var10 = var8; // L: 29
-				boolean var15 = false; // L: 30
-			} else {
-				var10 = var1.charAt(var6++); // L: 32
-			}
-
-			var7 = WorldMapSection1.method3154(var9); // L: 33
-			var8 = WorldMapSection1.method3154(var10); // L: 34
-			var9 = GrandExchangeOfferNameComparator.standardizeChar(var9, var2); // L: 35
-			var10 = GrandExchangeOfferNameComparator.standardizeChar(var10, var2); // L: 36
-			if (var9 != var10 && Character.toUpperCase(var9) != Character.toUpperCase(var10)) { // L: 37
-				var9 = Character.toLowerCase(var9); // L: 38
-				var10 = Character.toLowerCase(var10); // L: 39
-				if (var9 != var10) { // L: 40
-					return class124.lowercaseChar(var9, var2) - class124.lowercaseChar(var10, var2);
 				}
 			}
 		}
+	} // L: 85 104
 
-		int var16 = Math.min(var3, var4); // L: 43
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(IZIZI)V",
+		garbageValue = "-1640664715"
+	)
+	@Export("sortWorldList")
+	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+		if (Tiles.World_worlds != null) { // L: 171
+			DesktopPlatformInfoProvider.doWorldSorting(0, Tiles.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
+		}
 
-		char var12;
-		int var17;
-		for (var17 = 0; var17 < var16; ++var17) {
-			if (var2 == Language.Language_FR) {
-				var5 = var3 - 1 - var17;
-				var6 = var4 - 1 - var17; // L: 47
+	} // L: 174
+
+	@ObfuscatedName("go")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;ZI)V",
+		garbageValue = "-1591335539"
+	)
+	@Export("drawLoadingMessage")
+	static final void drawLoadingMessage(String var0, boolean var1) {
+		if (Client.showLoadingMessages) { // L: 4019
+			byte var2 = 4; // L: 4020
+			int var3 = var2 + 6; // L: 4021
+			int var4 = var2 + 6; // L: 4022
+			int var5 = UserComparator3.fontPlain12.lineWidth(var0, 250); // L: 4023
+			int var6 = UserComparator3.fontPlain12.lineCount(var0, 250) * 13; // L: 4024
+			Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var5 + var2 + var2, var6 + var2 + var2, 0); // L: 4025
+			Rasterizer2D.Rasterizer2D_drawRectangle(var3 - var2, var4 - var2, var2 + var2 + var5, var6 + var2 + var2, 16777215); // L: 4026
+			UserComparator3.fontPlain12.drawLines(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0); // L: 4027
+			int var7 = var3 - var2; // L: 4028
+			int var8 = var4 - var2; // L: 4029
+			int var9 = var2 + var2 + var5; // L: 4030
+			int var10 = var2 + var2 + var6; // L: 4031
+
+			for (int var11 = 0; var11 < Client.rootWidgetCount; ++var11) { // L: 4033
+				if (Client.rootWidgetXs[var11] + Client.rootWidgetWidths[var11] > var7 && Client.rootWidgetXs[var11] < var9 + var7 && Client.rootWidgetHeights[var11] + Client.rootWidgetYs[var11] > var8 && Client.rootWidgetYs[var11] < var10 + var8) { // L: 4034
+					Client.field719[var11] = true;
+				}
+			}
+
+			if (var1) { // L: 4037
+				class26.rasterProvider.drawFull(0, 0); // L: 4038
 			} else {
-				var6 = var17; // L: 49
-				var5 = var17;
+				PcmPlayer.method786(var3, var4, var5, var6); // L: 4041
 			}
 
-			char var11 = var0.charAt(var5); // L: 50
-			var12 = var1.charAt(var6); // L: 51
-			if (var12 != var11 && Character.toUpperCase(var11) != Character.toUpperCase(var12)) { // L: 52
-				var11 = Character.toLowerCase(var11); // L: 53
-				var12 = Character.toLowerCase(var12); // L: 54
-				if (var12 != var11) {
-					return class124.lowercaseChar(var11, var2) - class124.lowercaseChar(var12, var2); // L: 55
-				}
-			}
 		}
-
-		var17 = var3 - var4; // L: 58
-		if (var17 != 0) { // L: 59
-			return var17;
-		} else {
-			for (int var18 = 0; var18 < var16; ++var18) { // L: 60
-				var12 = var0.charAt(var18); // L: 61
-				char var13 = var1.charAt(var18); // L: 62
-				if (var13 != var12) { // L: 63
-					return class124.lowercaseChar(var12, var2) - class124.lowercaseChar(var13, var2);
-				}
-			}
-
-			return 0; // L: 65
-		}
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1742399139"
-	)
-	@Export("Messages_getHistorySize")
-	static int Messages_getHistorySize(int var0) {
-		ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 44
-		return var1 == null ? 0 : var1.size(); // L: 45 46
-	}
-
-	@ObfuscatedName("ku")
-	@ObfuscatedSignature(
-		descriptor = "(Lhu;B)I",
-		garbageValue = "-62"
-	)
-	@Export("getWidgetFlags")
-	static int getWidgetFlags(Widget var0) {
-		IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32)); // L: 11589
-		return var1 != null ? var1.integer : var0.flags; // L: 11590 11591
-	}
+	} // L: 4043
 }

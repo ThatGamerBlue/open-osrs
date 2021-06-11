@@ -5,98 +5,97 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("c")
 public class class13 extends class14 {
-	@ObfuscatedName("si")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lbl;"
+		descriptor = "Lio;"
 	)
-	@Export("friendSystem")
-	public static FriendSystem friendSystem;
-	@ObfuscatedName("bp")
-	@ObfuscatedSignature(
-		descriptor = "[Low;"
-	)
-	@Export("worldSelectStars")
-	static IndexedSprite[] worldSelectStars;
-	@ObfuscatedName("f")
+	@Export("scriptDotWidget")
+	static Widget scriptDotWidget;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		longValue = 5109296971613093853L
+		longValue = 2060700822682065955L
 	)
-	long field119;
-	@ObfuscatedName("o")
-	String field116;
+	long field129;
+	@ObfuscatedName("n")
+	String field128;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lu;"
+		descriptor = "Lf;"
 	)
 	final class2 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lu;)V"
+		descriptor = "(Lf;)V"
 	)
 	class13(class2 var1) {
 		this.this$0 = var1;
-		this.field119 = -1L; // L: 194
-		this.field116 = null; // L: 195
+		this.field129 = -1L; // L: 194
+		this.field128 = null; // L: 195
 	} // L: 197
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "-1383981708"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "-1281352827"
 	)
-	void vmethod371(Buffer var1) {
+	void vmethod276(Buffer var1) {
 		if (var1.readUnsignedByte() != 255) { // L: 200
 			--var1.offset; // L: 201
-			this.field119 = var1.readLong(); // L: 202
+			this.field129 = var1.readLong(); // L: 202
 		}
 
-		this.field116 = var1.readStringCp1252NullTerminatedOrNull(); // L: 204
+		this.field128 = var1.readStringCp1252NullTerminatedOrNull(); // L: 204
 	} // L: 205
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lm;I)V",
-		garbageValue = "-1475503816"
+		descriptor = "(Ll;B)V",
+		garbageValue = "29"
 	)
-	void vmethod376(class11 var1) {
-		var1.method188(this.field119, this.field116); // L: 208
+	void vmethod281(ClanSettings var1) {
+		var1.method106(this.field129, this.field128); // L: 208
 	} // L: 209
 
-	@ObfuscatedName("jc")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lhu;I)Lhu;",
-		garbageValue = "1854915849"
+		descriptor = "(Ljv;B)V",
+		garbageValue = "-4"
 	)
-	static Widget method220(Widget var0) {
-		Widget var2 = var0; // L: 11063
-		int var3 = AbstractWorldMapData.method3079(DirectByteArrayCopier.getWidgetFlags(var0)); // L: 11065
-		Widget var1;
-		if (var3 == 0) { // L: 11066
-			var1 = null; // L: 11067
-		} else {
-			int var4 = 0;
+	public static void method180(AbstractArchive var0) {
+		StructComposition.StructDefinition_archive = var0; // L: 19
+	} // L: 20
 
-			while (true) {
-				if (var4 >= var3) {
-					var1 = var2; // L: 11077
-					break;
-				}
-
-				var2 = class139.getWidget(var2.parentId); // L: 11071
-				if (var2 == null) { // L: 11072
-					var1 = null; // L: 11073
-					break; // L: 11074
-				}
-
-				++var4; // L: 11070
-			}
-		}
-
-		Widget var5 = var1; // L: 11079
-		if (var1 == null) { // L: 11080
-			var5 = var0.parent;
-		}
-
-		return var5; // L: 11081
+	@ObfuscatedName("n")
+	public static double method182(double var0, double var2, double var4) {
+		return MouseHandler.method620((var0 - var2) / var4) / var4; // L: 13
 	}
+
+	@ObfuscatedName("fz")
+	@ObfuscatedSignature(
+		descriptor = "(Ljp;Ljava/lang/String;I)V",
+		garbageValue = "-1436949198"
+	)
+	static void method175(Archive var0, String var1) {
+		ArchiveLoader var2 = new ArchiveLoader(var0, var1); // L: 1492
+		Client.archiveLoaders.add(var2); // L: 1493
+		Client.field916 += var2.groupCount; // L: 1494
+	} // L: 1495
+
+	@ObfuscatedName("km")
+	@ObfuscatedSignature(
+		descriptor = "(Lio;IIII)V",
+		garbageValue = "425709195"
+	)
+	@Export("drawCompass")
+	static final void drawCompass(Widget var0, int var1, int var2, int var3) {
+		SpriteMask var4 = var0.getSpriteMask(false); // L: 11206
+		if (var4 != null) { // L: 11207
+			if (Client.minimapState < 3) { // L: 11208
+				NPCComposition.compass.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, 25, 25, Client.camAngleY, 256, var4.xStarts, var4.xWidths);
+			} else {
+				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths); // L: 11209
+			}
+
+		}
+	} // L: 11210
 }

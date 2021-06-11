@@ -3,18 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lt")
+@ObfuscatedName("lx")
 @Implements("User")
 public class User implements Comparable {
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lly;"
 	)
 	@Export("username")
 	Username username;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lly;"
 	)
 	@Export("previousUsername")
 	Username previousUsername;
@@ -22,50 +22,50 @@ public class User implements Comparable {
 	User() {
 	} // L: 7
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Llt;I)I",
-		garbageValue = "1200801892"
+		descriptor = "(Llx;I)I",
+		garbageValue = "539732409"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(User var1) {
 		return this.username.compareToTyped(var1.username); // L: 30
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(B)Llw;",
-		garbageValue = "46"
+		descriptor = "(I)Lly;",
+		garbageValue = "1600385893"
 	)
 	@Export("getUsername")
 	public Username getUsername() {
 		return this.username; // L: 10
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "125310743"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "1"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.username == null ? "" : this.username.getName(); // L: 14 15
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "-43"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "192558419"
 	)
 	@Export("getPreviousName")
 	public String getPreviousName() {
 		return this.previousUsername == null ? "" : this.previousUsername.getName(); // L: 19 20
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Llw;Llw;B)V",
-		garbageValue = "-36"
+		descriptor = "(Lly;Lly;I)V",
+		garbageValue = "2108784704"
 	)
 	@Export("set")
 	void set(Username var1, Username var2) {
