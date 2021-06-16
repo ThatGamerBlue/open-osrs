@@ -24,9 +24,18 @@
  */
 package net.runelite.cache;
 
+import com.google.common.hash.Hashing;
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import net.runelite.cache.definitions.ScriptDefinition;
+import net.runelite.cache.definitions.loaders.ScriptLoader;
+import net.runelite.cache.fs.Archive;
+import net.runelite.cache.fs.Index;
+import net.runelite.cache.fs.Storage;
 import net.runelite.cache.fs.Store;
+import net.runelite.cache.script.disassembler.Disassembler;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -45,6 +54,7 @@ public class Cache
 		options.addOption(null, "npcs", true, "directory to dump npcs to");
 		options.addOption(null, "objects", true, "directory to dump objects to");
 		options.addOption(null, "sprites", true, "directory to dump sprites to");
+		options.addOption(null, "scripts", true, "directory to dump scripts to");
 
 		CommandLineParser parser = new DefaultParser();
 		CommandLine cmd;
@@ -115,6 +125,19 @@ public class Cache
 			System.out.println("Dumping sprites to " + spritedir);
 			dumpSprites(store, new File(spritedir));
 		}
+		else if (cmd.hasOption("scripts"))
+		{
+			String scriptdir = cmd.getOptionValue("scripts");
+
+			if (scriptdir == null)
+			{
+				System.err.println("Script directory must be specified");
+				return;
+			}
+
+			System.out.println("Dumping scripts to " + scriptdir);
+			dumpScripts(store, new File(scriptdir));
+		}
 		else
 		{
 			System.err.println("Nothing to do");
@@ -157,5 +180,34 @@ public class Cache
 		SpriteManager dumper = new SpriteManager(store);
 		dumper.load();
 		dumper.export(spritedir);
+	}
+
+	private static void dumpScripts(Store store, File scriptdir) throws IOException
+	{
+		Storage storage = store.getStorage();
+		Index index = store.getIndex(IndexType.CLIENTSCRIPT);
+		ScriptLoader loader = new ScriptLoader();
+
+		for (Archive archive : index.getArchives())
+		{
+			byte[] contents = archive.decompress(storage.loadArchive(archive));
+
+			if (contents == null)
+			{
+				continue;
+			}
+
+			ScriptDefinition script = loader.load(archive.getArchiveId(), contents);
+
+			File outFile = new File(scriptdir, archive.getArchiveId() + ".rs2asm");
+			File hashFile = new File(scriptdir, archive.getArchiveId() + ".hash");
+
+			Disassembler disassembler = new Disassembler();
+			String out = disassembler.disassemble(script);
+
+			Files.write(out.getBytes(StandardCharsets.UTF_8), outFile);
+			String hash = Hashing.sha256().hashBytes(contents).toString().toUpperCase();
+			Files.write(hash.getBytes(StandardCharsets.UTF_8), hashFile);
+		}
 	}
 }
